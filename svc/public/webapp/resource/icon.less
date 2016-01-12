@@ -1,0 +1,195 @@
+@import "colour.less";
+
+@icon-path: "icon";
+
+.icon {
+  background: no-repeat center center;
+  background-size: 16px 16px;
+  min-height: 20px;
+  min-width: 20px;
+  font-size: 9pt;
+  border: 0;
+  transition: 0.2s linear all;
+  display: inline-block;
+
+  &.border {
+    border: 1px solid @lt-gray-border;
+    background-color: white;
+    border-radius: 5px;
+  }
+
+  &.small {
+    background-size: 8px 8px !important;
+    min-height: 12px !important;
+    min-width: 12px !important;
+  }
+
+
+  &.medium {
+    background-size: 24px 24px !important;
+    min-height: 28px !important;
+    min-width: 28px !important;
+  }
+
+  &.large {
+    background-size: 32px 32px !important;
+    min-height: 36px !important;
+    min-width: 36px !important;
+  }
+
+  &[data-ng-click] {
+    cursor: pointer;
+  }
+
+  &[data-ng-click]:hover {
+    background-color: @buttermilk;
+    border-color: @lt-orange;
+    box-shadow: 0 0 3px @dk-orange;
+    transition: 0.2s linear all;
+  }
+}
+
+button.icon, span.icon {
+  background: no-repeat 5px center;
+  background-size: 16px 16px;
+  padding: 0 5px 0 25px !important;
+}
+
+span.divider:after, button.divider:after {
+  padding-left: 10px;
+  content: "|";
+  color: gray;
+}
+
+.on-off.icon {
+  background-image: url("@{icon-path}/on-off.png");
+}
+
+.email.icon {
+  background-image: url("@{icon-path}/email.png");
+}
+
+.help.icon {
+  background-image: url("@{icon-path}/help.png");
+}
+
+.info.icon {
+  background-image: url("@{icon-path}/info.png");
+}
+
+.info-circle.icon {
+  background-image: url("@{icon-path}/info-circle.png");
+}
+
+.id.icon {
+  background-image: url("@{icon-path}/id.png");
+}
+
+.user.icon {
+  background-image: url("@{icon-path}/user.png");
+}
+
+.responsibility.icon {
+  background-image: url("@{icon-path}/responsibility.png");
+}
+
+.pin-on.icon {
+  background-image: url("@{icon-path}/pin-on.png");
+}
+
+.pin-off.icon {
+  background-image: url("@{icon-path}/pin-off.png");
+}
+
+.favourite-on.icon {
+  background-image: url("@{icon-path}/favourite-on.png");
+}
+
+.favourite-off.icon {
+  background-image: url("@{icon-path}/favourite-off.png");
+}
+
+.favourite-delete.icon {
+  background-image: url("@{icon-path}/favourite-delete.png");
+}
+
+.id.icon {
+  background-image: url("@{icon-path}/id.png");
+}
+
+.edit.icon {
+  background-image: url("@{icon-path}/edit.png");
+}
+
+.delete.icon {
+  background-image: url("@{icon-path}/delete.png");
+}
+
+.meeting.icon {
+  background-image: url("@{icon-path}/meeting.png");
+}
+
+.home.icon {
+  background-image: url("@{icon-path}/home.png");
+}
+
+.cancel.icon {
+  background-image: url("@{icon-path}/cancel.png");
+}
+
+.review.icon {
+  background-image: url("@{icon-path}/review.png");
+}
+
+.action.icon {
+  background-image: url("@{icon-path}/action.png");
+}
+
+.add.icon {
+  background-image: url("@{icon-path}/add.png");
+}
+
+.meeting.icon {
+  background-image: url("@{icon-path}/meeting.png");
+}
+
+.group.icon {
+  background-image: url("@{icon-path}/group.png");
+}
+
+.ok.icon {
+  background-image: url("@{icon-path}/ok.png");
+}
+
+.warning.icon {
+  background-image: url("@{icon-path}/warning.png");
+}
+
+.comment.icon {
+  background-image: url("@{icon-path}/comment.png");
+}
+
+.handshake.icon {
+  background-image: url("@{icon-path}/handshake.png");
+}
+
+.attention.icon {
+  background-image: url("@{icon-path}/attention.png");
+}
+
+.save.icon {
+  background-image: url("@{icon-path}/save.png");
+}
+
+.reply.icon {
+  background-image: url("@{icon-path}/reply.png");
+}
+
+.circle-close.icon {
+  background-image: url("@{icon-path}/close-button.png");
+  &:hover {
+    background-image: url("@{icon-path}/close-button-orange.png");
+    background-color: transparent;
+    box-shadow: none;
+  }
+}

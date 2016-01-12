@@ -1,0 +1,43 @@
+# Routes
+# This file defines all service routes (Higher priority routes first)
+
+# NOTE***** Static content should be listed at the end of the file******
+
+# ~~~~
+
+# DYNAMIC CONTENT
+
+GET           /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.list()
+GET           /project/:id                   uk.org.langstone.clarus.endpoint.ProjectsEndpoint.find(id: Integer)
+POST          /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.create()
+PUT           /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.update()
+DELETE        /project/:id                   uk.org.langstone.clarus.endpoint.ProjectsEndpoint.delete(id: Integer)
+GET           /project/:id/meeting           uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listMeeting(id: Integer)
+GET           /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listIssue(id: Integer)
+POST          /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.createIssue(id: Integer)
+PUT           /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.updateIssue(id: Integer)
+
+GET           /user/:id/project              uk.org.langstone.clarus.endpoint.UserEndpoint.findProjects(id: Integer)
+
+GET           /user/:id/activate/:key        uk.org.langstone.clarus.endpoint.ActivateEndpoint.activate(id: Integer, key: String)
+
+POST          /register/user                 uk.org.langstone.clarus.endpoint.RegisterEndpoint.register()
+
+GET           /login/user                    uk.org.langstone.clarus.endpoint.LoginEndpoint.login()
+
+GET           /meeting/:id/comment           uk.org.langstone.clarus.endpoint.MeetingEndpoint.findCommentsForMeeting(id: Integer)
+POST          /meeting/:id/comment           uk.org.langstone.clarus.endpoint.MeetingEndpoint.addCommentsToMeeting(id: Integer)
+POST          /meeting                       uk.org.langstone.clarus.endpoint.MeetingEndpoint.create()
+PUT           /meeting                       uk.org.langstone.clarus.endpoint.MeetingEndpoint.update()
+
+GET           /sse-connection/:id            uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEConnection(id: String)
+POST          /sse-request                   uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEExampleRequest()
+
+
+#STATIC CONTENT
+
+# Home page
+GET           /                              controllers.Assets.at(path="/public/webapp", file="index.html")
+
+# Map static resources from the /public folder to the /assets URL path
+GET           /*file                         controllers.Assets.versioned(path="/public/webapp", file: Asset)

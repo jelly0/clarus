@@ -1,0 +1,56 @@
+<div data-ng-controller="reviewCtrl">
+  <h1>Review</h1>
+  <div data-ng-show="comments.length==0" class="info-bar border">There are currently no comments</div>
+  <div data-ng-show="waiting" class="waiting-bar border">Loading Comments</div>
+
+  <div>
+    <div class="pull-right">
+      <button class="icon save" data-ng-click="save()">Save</button>
+      <button class="icon cancel" data-ng-click="cancel()">Cancel</button>
+      &nbsp;|&nbsp;
+      <button class="icon comment" data-ng-click="addComment()"><i class="icon add small"></i>&nbsp;Add Comment
+      </button>
+    </div>
+    <h2>{{meeting.subject}}: {{meeting.scheduledDate | date:"dd/MM/yy"}}</h2>
+  </div>
+
+  <div data-ng-repeat="comment in comments | orderBy:['reference', 'entryDate'] track by $index" class="well well-sm">
+    <div>
+      <div class="pull-left">
+        <i data-ng-show="isNew(comment)" class="icon warning"></i>
+        <i data-ng-show="!isNew(comment)" class="icon comment"></i>
+      </div>
+      <div class="pull-right">
+        <button data-ng-show="!isNew(comment)" class="border icon action" data-ng-click="addTask(comment)">Action</button>
+        <button data-ng-show="!isNew(comment)" class="border icon ok" data-ng-click="resolved(comment)">Resolved</button>
+        <button data-ng-show="!isNew(comment)" class="border icon reply" data-ng-click="addComment(comment)">Reply</button>
+        <button data-ng-show="isNew(comment)" class="border icon delete" data-ng-click="deleteComment(comment)">Delete</button>
+        <button data-ng-show="isNew(comment)" class="border icon edit" data-ng-click="amendComment(comment)">Amend</button>
+      </div>
+      <div class="comment-info">
+        <span>[{{comment.reference}}]</span>&nbsp;:&nbsp;
+        {{comment.user.forename}}&nbsp;{{comment.user.surname}}&nbsp;-&nbsp;{{comment.entryDate | date:"hh:mm dd/MM"}}
+      </div>
+    </div>
+    <div>{{comment.text}}</div>
+
+    <div class="list-group">
+      <div data-ng-repeat="reply in comment.replies | orderBy:'date' track by $index" class="list-group-item">
+        <div>
+          <div class="pull-left">
+            <i data-ng-show="isNew(reply)" class="icon warning"></i>
+            <i data-ng-show="!isNew(reply)" class="icon reply"></i>
+          </div>
+          <div>
+            <div class="pull-right" data-ng-show="isNew(reply)">
+              <button class="border icon delete" data-ng-click="deleteReply(comment, reply)">Delete</button>
+              <button class="border icon edit" data-ng-click="amendReply(reply)">Amend</button>
+            </div>
+          </div>
+          <div class="comment-info">{{reply.entryDate | date:"hh:mm dd/MM"}}&nbsp;-&nbsp;{{reply.user.forename}}&nbsp;{{reply.user.surname}}</div>
+          <div>{{reply.text}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

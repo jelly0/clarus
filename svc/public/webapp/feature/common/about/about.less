@@ -1,0 +1,80 @@
+@image-path: "../../../resource/image";
+
+.about {
+  position: fixed ! important;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  height: 100%;
+
+  .icon.circle-close {
+    position: relative;
+    top: 20px;
+    left: 10px;
+  }
+
+  // vertical
+  > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 700px; // (number of contents - 1) * (content collapsed width) + (content width)
+    margin: auto;
+    text-align: right;
+
+    // Horizontal
+    > div {
+      text-align: left;
+      box-shadow: 5px 5px 15px gray;
+      overflow: hidden;
+      * {
+        float: left;
+      }
+
+      // slider
+      > div {
+        width: 1200px ! important;
+        overflow: hidden;
+      }
+
+      .content {
+        height: 400px;
+        width: 100px;
+        transition: width 1s ease-in;
+      }
+
+      .content:hover {
+        width: 600px;
+      }
+
+      .description {
+        color: white;
+        font-size: 10pt;
+        font-weight: normal;
+        margin-left: 150px;
+        width: 410px;
+        padding: 10px;
+        border: 1px solid gray;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.7);
+      }
+
+      .phillip {
+        background-image: url("@{image-path}/about/phillip.jpg");
+        > .description {
+          margin-top: 250px;
+        }
+      }
+
+      .clarus {
+        background-image: url("@{image-path}/about/clarus.jpg");
+        width: 600px;
+        > .description {
+          margin-top: 150px;
+        }
+      }
+    }
+  }
+}

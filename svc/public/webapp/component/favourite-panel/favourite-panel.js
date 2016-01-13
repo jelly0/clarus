@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("app").controller("favouritePanelCtrl", ["$rootScope", "$scope", "$log", "userContext",
+angular.module("clarus").controller("favouritePanelCtrl", ["$rootScope", "$scope", "$log", "userContext",
     function ($rootScope, $scope, $log, userContext) {
         var vm = $scope;
 

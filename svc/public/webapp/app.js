@@ -1,4 +1,4 @@
-angular.module("app", ["ui.router", "googlechart", "ui.bootstrap", "ngAnimate", "ngMessages", "security", "dal", "repository", "context"]).run(
+angular.module("clarus", ["ui.router", "googlechart", "ui.bootstrap", "ngAnimate", "ngMessages"]).run(
     function ($window, $rootScope, $log) {
         $log.debug("App Instantiated");
     }).config(

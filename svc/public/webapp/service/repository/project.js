@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("repository").service("projectRepository", ["$q", "$log", "dal", "userContext", "projectDao",
+angular.module("clarus").service("projectRepository", ["$q", "$log", "dal", "userContext", "projectDao",
     function ($q, $log, dal, userContext, projectDao) {
 
         var projectCache = [];
@@ -71,5 +71,5 @@ angular.module("repository").service("projectRepository", ["$q", "$log", "dal", 
             projectCache = [];
         };
 
-        $log.debug("projectRepository Instantiated");
+        $log.debug("repository:projectRepository Instantiated");
     }]);

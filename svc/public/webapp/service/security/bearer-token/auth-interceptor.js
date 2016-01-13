@@ -1,5 +1,5 @@
-// Using injector to locate service to avoid circular dependency on load for $http
-angular.module("security").service("authInterceptor", ["$log", "$q", "$injector",
+// Using injector to locate services to avoid circular dependency on load for $http
+angular.module("clarus").service("authInterceptor", ["$log", "$q", "$injector",
     function ($log, $q, $injector) {
         return {
             request: function (config) {
@@ -29,8 +29,8 @@ angular.module("security").service("authInterceptor", ["$log", "$q", "$injector"
                     if ($state.current.name != "user.login") {
                         $state.go("user.login");
                     }
-                } else if (rejection.status >= $$http.status.INTERNAL_ERROR){
-                    //$state.go("error");
+                } else if (rejection.status >= $$http.status.INTERNAL_ERROR) {
+                    $$dialog.error("Unable to logon.  Please try again later");
                 }
                 return $q.reject(rejection);
             }

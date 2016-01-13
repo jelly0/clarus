@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').controller("userRegisterCtrl", ["$state", "$stateParams", "$log", "userDao",
+angular.module("clarus").controller("userRegisterCtrl", ["$state", "$stateParams", "$log", "userDao",
     function ($state, $stateParams, $log, userDao) {
         var vm = this;
 

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("repository").service("commentRepository", ["$q", "$log", "meetingDao", function ($q, $log, meetingDao) {
+angular.module("clarus").service("commentRepository", ["$q", "$log", "meetingDao", function ($q, $log, meetingDao) {
     var commentCache = {};
     var mapCommentsToModel = function (comments) {
         for (var i = 0; i < comments.length; i++) {
@@ -73,5 +73,5 @@ angular.module("repository").service("commentRepository", ["$q", "$log", "meetin
         commentCache = {};
     };
 
-    $log.debug("Repository:MeetingREPO Instantiated");
+    $log.debug("repository:commentRepository Instantiated");
 }]);

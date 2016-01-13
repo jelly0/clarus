@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("dal").service("projectDao", ["dal", "$log", function (dal, $log) {
+angular.module("clarus").service("projectDao", ["dal", "$log", function (dal, $log) {
     this.getUserProjects = function (userId) {
         return dal.http.GET("user/" + userId + "/project");
     };
@@ -13,5 +13,5 @@ angular.module("dal").service("projectDao", ["dal", "$log", function (dal, $log)
         return dal.http.PUT("project", projectToUpdate);
     };
 
-    $log.debug("$$dal:ProjectDAO Instantiated");
+    $log.debug("dal:projectDao Instantiated");
 }]);

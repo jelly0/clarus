@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("app").directive("lowercase", function () {
+angular.module("clarus").directive("lowercase", function () {
     return {
         require: "ngModel",
         link: function (scope, element, attrs, ngModel) {

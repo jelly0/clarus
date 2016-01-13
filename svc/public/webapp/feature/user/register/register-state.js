@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').config(function ($stateProvider) {
+angular.module("clarus").config(function ($stateProvider) {
     var $log = angular.injector(['ng']).get('$log');
     $stateProvider.state("user.register", {
         url: "/user/register",

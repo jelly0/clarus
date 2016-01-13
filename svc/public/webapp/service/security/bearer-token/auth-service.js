@@ -1,5 +1,5 @@
 'use strict';
-angular.module("security", ["ui.router"]).service("authService", ["$log", "$http", "$q",
+angular.module("clarus").service("authService", ["$log", "$http", "$q",
     function ($log, $http, $q) {
         var deferred = $q.defer();
         var credentials = {};

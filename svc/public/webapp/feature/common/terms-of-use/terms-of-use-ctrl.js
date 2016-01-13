@@ -5,7 +5,7 @@
  * @param $stateParams.from Name of the state.  This is used for navigating back
  */
 
-angular.module("app").controller("termsOfUseCtrl", ["$scope", "$state", "$stateParams", "$log",
+angular.module("clarus").controller("termsOfUseCtrl", ["$scope", "$state", "$stateParams", "$log",
     function ($scope, $state, $stateParams, $log) {
         var vm = $scope;
 

@@ -3,7 +3,7 @@
 /**
  * Directive that checks one input field with another input field. Returns valid if they match. Directive is run when either field is changed
  */
-angular.module("app").directive("match", function () {
+angular.module("clarus").directive("match", function () {
     return {
         require: "ngModel",
         scope: { otherModelValue: "=match" },

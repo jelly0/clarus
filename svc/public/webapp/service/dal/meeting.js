@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("dal").service("meetingDao", ["dal", "$log", function (dal, $log) {
+angular.module("clarus").service("meetingDao", ["dal", "$log", function (dal, $log) {
 
     this.getProjectMeetings = function (projectId) {
         return dal.http.GET("project/" + projectId + "/meeting");
@@ -26,5 +26,5 @@ angular.module("dal").service("meetingDao", ["dal", "$log", function (dal, $log)
         return dal.http.POST("meeting/" + meetingId + "/comment", commentsToSave);
     };
 
-    $log.debug("$$dal:ProjectDAO Instantiated");
+    $log.debug("dal:meetingDao Instantiated");
 }]);

@@ -3,7 +3,7 @@
 /**
  * Check if a date field is before another.  Note that the directive does not check the type
  */
-angular.module("app").directive("before", function () {
+angular.module("clarus").directive("before", function () {
     return {
         require: "ngModel",
         scope: {otherModelValue: "=before"},

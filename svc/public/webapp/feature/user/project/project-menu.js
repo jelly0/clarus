@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').controller("projectMenuCtrl", ["$scope", "$log", "userContext", "$state",
+angular.module("clarus").controller("projectMenuCtrl", ["$scope", "$log", "userContext", "$state",
     function ($scope, $log, userContext, $state) {
         var vm = $scope;
 

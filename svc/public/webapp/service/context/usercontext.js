@@ -4,7 +4,7 @@
  * The domain.repository manages holds the context of the current work item.
  */
 
-angular.module("context", ["security"]).service("userContext", ["$log", "$rootScope", "$q", "$state", "authService",
+angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$state", "authService",
     function ($log, $rootScope, $q, $state, authService, repository) {
         var user = null;
         var selectedProject = null;

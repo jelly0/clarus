@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').controller("projectFormCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "projectRepository", "userContext",
+angular.module("clarus").controller("projectFormCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "projectRepository", "userContext",
     function ($log, $scope, $state, $stateParams, $uibModal, projectRepository, userContext) {
         var vm = $scope;
         var membersRemovedCount = 0;

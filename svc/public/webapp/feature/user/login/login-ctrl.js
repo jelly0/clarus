@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("app").controller("userLoginCtrl", ["$state", "$log", "userContext",
+angular.module("clarus").controller("userLoginCtrl", ["$state", "$log", "userContext",
     function ($state, $log, userContext) {
         var vm = this;
 

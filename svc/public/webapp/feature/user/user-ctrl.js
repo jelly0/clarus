@@ -1,4 +1,4 @@
-angular.module("app").controller("userCtrl", ["$rootScope", "$state", "$log", "$scope", "userContext",
+angular.module("clarus").controller("userCtrl", ["$rootScope", "$state", "$log", "$scope", "userContext",
     function ($rootScope, $state, $log, $scope, userContext) {
         var vm = $scope;
 

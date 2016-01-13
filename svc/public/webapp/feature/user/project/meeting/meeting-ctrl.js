@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').controller("meetingCtrl", ["$log", "$scope", "$state", "$stateParams", "meetingRepository",
+angular.module("clarus").controller("meetingCtrl", ["$log", "$scope", "$state", "$stateParams", "meetingRepository",
     function ($log, $scope, $state, $stateParams, meetingRepository) {
         var vm = $scope;
 

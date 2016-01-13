@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module('app').controller("commentFormCtrl", ["$scope", "$uibModalInstance", "$log", "params",
+angular.module("clarus").controller("commentFormCtrl", ["$scope", "$uibModalInstance", "$log", "params",
     function ($scope, $uibModalInstance, $log, params) {
         var vm = $scope;
 

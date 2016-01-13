@@ -1,4 +1,4 @@
-angular.module("app").directive("autofocus", ["$timeout", function ($timeout) {
+angular.module("clarus").directive("autofocus", ["$timeout", function ($timeout) {
     return {
         restrict: "A",
         link: function ($scope, $element) {

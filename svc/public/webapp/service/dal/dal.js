@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("dal", []).service("dal", ["$http", "$q", "$log", function ($http, $q, $log) {
+angular.module("clarus").service("dal", ["$http", "$q", "$log", function ($http, $q, $log) {
     this.http = (function serviceCaller() {
         return {
             /**
@@ -74,5 +74,5 @@ angular.module("dal", []).service("dal", ["$http", "$q", "$log", function ($http
             }
         }
     })();
-    $log.debug("dal Instantiated");
+    $log.debug("dal:serviceCaller Instantiated");
 }]);

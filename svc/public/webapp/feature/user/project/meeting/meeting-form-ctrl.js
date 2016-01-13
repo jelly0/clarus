@@ -1,5 +1,5 @@
 "use strict";
-angular.module('app').controller("meetingFormCtrl", ["$scope", "$state", "$stateParams", "$log", "$uibModal", "meetingRepository", "userContext",
+angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$stateParams", "$log", "$uibModal", "meetingRepository", "userContext",
     function ($scope, $state, $stateParams, $log, $uibModal, meetingRepository, userContext) {
         var vm = $scope;
         var attendeesRemovedCount = 0;

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("repository").service("meetingRepository", ["$q", "$log", "meetingDao", function ($q, $log, meetingDao) {
+angular.module("clarus").service("meetingRepository", ["$q", "$log", "meetingDao", function ($q, $log, meetingDao) {
     var meetingCache = {};
 
     this.getMeetingById = function (projectId, meetingId) {
@@ -73,5 +73,5 @@ angular.module("repository").service("meetingRepository", ["$q", "$log", "meetin
         meetingCache = {};
     };
 
-    $log.debug("Repository:MeetingREPO Instantiated");
+    $log.debug("repository:meetingRepository Instantiated");
 }]);

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("app").controller("activatedCtrl", ["$state", "$log",
+angular.module("clarus").controller("activatedCtrl", ["$state", "$log",
     function ($state, $log) {
         var vm = this;
 

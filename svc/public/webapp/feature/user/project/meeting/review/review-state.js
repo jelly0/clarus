@@ -1,4 +1,4 @@
-angular.module('app').config(function ($stateProvider) {
+angular.module("clarus").config(function ($stateProvider) {
     $stateProvider.state("user.project.meeting.review", {
         url: "/:meetingId/review",
         views: {

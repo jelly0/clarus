@@ -1,15 +1,22 @@
 "use strict";
 
-angular.module("clarus").service("projectRepository", ["$q", "$log", "dal", "userContext", "projectDao",
-    function ($q, $log, dal, userContext, projectDao) {
-
+angular.module("clarus").service("projectRepository", ["$q", "$log", "dal",  "$rootScope", "contextEvent", "userContext", "projectDao",
+    function ($q, $log, dal, $rootScope, contextEvent, userContext, projectDao) {
         var projectCache = [];
+
+        (function init() {
+            $rootScope.$on(contextEvent.CLEAR_CONTEXT, function clearContext() {
+                projectCache = {};
+                $log.debug("projectRepository: context cleared");
+            })
+        })();
 
         this.getProjectById = function (projectId) {
             return _.find(projectCache, function (project) {
                 return project.id == projectId;
             });
         };
+
         this.getUserProjects = function (userId) {
             var deferred = $q.defer();
 
@@ -30,6 +37,7 @@ angular.module("clarus").service("projectRepository", ["$q", "$log", "dal", "use
             }
             return deferred.promise;
         };
+
         this.saveProject = function (projectToSave) {
             var deferred = $q.defer();
 
@@ -66,10 +74,4 @@ angular.module("clarus").service("projectRepository", ["$q", "$log", "dal", "use
 
             return deferred.promise;
         };
-
-        this.clearContext = function () {
-            projectCache = [];
-        };
-
-        $log.debug("repository:projectRepository Instantiated");
     }]);

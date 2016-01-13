@@ -30,7 +30,7 @@ angular.module("clarus").service("authInterceptor", ["$log", "$q", "$injector",
                         $state.go("user.login");
                     }
                 } else if (rejection.status >= $$http.status.INTERNAL_ERROR) {
-                    $$dialog.error("Unable to logon.  Please try again later");
+                    // Pass through to application
                 }
                 return $q.reject(rejection);
             }

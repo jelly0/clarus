@@ -1,8 +1,5 @@
 <div data-ng-controller="meetingCtrl">
   <h1>Manage Meetings</h1>
-  <div data-ng-show="waiting" class="waiting-bar border">Loading Meetings</div>
-  <div data-ng-show="meetings.length==0" class="info-bar">You do not have any meetings</div>
-
   <div data-ng-repeat="meeting in meetings | orderBy:'scheduledDate' track by $index" class="panel panel-default">
     <div class="panel-heading heading">
       <span><i class="fa fa-calendar"></i>&nbsp;{{meeting.scheduledDate | date:"dd/MM/yy"}}:&nbsp;{{meeting.subject}}</span>
@@ -15,4 +12,6 @@
       Summary: {{meeting.summary}}
     </div>
   </div>
+  <div data-ng-show="waiting" class="waiting-bar border">Loading Meetings</div>
+  <div data-ng-show="meetings.length==0 && !waiting" class="info-bar">You do not have any meetings</div>
 </div>

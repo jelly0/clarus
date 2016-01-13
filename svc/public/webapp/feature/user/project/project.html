@@ -1,8 +1,5 @@
 <div data-ng-controller="projectCtrl">
   <h1>Manage Projects</h1>
-  <div data-ng-show="waiting" class="waiting-bar border">Loading Projects</div>
-  <div data-ng-show="projects.length==0" class="info-bar border">You do not have any projects</div>
-
   <div data-ng-repeat="project in projects | orderBy:'title' track by $index" class="panel panel-default">
     <div class="panel-heading heading">
       <div class="btn-group pull-left" role="group" aria-label="Project options">
@@ -23,4 +20,6 @@
       <p>Summary: {{project.summary}}</p>
     </div>
   </div>
+  <div data-ng-show="waiting" class="waiting-bar border">Loading Projects</div>
+  <div data-ng-show="projects.length==0 && !waiting" class="info-bar border">You do not have any projects</div>
 </div>

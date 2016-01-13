@@ -1,8 +1,5 @@
 <div data-ng-controller="reviewCtrl">
   <h1>Review</h1>
-  <div data-ng-show="comments.length==0" class="info-bar border">There are currently no comments</div>
-  <div data-ng-show="waiting" class="waiting-bar border">Loading Comments</div>
-
   <div>
     <div class="pull-right">
       <button class="btn btn-cancel btn-xs" data-ng-click="cancel()">Cancel</button>
@@ -53,4 +50,7 @@
       </div>
     </div>
   </div>
+
+  <div data-ng-show="waiting" class="waiting-bar border">Loading Comments</div>
+  <div data-ng-show="comments.length==0 && !waiting" class="info-bar border">There are currently no comments</div>
 </div>

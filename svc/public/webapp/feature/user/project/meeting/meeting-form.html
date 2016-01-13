@@ -1,5 +1,5 @@
 <form name="meetingForm" data-ng-controller="meetingFormCtrl" class="container-fluid"
-data-ng-submit="saveMeeting(meetingForm)" method="post" novalidate="novalidate">
+      data-ng-submit="saveMeeting(meetingForm)" method="post" novalidate="novalidate">
   <h1 class="row">{{headingText}}</h1>
   <div class="row">
     <!-- Left Column -->
@@ -23,12 +23,11 @@ data-ng-submit="saveMeeting(meetingForm)" method="post" novalidate="novalidate">
           <div data-ng-message="required">Please enter a summary for your meeting</div>
         </div>
       </div>
-
       <div class="form-group">
-        <div class="row">
+        <label for="scheduledDate" class="required">Scheduled Date</label>
+        <div class="row date-group">
           <div class="col-sm-6">
-            <label for="scheduledDate" class="required">Scheduled Date</label>
-            <div class="input-group date">
+            <div class="input-group">
               <input type="text" class="form-control" id="scheduledDate" name="scheduledDate" required
                      data-ng-model="meeting.scheduledDate" data-ng-required="true"
                      uib-datepicker-popup="dd.MM.yyyy"
@@ -53,12 +52,11 @@ data-ng-submit="saveMeeting(meetingForm)" method="post" novalidate="novalidate">
           <div data-ng-message="required">Please enter the scheduled date for your meeting</div>
         </div>
       </div>
-
       <div class="form-group">
-        <div class="row">
+        <label for="review-by-date">Review By Date</label>
+        <div class="row date-group">
           <div class="col-sm-6">
-            <label for="review-by-date">Review By Date</label>
-            <div class="input-group date">
+            <div class="input-group">
               <input type="text" class="form-control" id="review-by-date" name="review-by-date"
                      data-ng-model="meeting.reviewByDate" data-ng-required="false"
                      uib-datepicker-popup="dd.MM.yyyy"

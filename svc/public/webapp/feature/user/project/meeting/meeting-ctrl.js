@@ -1,13 +1,13 @@
 "use strict";
 
-angular.module('app').controller("meetingCtrl", ["$log", "$scope", "$state", "$stateParams", "repository", "userContext",
-    function ($log, $scope, $state, $stateParams, repository, userContext) {
+angular.module('app').controller("meetingCtrl", ["$log", "$scope", "$state", "$stateParams", "meetingRepository",
+    function ($log, $scope, $state, $stateParams, meetingRepository) {
         var vm = $scope;
 
         (function init() {
             vm.waiting = true;
             vm.meetings = [];
-            repository.getRepository($$repository.MEETING).getProjectMeetings($stateParams.projectId).then(
+            meetingRepository.getProjectMeetings($stateParams.projectId).then(
                 function (results) {
                     vm.meetings = results;
                     vm.waiting = false;

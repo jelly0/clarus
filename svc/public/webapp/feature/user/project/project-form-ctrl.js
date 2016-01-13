@@ -1,8 +1,7 @@
 "use strict";
 
-angular.module('app').controller("projectFormCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "repository", "userContext",
-    function ($log, $scope, $state, $stateParams, $uibModal, repository, userContext) {
-        var projectRepository = repository.getRepository($$repository.PROJECT);
+angular.module('app').controller("projectFormCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "projectRepository", "userContext",
+    function ($log, $scope, $state, $stateParams, $uibModal, projectRepository, userContext) {
         var vm = $scope;
         var membersRemovedCount = 0;
 
@@ -19,7 +18,7 @@ angular.module('app').controller("projectFormCtrl", ["$log", "$scope", "$state",
         })();
 
         vm.saveProject = function (projectForm) {
-            if (projectForm.$valid && !(vm.project.hasOwnProperty("id") && projectForm.$pristine)) {
+            if (projectForm.$valid) {
                 var waitingDialog = $$dialog.waiting("Please wait - Creating Project");
 
                 projectRepository.saveProject(vm.project).then(function (project) {

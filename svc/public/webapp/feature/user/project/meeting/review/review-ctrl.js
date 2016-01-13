@@ -1,10 +1,8 @@
 "use strict";
 
-angular.module('app').controller("reviewCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "repository", "userContext",
-    function ($log, $scope, $state, $stateParams, $uibModal, repository, userContext) {
+angular.module('app').controller("reviewCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "meetingRepository", "commentRepository", "userContext",
+    function ($log, $scope, $state, $stateParams, $uibModal, meetingRepository, commentRepository, userContext) {
         var vm = $scope;
-        var meetingRepository = repository.getRepository($$repository.MEETING);
-        var commentRepository = repository.getRepository($$repository.COMMENT);
 
         (function init() {
             vm.waiting = true;
@@ -122,4 +120,3 @@ angular.module('app').controller("reviewCtrl", ["$log", "$scope", "$state", "$st
             return comment.id == undefined;
         };
     }]);
-

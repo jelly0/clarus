@@ -1,11 +1,11 @@
 "use strict";
 
-angular.module('app').controller("projectCtrl", ["$log", "$scope", "$state", "repository", "userContext",
-    function ($log, $scope, $state, repository, userContext) {
+angular.module("app").controller("projectCtrl", ["$log", "$scope", "$state", "projectRepository", "userContext",
+    function ($log, $scope, $state, projectRepository, userContext) {
         var vm = $scope;
         (function init() {
             vm.waiting = true;
-            repository.getRepository($$repository.PROJECT).getUserProjects().then(function (results) {
+            projectRepository.getUserProjects().then(function (results) {
                 vm.waiting = false;
                 vm.projects = results;
             }, function (error) {

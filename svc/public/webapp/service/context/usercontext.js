@@ -4,7 +4,7 @@
  * The domain.repository manages holds the context of the current work item.
  */
 
-angular.module("context", ["repository"]).service("userContext", ["$log", "$rootScope", "$q", "$state", "authService", "repository",
+angular.module("context", ["security"]).service("userContext", ["$log", "$rootScope", "$q", "$state", "authService",
     function ($log, $rootScope, $q, $state, authService, repository) {
         var user = null;
         var selectedProject = null;
@@ -30,7 +30,8 @@ angular.module("context", ["repository"]).service("userContext", ["$log", "$root
             user = null;
             selectedProject = null;
             authService.logout();
-            repository.clearContext();
+
+            // TODO fire event
         };
 
         this.getUser = function () {

@@ -1,8 +1,7 @@
 "use strict";
-angular.module('app').controller("meetingFormCtrl", ["$scope", "$state", "$stateParams", "$log", "$uibModal", "repository", "userContext",
-    function ($scope, $state, $stateParams, $log, $uibModal, repository, userContext) {
+angular.module('app').controller("meetingFormCtrl", ["$scope", "$state", "$stateParams", "$log", "$uibModal", "meetingRepository", "userContext",
+    function ($scope, $state, $stateParams, $log, $uibModal, meetingRepository, userContext) {
         var vm = $scope;
-        var meetingRepository = repository.getRepository($$repository.MEETING);
         var attendeesRemovedCount = 0;
 
         (function init() {

@@ -1,7 +1,7 @@
 "use strict";
 
-angular.module('app').controller("userRegisterCtrl", ["$state", "$stateParams", "$log", "dal",
-    function ($state, $stateParams, $log, dal) {
+angular.module('app').controller("userRegisterCtrl", ["$state", "$stateParams", "$log", "userDao",
+    function ($state, $stateParams, $log, userDao) {
         var vm = this;
 
         (function init() {
@@ -38,7 +38,7 @@ angular.module('app').controller("userRegisterCtrl", ["$state", "$stateParams", 
                     $$dialog.error("Registration is unsuccessful");
                 };
 
-                dal.getDao($$dal.USER).register(vm.details).then(successfulRegistration, failedRegistration);
+                userDao.register(vm.details).then(successfulRegistration, failedRegistration);
             }
         };
 

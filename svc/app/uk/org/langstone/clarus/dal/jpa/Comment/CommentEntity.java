@@ -26,7 +26,6 @@ public class CommentEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
     @Column(name = "text", nullable = false)
     private String text;
 
@@ -43,13 +42,12 @@ public class CommentEntity implements Serializable {
     @Column(name = "parent_comment_id", nullable = false)
     private Integer parentCommentId;
 
-    @JsonIgnore
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @Column(name = "meeting_user_id", nullable = false)
+    private Integer meetingUserId;
 
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id", insertable = false, updatable = false)
+    @ManyToOne
+    @JoinColumn(name = "meeting_user_id", referencedColumnName = "id", insertable = false, updatable = false)
     private MeetingUserEntity user;
 
     @OneToMany
@@ -112,20 +110,20 @@ public class CommentEntity implements Serializable {
         this.reference = reference;
     }
 
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
-
     public List<CommentEntity> getReplies() {
         return replies;
     }
 
     public void setReplies(List<CommentEntity> replies) {
         this.replies = replies;
+    }
+
+    public Integer getMeetingUserId() {
+        return meetingUserId;
+    }
+
+    public void setMeetingUserId(Integer meetingUserId) {
+        this.meetingUserId = meetingUserId;
     }
 
     @Override
@@ -139,11 +137,13 @@ public class CommentEntity implements Serializable {
                 Objects.equals(entryDate, that.entryDate) &&
                 Objects.equals(meetingId, that.meetingId) &&
                 Objects.equals(parentCommentId, that.parentCommentId) &&
-                Objects.equals(userId, that.userId);
+                Objects.equals(meetingUserId, that.meetingUserId) &&
+                Objects.equals(user, that.user) &&
+                Objects.equals(replies, that.replies);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, text, reference, entryDate, meetingId, parentCommentId, userId);
+        return Objects.hash(id, text, reference, entryDate, meetingId, parentCommentId, meetingUserId, user, replies);
     }
 }

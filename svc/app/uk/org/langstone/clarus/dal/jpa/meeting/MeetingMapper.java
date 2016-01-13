@@ -29,12 +29,12 @@ public class MeetingMapper {
 
     public MeetingUserEntity meetingUserToEntity(MeetingAttendee meetingAttendee, Integer meetingId) {
         final MeetingUserEntity meetingUserEntity = new MeetingUserEntity();
-        final MeetingUserId meetingUserId = new MeetingUserId();
 
-        meetingUserId.setMeetingId(meetingId);
-        meetingUserId.setUserEmail(meetingAttendee.getEmail());
+        meetingUserEntity.setId(meetingAttendee.getId());
+        System.out.println("+++++++++++++++" + meetingAttendee.getId());
 
-        meetingUserEntity.setId(meetingUserId);
+        meetingUserEntity.setMeetingId(meetingId);
+        meetingUserEntity.setUserEmail(meetingAttendee.getEmail());
         meetingUserEntity.setUserId(meetingAttendee.getUserId());
         meetingUserEntity.setForename(meetingAttendee.getForename());
         meetingUserEntity.setSurname(meetingAttendee.getSurname());
@@ -53,9 +53,10 @@ public class MeetingMapper {
 
     public MeetingAttendee meetingUserToBusinessObject(MeetingUserEntity userEntity) {
         final MeetingAttendee member = new MeetingAttendee();
-        member.setMeetingId(userEntity.getId().meetingId);
+        member.setId(userEntity.getId());
+        member.setMeetingId(userEntity.getMeetingId());
         member.setUserId(userEntity.getUserId());
-        member.setEmail(userEntity.getId().getUserEmail());
+        member.setEmail(userEntity.getUserEmail());
         member.setForename(userEntity.getForename());
         member.setSurname(userEntity.getSurname());
         member.setRole(MeetingAttendee.Role.valueOf(userEntity.getRole()));

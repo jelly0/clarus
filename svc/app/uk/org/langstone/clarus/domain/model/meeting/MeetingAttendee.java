@@ -7,6 +7,7 @@ import java.util.Objects;
 public class MeetingAttendee {
     public enum Role {OWNER, REVIEW, APPROVE, INFORM}
 
+    private Integer id;
     private Integer meetingId;
     private Integer userId;
     private String email;
@@ -72,12 +73,21 @@ public class MeetingAttendee {
         this.role = role;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         MeetingAttendee that = (MeetingAttendee) o;
-        return Objects.equals(meetingId, that.meetingId) &&
+        return Objects.equals(id, that.id) &&
+                Objects.equals(meetingId, that.meetingId) &&
                 Objects.equals(userId, that.userId) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(forename, that.forename) &&
@@ -88,6 +98,6 @@ public class MeetingAttendee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(meetingId, userId, email, forename, surname, role, sessionStatus);
+        return Objects.hash(id, meetingId, userId, email, forename, surname, role, sessionStatus);
     }
 }

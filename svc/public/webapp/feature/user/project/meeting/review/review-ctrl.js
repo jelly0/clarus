@@ -3,11 +3,14 @@
 angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "meetingRepository", "commentRepository", "userContext",
     function ($log, $scope, $state, $stateParams, $uibModal, meetingRepository, commentRepository, userContext) {
         var vm = $scope;
+        var userId = userContext.getUser().id;
 
         (function init() {
             vm.waiting = true;
             vm.meeting = meetingRepository.getMeetingById($stateParams.projectId, $stateParams.meetingId);
-            vm.role = meetingRepository.getMeetingRole($stateParams.projectId, $stateParams.meetingId, userContext.getUser().id);
+            vm.meetingUser = _.find(vm.meeting.attendees, function (attendee) {
+                return attendee.userId == userId;
+            });
             vm.comments = commentRepository.getMeetingComments($stateParams.meetingId).then(
                 function (comments) {
                     vm.comments = comments;
@@ -32,14 +35,7 @@ angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "
                     }
                 }
             }).result.then(function result(newComment) {
-                newComment.user = {
-                    userId: userContext.getUser().id,
-                    meetingId: vm.meeting.id,
-                    forename: userContext.getUser().forename,
-                    surname: userContext.getUser().surname,
-                    email: userContext.getUser().email,
-                    role: vm.role
-                };
+                newComment.user = vm.meetingUser;
                 newComment.meetingId = vm.meeting.id;
                 newComment.entryDate = new Date();
                 if (parentComment == undefined) {

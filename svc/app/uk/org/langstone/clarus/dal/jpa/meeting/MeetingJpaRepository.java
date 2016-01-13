@@ -68,7 +68,7 @@ public class MeetingJpaRepository implements MeetingRepository {
             } else if (meetingAttendee.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<MeetingUserEntity> it = meetingEntityToUpdate.getAttendees().iterator(); it.hasNext(); ) {
                     final MeetingUserEntity meetingUserEntityToCheck = it.next();
-                    if (meetingUserEntityToCheck.getId().getUserEmail().equals(meetingAttendee.getEmail())) {
+                    if (meetingUserEntityToCheck.getId().equals(meetingAttendee.getEmail())) {
                         it.remove();
                         emProvider.getEntityManager().remove(meetingUserEntityToCheck);
                         break;

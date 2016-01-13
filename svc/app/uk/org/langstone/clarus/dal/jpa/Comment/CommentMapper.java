@@ -47,8 +47,8 @@ public class CommentMapper {
 
     public CommentEntity commentToEntity(Comment comment) {
         final CommentEntity commentEntity = repositoryObjectFactory.createEntity(comment, CommentEntity.class);
-        commentEntity.setUserId(comment.getUser().getUserId());
         commentEntity.setUser(meetingMapper.meetingUserToEntity(comment.getUser(), commentEntity.getMeetingId()));
+        commentEntity.setMeetingUserId(comment.getUser().getId());
         return commentEntity;
     }
 

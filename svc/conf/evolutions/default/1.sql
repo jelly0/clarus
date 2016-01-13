@@ -61,13 +61,14 @@ CREATE TABLE meeting (
 );
 
 CREATE TABLE meeting_user (
-  meeting_id BIGINT(20)   NOT NULL,
+  id         BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  meeting_id BIGINT(20),
   user_email VARCHAR(255) NOT NULL,
   user_id    BIGINT(20),
   forename   VARCHAR(50),
   surname    VARCHAR(50),
   role       VARCHAR(20),
-  PRIMARY KEY (meeting_id, user_email),
+  PRIMARY KEY (id),
   FOREIGN KEY (meeting_id) REFERENCES meeting (id),
   FOREIGN KEY (user_id) REFERENCES user (id)
 );
@@ -79,10 +80,10 @@ CREATE TABLE comment (
   entry_date        DATETIME      NOT NULL DEFAULT SYSDATE(),
   meeting_id        BIGINT(20)    NOT NULL,
   parent_comment_id BIGINT(20),
-  user_id           BIGINT(20)    NOT NULL,
+  meeting_user_id   BIGINT(20)    NOT NULL,
 
   PRIMARY KEY (id),
-  FOREIGN KEY (user_id) REFERENCES meeting_user (user_id),
+  FOREIGN KEY (meeting_user_id) REFERENCES meeting_user (id),
   FOREIGN KEY (meeting_id) REFERENCES meeting (id)
 );
 

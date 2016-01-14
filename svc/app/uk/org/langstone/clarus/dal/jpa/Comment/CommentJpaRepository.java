@@ -51,7 +51,6 @@ public class CommentJpaRepository implements CommentRepository {
         throw new UnsupportedOperationException();
     }
 
-
     @Override
     public List<Comment> findCommentsForMeeting(Integer meetingId) {
         final Query commentQuery = emProvider.getEntityManager().createNamedQuery(CommentEntity.FIND_ALL_FOR_MEETING);

@@ -38,7 +38,6 @@ public class CreateMeetingOperation {
         final Claims claims = principal.getClaims();
         final MeetingAttendee owner = new MeetingAttendee();
 
-        owner.setUserId(new Integer((String) claims.get("id")));
         owner.setForename((String) claims.get("forename"));
         owner.setSurname((String) claims.get("surname"));
         owner.setEmail((String) claims.get("email"));

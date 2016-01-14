@@ -9,7 +9,6 @@ public class MeetingAttendee {
 
     private Integer id;
     private Integer meetingId;
-    private Integer userId;
     private String email;
     private String forename;
     private String surname;
@@ -23,14 +22,6 @@ public class MeetingAttendee {
 
     public void setSessionStatus(SessionStatus sessionStatus) {
         this.sessionStatus = sessionStatus;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
     }
 
     public String getEmail() {
@@ -88,7 +79,6 @@ public class MeetingAttendee {
         MeetingAttendee that = (MeetingAttendee) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(meetingId, that.meetingId) &&
-                Objects.equals(userId, that.userId) &&
                 Objects.equals(email, that.email) &&
                 Objects.equals(forename, that.forename) &&
                 Objects.equals(surname, that.surname) &&
@@ -98,6 +88,6 @@ public class MeetingAttendee {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, meetingId, userId, email, forename, surname, role, sessionStatus);
+        return Objects.hash(id, meetingId, email, forename, surname, role, sessionStatus);
     }
 }

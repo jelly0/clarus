@@ -34,7 +34,7 @@ public class MeetingUserEntity implements Serializable {
     private MeetingEntity meeting;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+    @JoinColumn(name = "user_email", referencedColumnName = "email", insertable = false, updatable = false)
     private UserEntity user;
 
     public String getRole() {

@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
@@ -19,7 +20,7 @@ import java.util.Objects;
         @NamedQuery(name = UserEntity.FIND_ALL, query = "SELECT u FROM UserEntity u"),
         @NamedQuery(name = UserEntity.FIND_BY_EMAIL, query = "SELECT u FROM UserEntity u WHERE u.email = :email")
 })
-public class UserEntity {
+public class UserEntity implements Serializable {
     public static final String FIND_ALL = "UserEntity.FIND_ALL";
     public static final String FIND_BY_EMAIL = "UserEntity.FIND_BY_EMAIL";
     public static final String EMAIL_PARAM = "email";
@@ -39,12 +40,6 @@ public class UserEntity {
 
     @Column(name = "password", nullable = false)
     private String password;
-
-    @Column(name = "job_title", nullable = false)
-    private String jobTitle;
-
-    @Column(name = "base_site", nullable = false)
-    private String baseSite;
 
     @Column(name = "phone", nullable = false)
     private String phone;
@@ -101,22 +96,6 @@ public class UserEntity {
         this.password = password;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getBaseSite() {
-        return baseSite;
-    }
-
-    public void setBaseSite(String baseSite) {
-        this.baseSite = baseSite;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -167,8 +146,6 @@ public class UserEntity {
                 Objects.equals(forename, that.forename) &&
                 Objects.equals(surname, that.surname) &&
                 Objects.equals(password, that.password) &&
-                Objects.equals(jobTitle, that.jobTitle) &&
-                Objects.equals(baseSite, that.baseSite) &&
                 Objects.equals(phone, that.phone) &&
                 Objects.equals(activated, that.activated) &&
                 Objects.equals(activationKey, that.activationKey) &&
@@ -178,6 +155,6 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, forename, surname, password, jobTitle, baseSite, phone, activated, activationKey, activationDate, role);
+        return Objects.hash(id, email, forename, surname, password, phone, activated, activationKey, activationDate, role);
     }
 }

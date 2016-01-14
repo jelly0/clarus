@@ -31,13 +31,8 @@ public class MeetingMapper {
         final MeetingUserEntity meetingUserEntity = new MeetingUserEntity();
 
         meetingUserEntity.setId(meetingAttendee.getId());
-        System.out.println("+++++++++++++++" + meetingAttendee.getId());
-
         meetingUserEntity.setMeetingId(meetingId);
         meetingUserEntity.setUserEmail(meetingAttendee.getEmail());
-        meetingUserEntity.setUserId(meetingAttendee.getUserId());
-        meetingUserEntity.setForename(meetingAttendee.getForename());
-        meetingUserEntity.setSurname(meetingAttendee.getSurname());
         meetingUserEntity.setRole(meetingAttendee.getRole().name());
 
         return meetingUserEntity;
@@ -55,11 +50,14 @@ public class MeetingMapper {
         final MeetingAttendee member = new MeetingAttendee();
         member.setId(userEntity.getId());
         member.setMeetingId(userEntity.getMeetingId());
-        member.setUserId(userEntity.getUserId());
         member.setEmail(userEntity.getUserEmail());
-        member.setForename(userEntity.getForename());
-        member.setSurname(userEntity.getSurname());
         member.setRole(MeetingAttendee.Role.valueOf(userEntity.getRole()));
+
+        // User may not have register yet
+        if (userEntity.getUser() != null) {
+            member.setForename(userEntity.getUser().getForename());
+            member.setSurname(userEntity.getUser().getSurname());
+        }
 
         return member;
     }

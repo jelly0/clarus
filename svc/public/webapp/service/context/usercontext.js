@@ -12,6 +12,13 @@ angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$s
         var lastFromState;
         var lastFromParams;
 
+        (function init() {
+            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+                lastFromState = fromState;
+                lastFromParams = fromParams;
+            });
+        })();
+
         this.login = function (username, password) {
             var deferred = $q.defer();
             authService.login(username, password).then(
@@ -72,13 +79,6 @@ angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$s
         this.returnToLastState = function () {
             $state.go(lastFromState, lastFromParams);
         };
-
-        (function init() {
-            $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-                lastFromState = fromState;
-                lastFromParams = fromParams;
-            });
-        })();
 
         $log.debug("userContext: Instantiated");
     }]);

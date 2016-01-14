@@ -15,11 +15,10 @@
 
       <div class='form-group'>
         <label for="projectCode" class="required">Project Code</label>
-        <input type="text" class="form-control" data-ng-model="project.projectCode" minlength="5"
+        <input type="text" class="form-control" data-ng-model="project.projectCode"
                placeholder="The code for this project" id="projectCode" name="projectCode" required>
         <div data-ng-messages="projectForm.projectCode.$error" data-ng-if="projectForm.$submitted" role="alert">
           <div data-ng-message="required">Please enter the code for this project</div>
-          <div data-ng-message="minlength">Project Code needs to be at least 5 characters</div>
         </div>
       </div>
 

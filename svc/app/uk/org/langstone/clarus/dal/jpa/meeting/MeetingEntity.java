@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -26,7 +27,7 @@ import java.util.Objects;
         @NamedQuery(name = MeetingEntity.FIND_ALL_FOR_PROJECT, query = "SELECT m FROM MeetingEntity m WHERE m.projectId = :projectId"),
         @NamedQuery(name = MeetingEntity.FIND_BY_ID, query = "SELECT m FROM MeetingEntity m WHERE m.id = :meetingId")
 })
-public class MeetingEntity {
+public class MeetingEntity implements Serializable {
     public static final String FIND_ALL = "meetingEntity.FIND_ALL";
     public static final String FIND_ALL_FOR_OWNER = "meetingEntity.FIND_ALL_FOR_OWNER";
     public static final String FIND_ALL_FOR_PROJECT = "meetingEntity.FIND_ALL_FOR_PROJECT";

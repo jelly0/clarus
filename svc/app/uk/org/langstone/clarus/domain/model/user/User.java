@@ -15,10 +15,6 @@ public class User {
 
     private String password;
 
-    private String jobTitle;
-
-    private String baseSite;
-
     private String phone;
 
     private Boolean activated;
@@ -71,22 +67,6 @@ public class User {
         this.password = password;
     }
 
-    public String getJobTitle() {
-        return jobTitle;
-    }
-
-    public void setJobTitle(String jobTitle) {
-        this.jobTitle = jobTitle;
-    }
-
-    public String getBaseSite() {
-        return baseSite;
-    }
-
-    public void setBaseSite(String baseSite) {
-        this.baseSite = baseSite;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -136,8 +116,6 @@ public class User {
                 Objects.equals(forename, user.forename) &&
                 Objects.equals(surname, user.surname) &&
                 Objects.equals(password, user.password) &&
-                Objects.equals(jobTitle, user.jobTitle) &&
-                Objects.equals(baseSite, user.baseSite) &&
                 Objects.equals(phone, user.phone) &&
                 Objects.equals(activated, user.activated) &&
                 role == user.role &&
@@ -148,6 +126,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, forename, surname, password, jobTitle, baseSite, phone, activated, role, activationKey, activationDate, id);
+        return Objects.hash(email, forename, surname, password, phone, activated, role, activationKey, activationDate, id);
     }
 }

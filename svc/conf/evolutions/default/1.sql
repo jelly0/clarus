@@ -8,8 +8,6 @@ CREATE TABLE user (
   forename           VARCHAR(50),
   surname            VARCHAR(50),
   password           VARCHAR(255),
-  job_title          VARCHAR(20),
-  base_site          VARCHAR(20),
   phone              VARCHAR(20),
   activated          BOOLEAN      NOT NULL DEFAULT FALSE,
   activation_key     VARCHAR(255) NOT NULL,
@@ -27,7 +25,6 @@ CREATE TABLE project (
   project_code  VARCHAR(20),
   client        VARCHAR(255),
   summary       VARCHAR(255) NOT NULL,
-  sessionStatus VARCHAR(50),
   owner_user_id BIGINT(20)   NOT NULL,
   status        VARCHAR(20),
   PRIMARY KEY (id),
@@ -64,13 +61,9 @@ CREATE TABLE meeting_user (
   id         BIGINT(20)   NOT NULL AUTO_INCREMENT,
   meeting_id BIGINT(20),
   user_email VARCHAR(255) NOT NULL,
-  user_id    BIGINT(20),
-  forename   VARCHAR(50),
-  surname    VARCHAR(50),
   role       VARCHAR(20),
   PRIMARY KEY (id),
   FOREIGN KEY (meeting_id) REFERENCES meeting (id),
-  FOREIGN KEY (user_id) REFERENCES user (id)
 );
 
 CREATE TABLE comment (

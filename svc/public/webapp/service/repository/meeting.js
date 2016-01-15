@@ -66,16 +66,5 @@ angular.module("clarus").service("meetingRepository", ["$q", "$log", "$rootScope
             return deferred.promise;
         };
 
-        this.getMeetingRole = function (projectId, meetingId, userId) {
-            var meeting = _.find(meetingCache[projectId], function (meeting) {
-                return meeting.id == meetingId;
-            });
-            var attendee = _.find(meeting.attendees, function (attendee) {
-                return attendee.userId == userId;
-            });
-
-            return attendee.role;
-        };
-
         $log.debug("repository:meetingRepository Instantiated");
     }]);

@@ -1,7 +1,7 @@
 "use strict";
 angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$stateParams", "$log", "$uibModal", "meetingRepository", "userContext",
     function ($scope, $state, $stateParams, $log, $uibModal, meetingRepository, userContext) {
-        var vm = $scope;
+        var vm = this;
         var attendeesRemovedCount = 0;
 
         (function init() {
@@ -75,8 +75,14 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
             });
 
             modalInstance.result.then(function result(newAttendee) {
-                newAttendee.sessionStatus = "NEW";
-                vm.meeting.attendees.push(newAttendee);
+                if (_.find(vm.meeting.attendees, function (member) {
+                        return member.email == newAttendee.email
+                    })) {
+                    $$dialog.error(newAttendee.email + " has already been added to this meeting");
+                } else {
+                    newAttendee.sessionStatus = "NEW";
+                    vm.meeting.attendees.push(newAttendee);
+                }
             }, function closed() {
             });
         };
@@ -97,6 +103,10 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
         };
 
         vm.hasAttendees = function () {
-            return vm.meeting.attendees.length - attendeesRemovedCount > 0;
+            if (vm.meeting.hasOwnProperty("id")) {
+                return vm.meeting.attendees.length - attendeesRemovedCount > 1;
+            } else {
+                return vm.meeting.attendees.length - attendeesRemovedCount > 0;
+            }
         };
     }]);

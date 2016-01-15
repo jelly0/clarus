@@ -6,7 +6,7 @@ angular.module("clarus").service("projectRepository", ["$q", "$log", "dal",  "$r
 
         (function init() {
             $rootScope.$on(contextEvent.CLEAR_CONTEXT, function clearContext() {
-                projectCache = {};
+                projectCache = [];
                 $log.debug("projectRepository: context cleared");
             })
         })();

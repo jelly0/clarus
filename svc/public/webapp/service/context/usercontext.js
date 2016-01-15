@@ -36,6 +36,10 @@ angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$s
         this.logout = function () {
             user = null;
             selectedProject = null;
+            favouriteProjects = [];
+            lastFromState = null;
+            lastFromParams = null;
+
             authService.logout();
             $rootScope.$emit(contextEvent.CLEAR_CONTEXT);
             $log.debug("Logged out");

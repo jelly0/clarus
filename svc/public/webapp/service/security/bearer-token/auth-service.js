@@ -1,7 +1,6 @@
 'use strict';
 angular.module("clarus").service("authService", ["$log", "$http", "$q",
     function ($log, $http, $q) {
-        var deferred = $q.defer();
         var credentials = {};
 
         this.getUsername = function () {
@@ -14,10 +13,6 @@ angular.module("clarus").service("authService", ["$log", "$http", "$q",
 
         this.getToken = function () {
             return credentials.token;
-        };
-
-        this.clearContext = function () {
-            credentials = {};
         };
 
         this.hasAuthenticated = function () {
@@ -47,5 +42,6 @@ angular.module("clarus").service("authService", ["$log", "$http", "$q",
 
         this.logout = function() {
             credentials = {};
+            $log.debug("authService: context cleared");
         }
     }]);

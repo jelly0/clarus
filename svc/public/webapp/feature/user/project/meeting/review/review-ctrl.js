@@ -2,7 +2,7 @@
 
 angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "$stateParams", "$uibModal", "meetingRepository", "commentRepository", "userContext",
     function ($log, $scope, $state, $stateParams, $uibModal, meetingRepository, commentRepository, userContext) {
-        var vm = $scope;
+        var vm = this;
         var userId = userContext.getUser().id;
 
         (function init() {

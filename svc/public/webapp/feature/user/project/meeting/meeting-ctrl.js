@@ -1,8 +1,8 @@
 "use strict";
 
-angular.module("clarus").controller("meetingCtrl", ["$log", "$scope", "$state", "$stateParams", "meetingRepository",
-    function ($log, $scope, $state, $stateParams, meetingRepository) {
-        var vm = $scope;
+angular.module("clarus").controller("meetingCtrl", ["$log", "$state", "$stateParams", "meetingRepository",
+    function ($log, $state, $stateParams, meetingRepository) {
+        var vm = this;
 
         (function init() {
             vm.waiting = true;

@@ -49,9 +49,8 @@
       <div class="list-group">
         <div class="list-group-item"
              data-ng-repeat="member in project.members| filter: {userId:'!' + project.ownerId, sessionStatus: '!REMOVED'}| orderBy:'email' track by $index">
-          <{{member.email}}>&nbsp;{{member.forename}} {{member.surename}}
-          <i class="icon delete border pull-right" title="Remove this member from the project"
-             data-ng-click="removeMember(member)"></i>
+          {{member.forename}}&nbsp;{{member.surname}}&nbsp;<{{member.email}}>
+          <i class="icon delete border pull-right" title="Remove this user from the project" data-ng-click="removeMember(member)"></i>
         </div>
       </div>
 

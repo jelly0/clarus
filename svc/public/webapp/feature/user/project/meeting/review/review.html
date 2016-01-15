@@ -1,28 +1,28 @@
-<div data-ng-controller="reviewCtrl">
+<div data-ng-controller="reviewCtrl as r">
   <h1>Review</h1>
   <div>
     <div class="pull-right">
-      <button class="btn btn-cancel btn-xs" data-ng-click="cancel()">Cancel</button>
-      <button class="btn btn-primary btn-xs" data-ng-click="save()">Save</button>
+      <button class="btn btn-cancel btn-xs" data-ng-click="r.cancel()">Cancel</button>
+      <button class="btn btn-primary btn-xs" data-ng-click="r.save()">Save</button>
       &nbsp;|&nbsp;
-      <button class="icon comment" data-ng-click="addComment()"><i class="icon add small"></i>&nbsp;Add Comment
+      <button class="icon comment" data-ng-click="r.addComment()"><i class="icon add small"></i>&nbsp;Add Comment
       </button>
     </div>
     <h2>{{meeting.subject}}: {{meeting.scheduledDate | date:"dd/MM/yy"}}</h2>
   </div>
 
-  <div data-ng-repeat="comment in comments | orderBy:['reference', 'entryDate'] track by $index" class="well well-sm">
+  <div data-ng-repeat="comment in r.comments | orderBy:['reference', 'entryDate'] track by $index" class="well well-sm">
     <div>
       <div class="pull-left">
         <i data-ng-show="isNew(comment)" class="icon warning"></i>
         <i data-ng-show="!isNew(comment)" class="icon comment"></i>
       </div>
       <div class="pull-right">
-        <button data-ng-show="!isNew(comment)" class="border icon action" data-ng-click="addTask(comment)">Action</button>
-        <button data-ng-show="!isNew(comment)" class="border icon ok" data-ng-click="resolved(comment)">Resolved</button>
-        <button data-ng-show="!isNew(comment)" class="border icon reply" data-ng-click="addComment(comment)">Reply</button>
-        <button data-ng-show="isNew(comment)" class="border icon delete" data-ng-click="deleteComment(comment)">Delete</button>
-        <button data-ng-show="isNew(comment)" class="border icon edit" data-ng-click="amendComment(comment)">Amend</button>
+        <button data-ng-show="!r.isNew(comment)" class="border icon action" data-ng-click="r.addTask(comment)">Action</button>
+        <button data-ng-show="!r.isNew(comment)" class="border icon ok" data-ng-click="r.resolved(comment)">Resolved</button>
+        <button data-ng-show="!r.isNew(comment)" class="border icon reply" data-ng-click="r.addComment(comment)">Reply</button>
+        <button data-ng-show="r.isNew(comment)" class="border icon delete" data-ng-click="r.deleteComment(comment)">Delete</button>
+        <button data-ng-show="r.isNew(comment)" class="border icon edit" data-ng-click="r.amendComment(comment)">Amend</button>
       </div>
       <div class="comment-info">
         <span>[{{comment.reference}}]</span>&nbsp;:&nbsp;
@@ -40,8 +40,8 @@
           </div>
           <div>
             <div class="pull-right" data-ng-show="isNew(reply)">
-              <button class="border icon delete" data-ng-click="deleteReply(comment, reply)">Delete</button>
-              <button class="border icon edit" data-ng-click="amendReply(reply)">Amend</button>
+              <button class="border icon delete" data-ng-click="r.deleteReply(comment, reply)">Delete</button>
+              <button class="border icon edit" data-ng-click="r.amendReply(reply)">Amend</button>
             </div>
           </div>
           <div class="comment-info">{{reply.entryDate | date:"hh:mm dd/MM"}}&nbsp;-&nbsp;{{reply.user.forename}}&nbsp;{{reply.user.surname}}</div>
@@ -51,6 +51,6 @@
     </div>
   </div>
 
-  <div data-ng-show="waiting" class="waiting-bar border">Loading Comments</div>
-  <div data-ng-show="comments.length==0 && !waiting" class="info-bar border">There are currently no comments</div>
+  <div data-ng-show="r.waiting" class="waiting-bar border">Loading Comments</div>
+  <div data-ng-show="r.comments.length==0 && !r.waiting" class="info-bar border">There are currently no comments</div>
 </div>

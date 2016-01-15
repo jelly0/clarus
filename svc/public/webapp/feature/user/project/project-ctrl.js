@@ -1,8 +1,8 @@
 "use strict";
 
-angular.module("clarus").controller("projectCtrl", ["$log", "$scope", "$state", "projectRepository", "userContext",
-    function ($log, $scope, $state, projectRepository, userContext) {
-        var vm = $scope;
+angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRepository", "userContext",
+    function ($log, $state, projectRepository, userContext) {
+        var vm = this;
         (function init() {
             vm.waiting = true;
             projectRepository.getUserProjects().then(function (results) {

@@ -1,25 +1,25 @@
-<div data-ng-controller="projectCtrl">
+<div data-ng-controller="projectCtrl as p">
   <h1>Manage Projects</h1>
-  <div data-ng-repeat="project in projects | orderBy:'title' track by $index" class="panel panel-default">
+  <div data-ng-repeat="project in p.projects | orderBy:'title' track by $index" class="panel panel-default">
     <div class="panel-heading heading">
       <div class="btn-group pull-left" role="group" aria-label="Project options">
-        <i class="{{isSelected(project)}} icon border" data-ng-class="isSelected(project)?'pin-on':'pin-off'"
-           title="Anchor project" data-ng-click="setAsSelected(project)"></i>
-        <i class="{{isSelected(project)}} icon border" data-ng-class="isFavourite(project)?'favourite-on':'favourite-off'"
-           title="Add/Remove project as favourite" data-ng-click="toggleFavourite(project)"></i>
+        <i class="{{p.isSelected(project)}} icon border" data-ng-class="p.isSelected(project)?'pin-on':'pin-off'"
+           title="Anchor project" data-ng-click="p.setAsSelected(project)"></i>
+        <i class="{{p.isSelected(project)}} icon border" data-ng-class="p.isFavourite(project)?'favourite-on':'favourite-off'"
+           title="Add/Remove project as favourite" data-ng-click="p.toggleFavourite(project)"></i>
       </div>
       <div class="btn-group pull-right" role="group" aria-label="Project options">
         <button class="icon meeting border" title="View & Manage meetings for this project" data-ng-click="">Manage Meetings</button>
-        <button class="icon edit border" title="Amend this project" data-ng-click="edit(project)">Amend</button>
+        <button class="icon edit border" title="Amend this project" data-ng-click="p.edit(project)">Amend</button>
       </div>
       <span>{{project.projectCode}} : {{project.title}}</span>
-      <span class="owner icon id" title="Owner of this project">{{owner(project)}}</span>
+      <span class="owner icon id" title="Owner of this project">{{p.owner(project)}}</span>
     </div>
     <div class="panel-body">
       <p>Client: {{project.client == null ? "N/A" : project.client}}</p>
       <p>Summary: {{project.summary}}</p>
     </div>
   </div>
-  <div data-ng-show="waiting" class="waiting-bar border">Loading Projects</div>
-  <div data-ng-show="projects.length==0 && !waiting" class="info-bar border">You do not have any projects</div>
+  <div data-ng-show="p.waiting" class="waiting-bar border">Loading Projects</div>
+  <div data-ng-show="p.projects.length==0 && !p.waiting" class="info-bar border">You do not have any projects</div>
 </div>

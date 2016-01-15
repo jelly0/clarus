@@ -2,6 +2,7 @@ package uk.org.langstone.clarus.dal.jpa.meeting;
 
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
+import uk.org.langstone.clarus.dal.jpa.user.UserEntity;
 import uk.org.langstone.clarus.domain.model.RepositoryObjectFactory;
 import uk.org.langstone.clarus.domain.model.meeting.Meeting;
 import uk.org.langstone.clarus.domain.model.meeting.MeetingAttendee;
@@ -55,6 +56,7 @@ public class MeetingMapper {
 
         // User may not have register yet
         if (userEntity.getUser() != null) {
+            member.setUserId(userEntity.getUser().getId());
             member.setForename(userEntity.getUser().getForename());
             member.setSurname(userEntity.getUser().getSurname());
         }

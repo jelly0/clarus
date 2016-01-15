@@ -47,10 +47,23 @@ angular.module("clarus").controller("projectFormCtrl", ["$log", "$scope", "$stat
 
             modalInstance.result.then(
                 function (newMember) {
-                    newMember.sessionStatus = "NEW";
-                    vm.project.members.push(newMember);
+                    var searchResult = _.find(vm.project.members, function (member) {
+                        return member.email == newMember.email
+                    });
+
+                    if (searchResult) {
+                        if (searchResult.role == "OWNER") {
+                            $$dialog.error("There is no need to add yourself as you are the owner of this project");
+                        } else {
+                            $$dialog.error(newMember.email + " has already been added to this project team");
+                        }
+                    } else {
+                        newMember.sessionStatus = "NEW";
+                        vm.project.members.push(newMember);
+                    }
                 }, function dismissed() {
-                });
+                }
+            );
         };
 
         vm.removeMember = function (memberToRemove) {

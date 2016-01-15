@@ -31,13 +31,15 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
                     maxDate: (new Date()).setDate(defaultDate.getDate() + 90) // max 90 days from now
                 };
 
-                vm.meeting.scheduledDate = defaultDate;
+                if (!angular.isDefined(vm.meeting.scheduledDate)) {
+                    vm.meeting.scheduledDate = defaultDate;
+                    vm.meeting.reviewByDate = defaultDate;
+                }
+
                 vm.openScheduledSelector = function ($event) {
                     vm.scheduledOpened = true;
                 };
                 vm.scheduledOpened = false;
-
-                vm.meeting.reviewByDate = defaultDate;
                 vm.openReviewBySelector = function ($event) {
                     vm.reviewByOpened = true;
                 };

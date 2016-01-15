@@ -63,7 +63,7 @@ CREATE TABLE meeting_user (
   user_email VARCHAR(255) NOT NULL,
   role       VARCHAR(20),
   PRIMARY KEY (id),
-  FOREIGN KEY (meeting_id) REFERENCES meeting (id),
+  FOREIGN KEY (meeting_id) REFERENCES meeting (id)
 );
 
 CREATE TABLE comment (

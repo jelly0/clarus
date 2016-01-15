@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <div class='form-group'>
         <label for="subject" class="required">Subject</label>
-        <input type="text" class="form-control" data-ng-model="meeting.subject" minlength="5"
+        <input type="text" class="form-control" data-ng-model="m.meeting.subject" minlength="5"
                placeholder="Purpose fo this meeting" id="subject" name="subject" required autofocus>
         <div data-ng-messages="meetingForm.subject.$error" data-ng-if="meetingForm.$submitted" role="alert">
           <div data-ng-message="required">Please enter the subject for your meeting</div>

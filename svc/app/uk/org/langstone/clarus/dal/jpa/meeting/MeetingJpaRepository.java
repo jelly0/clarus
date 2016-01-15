@@ -33,7 +33,7 @@ public class MeetingJpaRepository implements MeetingRepository {
         emProvider.getEntityManager().persist(newMeetingEntity);
         meeting.setId((Integer) emProvider.getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(newMeetingEntity));
         newMeetingEntity.setAttendees(meetingMapper.meetingUsersToEntityList(meeting));
-        emProvider.getEntityManager().persist(newMeetingEntity);
+        emProvider.getEntityManager().merge(newMeetingEntity);
 
         return meetingMapper.meetingToBusinessObject(newMeetingEntity);
     }

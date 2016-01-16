@@ -1,5 +1,7 @@
 package uk.org.langstone.clarus.domain.meeting.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -14,8 +16,9 @@ public class Meeting {
     private Status status;
     private Date scheduledDate;
     private Date reviewByDate;
-    private Integer ownerId;
     private List<MeetingAttendee> attendees;
+    private MeetingAttendee owner;
+
 
     public Integer getId() {
         return id;
@@ -49,12 +52,12 @@ public class Meeting {
         this.status = status;
     }
 
-    public Integer getOwnerId() {
-        return ownerId;
+    public MeetingAttendee getOwner() {
+        return owner;
     }
 
-    public void setOwnerId(Integer ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner(MeetingAttendee owner) {
+        this.owner = owner;
     }
 
     public List<MeetingAttendee> getAttendees() {
@@ -100,13 +103,13 @@ public class Meeting {
                 status == meeting.status &&
                 Objects.equals(scheduledDate, meeting.scheduledDate) &&
                 Objects.equals(reviewByDate, meeting.reviewByDate) &&
-                Objects.equals(ownerId, meeting.ownerId) &&
+                Objects.equals(owner, meeting.owner) &&
                 Objects.equals(projectId, meeting.projectId) &&
                 Objects.equals(attendees, meeting.attendees);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, subject, summary, status, scheduledDate, reviewByDate, ownerId, projectId, attendees);
+        return Objects.hash(id, subject, summary, status, scheduledDate, reviewByDate, owner, projectId, attendees);
     }
 }

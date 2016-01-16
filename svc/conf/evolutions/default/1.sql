@@ -50,10 +50,8 @@ CREATE TABLE meeting (
   scheduled_date DATETIME     NOT NULL,
   review_by_date DATETIME,
   project_id     BIGINT(20)   NOT NULL,
-  owner_user_id  BIGINT(20)   NOT NULL,
   status         VARCHAR(20),
   PRIMARY KEY (id),
-  FOREIGN KEY (owner_user_id) REFERENCES user (id),
   FOREIGN KEY (project_id) REFERENCES project (id)
 );
 

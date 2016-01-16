@@ -12,7 +12,6 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
                 vm.headingText = "Schedule New Meeting";
                 vm.meeting = {
                     projectId: $stateParams.projectId,
-                    ownerId: userContext.getUser().id,
                     status: "SCHEDULED",
                     attendees: []
                 };
@@ -77,7 +76,9 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
             });
 
             modalInstance.result.then(function result(newAttendee) {
-                if (_.find(vm.meeting.attendees, function (member) {
+                if (newAttendee.email == userContext.getUser.email) {
+                    $$dialog.error("You are automatically added to attendees list as you are the owner");
+                } else if (_.find(vm.meeting.attendees, function (member) {
                         return member.email == newAttendee.email
                     })) {
                     $$dialog.error(newAttendee.email + " has already been added to this meeting");
@@ -105,10 +106,6 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
         };
 
         vm.hasAttendees = function () {
-            if (vm.meeting.hasOwnProperty("id")) {
-                return vm.meeting.attendees.length - attendeesRemovedCount > 1;
-            } else {
-                return vm.meeting.attendees.length - attendeesRemovedCount > 0;
-            }
+            return vm.meeting.attendees.length - attendeesRemovedCount > 0;
         };
     }]);

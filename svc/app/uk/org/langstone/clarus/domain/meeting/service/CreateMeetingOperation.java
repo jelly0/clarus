@@ -30,20 +30,19 @@ public class CreateMeetingOperation {
 
     public ServiceResult execute(JsonNode jsonRequest) {
         final Meeting meetingToSave = Json.fromJson(jsonRequest, Meeting.class);
+
         final Principal principal = (Principal) Http.Context.current().args.get(Principal.class.getName());
         final Claims claims = principal.getClaims();
         final MeetingAttendee owner = new MeetingAttendee();
-
         owner.setId(new Integer((String) claims.get("id")));
         owner.setForename((String) claims.get("forename"));
         owner.setSurname((String) claims.get("surname"));
         owner.setEmail((String) claims.get("email"));
         owner.setRole(MeetingAttendee.Role.OWNER);
+        meetingToSave.setOwner(owner);
 
-        meetingToSave.getAttendees().add(owner);
         final Meeting savedMeeting = meetingRepository.set(meetingToSave);
 
-        final Meeting meetingWithUserInfo = meetingRepository.get(savedMeeting.getId());
-        return new ServiceResult(Json.toJson(meetingWithUserInfo));
+        return new ServiceResult(Json.toJson(savedMeeting));
     }
 }

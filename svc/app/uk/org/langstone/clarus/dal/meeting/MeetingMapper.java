@@ -20,7 +20,17 @@ public class MeetingMapper {
     }
 
     public MeetingEntity meetingToEntity(Meeting meeting) {
-        return repositoryObjectFactory.createEntity(meeting, MeetingEntity.class);
+        final MeetingEntity meetingEntity = new MeetingEntity();
+
+        meetingEntity.setId(meeting.getId());
+        meetingEntity.setSubject(meeting.getSubject());
+        meetingEntity.setScheduledDate(meeting.getScheduledDate());
+        meetingEntity.setReviewByDate(meeting.getReviewByDate());
+        meetingEntity.setSummary(meeting.getSummary());
+        meetingEntity.setStatus(meeting.getStatus().name());
+        meetingEntity.setProjectId(meeting.getProjectId());
+
+        return meetingEntity;
     }
 
     public MeetingUserEntity meetingUserToEntity(MeetingAttendee meetingAttendee, Meeting meeting) {
@@ -40,14 +50,19 @@ public class MeetingMapper {
 
     public List<MeetingUserEntity> meetingUsersToEntityList(Meeting meeting) {
         final List<MeetingUserEntity> meetingUserEntities = new ArrayList<>();
+
         for (MeetingAttendee meetingAttendee : meeting.getAttendees()) {
             meetingUserEntities.add(meetingUserToEntity(meetingAttendee, meeting));
         }
+
+        meetingUserEntities.add(meetingUserToEntity(meeting.getOwner(), meeting.getId()));
+
         return meetingUserEntities;
     }
 
     public MeetingAttendee meetingUserToBusinessObject(MeetingUserEntity userEntity) {
         final MeetingAttendee member = new MeetingAttendee();
+
         member.setId(userEntity.getId());
         member.setMeetingId(userEntity.getMeetingId());
         member.setEmail(userEntity.getUserEmail());
@@ -67,24 +82,26 @@ public class MeetingMapper {
         final List<Meeting> meetings = new ArrayList<>();
 
         for (MeetingEntity meetingEntity : meetingEntities) {
-            final Meeting meeting = repositoryObjectFactory.createBusinessObject(meetingEntity, Meeting.class);
-            final List<MeetingAttendee> members = new ArrayList<>();
-            for (MeetingUserEntity userEntity : meetingEntity.getAttendees()) {
-                members.add(meetingUserToBusinessObject(userEntity));
-            }
-            meeting.setAttendees(members);
-            meetings.add(meeting);
+            meetings.add(meetingToBusinessObject(meetingEntity));
         }
+
         return meetings;
     }
 
     public Meeting meetingToBusinessObject(MeetingEntity meetingEntity) {
         final Meeting meeting = repositoryObjectFactory.createBusinessObject(meetingEntity, Meeting.class);
-        final List<MeetingAttendee> members = new ArrayList<>();
+        final List<MeetingAttendee> attendees = new ArrayList<>();
+
         for (MeetingUserEntity userEntity : meetingEntity.getAttendees()) {
-            members.add(meetingUserToBusinessObject(userEntity));
+            final MeetingAttendee attendee = meetingUserToBusinessObject(userEntity);
+
+            if (attendee.getRole().equals(MeetingAttendee.Role.OWNER)) {
+                meeting.setOwner(attendee);
+            } else {
+                attendees.add(attendee);
+            }
         }
-        meeting.setAttendees(members);
+        meeting.setAttendees(attendees);
         return meeting;
     }
 }

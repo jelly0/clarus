@@ -100,8 +100,8 @@
       </div>
       <div class="list-group">
         <div class="list-group-item"
-             data-ng-repeat="attendee in m.meeting.attendees| filter: {userId:'!' + m.meeting.ownerId, sessionStatus: '!REMOVED'}| orderBy:'email' track by $index">
-          <{{attendee.email}}>&nbsp;{{attendee.forename}}&nbsp;{{attendee.surename}}
+             data-ng-repeat="attendee in m.meeting.attendees| filter: {sessionStatus: '!REMOVED'}| orderBy:'email' track by $index">
+          <{{attendee.email}}>&nbsp;{{attendee.forename}}&nbsp;{{attendee.surname}}
           <i class="icon delete border pull-right" subject="Remove this attendee from the meeting"
              data-ng-click="m.removeAttendee(attendee)"></i>
         </div>

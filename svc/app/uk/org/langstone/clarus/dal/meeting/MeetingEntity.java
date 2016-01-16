@@ -23,16 +23,13 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = MeetingEntity.FIND_ALL, query = "SELECT m FROM MeetingEntity m"),
-        @NamedQuery(name = MeetingEntity.FIND_ALL_FOR_OWNER, query = "SELECT m FROM MeetingEntity m WHERE m.ownerId = :ownerId"),
         @NamedQuery(name = MeetingEntity.FIND_ALL_FOR_PROJECT, query = "SELECT m FROM MeetingEntity m WHERE m.projectId = :projectId"),
         @NamedQuery(name = MeetingEntity.FIND_BY_ID, query = "SELECT m FROM MeetingEntity m WHERE m.id = :meetingId")
 })
 public class MeetingEntity implements Serializable {
     public static final String FIND_ALL = "meetingEntity.FIND_ALL";
-    public static final String FIND_ALL_FOR_OWNER = "meetingEntity.FIND_ALL_FOR_OWNER";
     public static final String FIND_ALL_FOR_PROJECT = "meetingEntity.FIND_ALL_FOR_PROJECT";
     public static final String FIND_BY_ID = "meetingEntity.FIND_BY_ID";
-    public static final String OWNER_ID_PARAM = "ownerId";
     public static final String MEETING_ID_PARAM = "meetingId";
     public static final String PROJECT_ID_PARAM = "projectId";
 
@@ -53,9 +50,6 @@ public class MeetingEntity implements Serializable {
 
     @Column(name = "summary", nullable = false)
     private String summary;
-
-    @Column(name = "owner_user_id", nullable = false)
-    private String ownerId;
 
     @Column(name = "status", nullable = false)
     private String status;
@@ -107,14 +101,6 @@ public class MeetingEntity implements Serializable {
         this.summary = summary;
     }
 
-    public String getOwnerId() {
-        return ownerId;
-    }
-
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
-    }
-
     public String getStatus() {
         return status;
     }
@@ -149,7 +135,6 @@ public class MeetingEntity implements Serializable {
                 Objects.equals(scheduledDate, that.scheduledDate) &&
                 Objects.equals(reviewByDate, that.reviewByDate) &&
                 Objects.equals(summary, that.summary) &&
-                Objects.equals(ownerId, that.ownerId) &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(projectId, that.projectId) &&
                 Objects.equals(attendees, that.attendees);
@@ -157,6 +142,6 @@ public class MeetingEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, subject, scheduledDate, reviewByDate, summary, ownerId, status, projectId, attendees);
+        return Objects.hash(id, subject, scheduledDate, reviewByDate, summary, status, projectId, attendees);
     }
 }

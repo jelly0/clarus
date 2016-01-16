@@ -1,4 +1,4 @@
-package uk.org.langstone.clarus.domain.meeting.service;
+package uk.org.langstone.clarus.domain.comment.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,6 +8,7 @@ import play.libs.Json;
 import uk.org.langstone.clarus.domain.comment.model.Comment;
 import uk.org.langstone.clarus.domain.comment.CommentRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
+import uk.org.langstone.clarus.domain.meeting.service.CreateMeetingOperation;
 
 import javax.inject.Inject;
 import java.io.IOException;

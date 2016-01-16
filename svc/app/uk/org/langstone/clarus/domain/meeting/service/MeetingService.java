@@ -2,6 +2,7 @@ package uk.org.langstone.clarus.domain.meeting.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import uk.org.langstone.clarus.domain.ServiceResult;
+import uk.org.langstone.clarus.domain.comment.service.CreateCommentOperation;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

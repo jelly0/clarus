@@ -43,7 +43,6 @@ public class CreateProjectOperation {
         project.setClient(jsonRequest.findPath("client").textValue());
         project.setSummary(jsonRequest.findPath("summary").textValue());
         project.setStatus(jsonRequest.findPath("status").textValue());
-        project.setOwnerId(new Integer(principal.getSubject()));
 
         final List<ProjectMember> members = new ArrayList<>();
         for (JsonNode jsonMember : jsonRequest.findValue("members")) {
@@ -58,6 +57,7 @@ public class CreateProjectOperation {
             }
             members.add(member);
         }
+        project.setMembers(members);
 
         final Claims claims = principal.getClaims();
         final ProjectMember ownerMember = new ProjectMember();
@@ -68,8 +68,7 @@ public class CreateProjectOperation {
         ownerMember.setEmail((String) claims.get("email"));
         ownerMember.setRole(ProjectMember.Role.OWNER);
 
-        members.add(ownerMember);
-        project.setMembers(members);
+        project.setOwner(ownerMember);
 
         final Project savedProject = projectRepository.set(project);
         return new ServiceResult(Json.toJson(savedProject));

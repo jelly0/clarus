@@ -9,7 +9,7 @@ public interface ProjectRepository {
 
     List<Project> getAll();
 
-    void update(Project project);
+    Project update(Project project);
 
     void remove(Project project);
 

@@ -34,17 +34,13 @@ public class MeetingJpaRepository implements MeetingRepository {
         meeting.setId((Integer) emProvider.getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(newMeetingEntity));
         newMeetingEntity.setAttendees(meetingMapper.meetingUsersToEntityList(meeting));
         emProvider.getEntityManager().merge(newMeetingEntity);
-        emProvider.getEntityManager().refresh(newMeetingEntity);
-
-        return meetingMapper.meetingToBusinessObject(newMeetingEntity);
+        return meetingMapper.meetingToBusinessObject(emProvider.getEntityManager().merge(newMeetingEntity));
     }
 
     @Override
     public Meeting get(Integer meetingId) {
         final Query query = emProvider.getEntityManager().createNamedQuery(MeetingEntity.FIND_BY_ID);
-
         query.setParameter(MeetingEntity.MEETING_ID_PARAM, meetingId);
-
         return meetingMapper.meetingToBusinessObject((MeetingEntity) query.getSingleResult());
     }
 
@@ -55,9 +51,8 @@ public class MeetingJpaRepository implements MeetingRepository {
     }
 
     @Override
-    public void update(Meeting meeting) {
+    public Meeting update(Meeting meeting) {
         final Query query = emProvider.getEntityManager().createNamedQuery(MeetingEntity.FIND_BY_ID);
-
         query.setParameter(MeetingEntity.MEETING_ID_PARAM, meeting.getId());
         final MeetingEntity meetingEntityToUpdate = (MeetingEntity) query.getSingleResult();
 
@@ -72,7 +67,7 @@ public class MeetingJpaRepository implements MeetingRepository {
             } else if (meetingAttendee.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<MeetingUserEntity> it = meetingEntityToUpdate.getAttendees().iterator(); it.hasNext(); ) {
                     final MeetingUserEntity meetingUserEntityToCheck = it.next();
-                    if (meetingUserEntityToCheck.getUserEmail().equals(meetingAttendee.getEmail())) {
+                    if (meetingUserEntityToCheck.getId().equals(meetingAttendee.getEmail())) {
                         it.remove();
                         emProvider.getEntityManager().remove(meetingUserEntityToCheck);
                         break;
@@ -82,6 +77,9 @@ public class MeetingJpaRepository implements MeetingRepository {
         }
         meetingEntityToUpdate.setAttendees(updatedAttendeesList);
         emProvider.getEntityManager().merge(meetingEntityToUpdate);
+        emProvider.getEntityManager().refresh(meetingEntityToUpdate);
+
+        return meetingMapper.meetingToBusinessObject(meetingEntityToUpdate);
     }
 
     @Override

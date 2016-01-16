@@ -22,7 +22,7 @@ public class UpdateMeetingOperation {
     public ServiceResult execute(JsonNode jsonRequest) {
         final Meeting meeting = Json.fromJson(jsonRequest, Meeting.class);
 
-        meetingRepository.update(meeting);
+        final Meeting updatedMeeting = meetingRepository.update(meeting);
 
         // TODO Email & ID
 

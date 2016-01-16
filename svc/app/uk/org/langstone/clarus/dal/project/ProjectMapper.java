@@ -20,7 +20,16 @@ public class ProjectMapper {
     }
 
     public ProjectEntity projectToEntity(Project project) {
-        return repositoryObjectFactory.createEntity(project, ProjectEntity.class);
+        final ProjectEntity projectEntity = new ProjectEntity();
+
+        projectEntity.setId(project.getId());
+        projectEntity.setTitle(projectEntity.getTitle());
+        projectEntity.setProjectCode(projectEntity.getProjectCode());
+        projectEntity.setClient(projectEntity.getClient());
+        projectEntity.setSummary(project.getSummary());
+        projectEntity.setStatus(project.getStatus());
+
+        return projectEntity;
     }
 
     public ProjectUserEntity projectUserToEntity(ProjectMember projectMember, Project project) {
@@ -42,6 +51,9 @@ public class ProjectMapper {
         for (ProjectMember projectMember : project.getMembers()) {
             projectUserEntities.add(projectUserToEntity(projectMember, project));
         }
+
+        projectUserEntities.add(projectUserToEntity(project.getOwner(), project));
+
         return projectUserEntities;
     }
 
@@ -65,13 +77,7 @@ public class ProjectMapper {
         final List<Project> projects = new ArrayList<>();
 
         for (ProjectEntity projectEntity : projectEntities) {
-            final Project project = repositoryObjectFactory.createBusinessObject(projectEntity, Project.class);
-            final List<ProjectMember> members = new ArrayList<>();
-            for (ProjectUserEntity userEntity : projectEntity.getMembers()) {
-                members.add(projectUserToBusinessObject(userEntity));
-            }
-            project.setMembers(members);
-            projects.add(project);
+            projects.add(projectToBusinessObject(projectEntity));
         }
         return projects;
     }
@@ -80,7 +86,13 @@ public class ProjectMapper {
         final Project project = repositoryObjectFactory.createBusinessObject(projectEntity, Project.class);
         final List<ProjectMember> members = new ArrayList<>();
         for (ProjectUserEntity userEntity : projectEntity.getMembers()) {
-            members.add(projectUserToBusinessObject(userEntity));
+            final ProjectMember member = projectUserToBusinessObject(userEntity);
+
+            if (member.getRole().equals(ProjectMember.Role.OWNER)) {
+                project.setOwner(member);
+            } else {
+                members.add(member);
+            }
         }
         project.setMembers(members);
         return project;

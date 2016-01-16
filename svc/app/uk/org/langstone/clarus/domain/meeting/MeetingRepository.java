@@ -12,7 +12,7 @@ public interface MeetingRepository {
 
     List<Meeting> getAll();
 
-    void update(Meeting meeting);
+    Meeting update(Meeting meeting);
 
     void remove(Meeting meeting);
 

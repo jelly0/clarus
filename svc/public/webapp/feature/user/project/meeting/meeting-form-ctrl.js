@@ -76,7 +76,7 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
             });
 
             modalInstance.result.then(function result(newAttendee) {
-                if (newAttendee.email == userContext.getUser.email) {
+                if (newAttendee.email == userContext.getUser().email) {
                     $$dialog.error("You are automatically added to attendees list as you are the owner");
                 } else if (_.find(vm.meeting.attendees, function (member) {
                         return member.email == newAttendee.email

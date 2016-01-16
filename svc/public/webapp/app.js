@@ -20,4 +20,3 @@ angular.module("clarus", ["ui.router", "googlechart", "ui.bootstrap", "ngAnimate
         };
         $log.debug("Configured RuntimeStates Provider");
     });
-

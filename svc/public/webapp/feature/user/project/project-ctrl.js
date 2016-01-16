@@ -26,13 +26,6 @@ angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRe
             return (selectedProject != null && selectedProject != undefined && selectedProject.id == project.id);
         };
 
-        vm.owner = function (project) {
-            var owner = _.find(project.members, function (member) {
-                return member.userId == project.ownerId;
-            });
-            return owner.forename + " " + owner.surname + " <" + owner.email + ">";
-        };
-
         vm.isFavourite = function (project) {
             return userContext.isFavouriteProject(project);
         };

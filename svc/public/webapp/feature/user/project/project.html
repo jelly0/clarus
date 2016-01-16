@@ -13,7 +13,7 @@
         <button class="icon edit border" title="Amend this project" data-ng-click="p.edit(project)">Amend</button>
       </div>
       <span>{{project.projectCode}} : {{project.title}}</span>
-      <span class="owner icon id" title="Owner of this project">{{p.owner(project)}}</span>
+      <span class="owner icon id" title="Owner of this project">{{p.project.owner.email}}</span>
     </div>
     <div class="panel-body">
       <p>Client: {{project.client == null ? "N/A" : project.client}}</p>

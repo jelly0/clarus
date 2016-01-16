@@ -33,8 +33,9 @@ public class ProjectJpaRepository implements ProjectRepository {
         project.setId((Integer) emProvider.getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(newProjectEntity));
         newProjectEntity.setMembers(projectMapper.projectUsersToEntityList(project));
         emProvider.getEntityManager().persist(newProjectEntity);
+        emProvider.getEntityManager().refresh(newProjectEntity);
 
-        return project;
+        return projectMapper.projectToBusinessObject(newProjectEntity);
     }
 
     @Override
@@ -51,7 +52,7 @@ public class ProjectJpaRepository implements ProjectRepository {
     }
 
     @Override
-    public void update(Project project) {
+    public Project update(Project project) {
         final Query query = emProvider.getEntityManager().createNamedQuery(ProjectEntity.FIND_BY_ID);
         query.setParameter(ProjectEntity.PROJECT_ID_PARAM, project.getId());
         final ProjectEntity projectEntityToUpdate = (ProjectEntity) query.getSingleResult();
@@ -79,6 +80,9 @@ public class ProjectJpaRepository implements ProjectRepository {
         }
         projectEntityToUpdate.setMembers(updatedMembersList);
         emProvider.getEntityManager().merge(projectEntityToUpdate);
+        emProvider.getEntityManager().refresh(projectEntityToUpdate);
+
+        return projectMapper.projectToBusinessObject(projectEntityToUpdate);
     }
 
     @Override

@@ -2,6 +2,7 @@ package uk.org.langstone.clarus.domain.project.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Logger;
+import play.libs.Json;
 import uk.org.langstone.clarus.infrastructure.mail.EmailService;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.project.model.ProjectMember;
@@ -35,7 +36,6 @@ public class UpdateProjectOperation {
         project.setClient(jsonRequest.findPath("client").textValue());
         project.setSummary(jsonRequest.findPath("summary").textValue());
         project.setStatus(jsonRequest.findPath("status").textValue());
-        project.setOwnerId(jsonRequest.findPath("ownerId").asInt());
 
         final List<ProjectMember> members = new ArrayList<>();
         for (JsonNode jsonMember : jsonRequest.findValue("members")) {
@@ -58,8 +58,8 @@ public class UpdateProjectOperation {
             members.add(member);
         }
         project.setMembers(members);
-        projectRepository.update(project);
+        final Project updatedProject = projectRepository.update(project);
 
-        return new ServiceResult(jsonRequest);
+        return new ServiceResult(Json.toJson(updatedProject));
     }
 }

@@ -96,18 +96,10 @@ public class UserJpaRepository implements UserRepository {
         final Query query = emProvider.getEntityManager().createNamedQuery(ProjectUserEntity.FIND_ALL_FOR_USER);
         query.setParameter(ProjectUserEntity.USER_ID_PARAM, userId);
         final List<ProjectUserEntity> userProjects = query.getResultList();
+
         final List<Project> projects = new ArrayList<>();
-
         for (ProjectUserEntity userProject : userProjects) {
-            final ProjectEntity projectEntity = userProject.getProject();
-            final Project project = repositoryObjectFactory.createBusinessObject(projectEntity, Project.class);
-            final List<ProjectMember> members = new ArrayList<ProjectMember>();
-
-            for (ProjectUserEntity userEntity : projectEntity.getMembers()) {
-                members.add(projectMapper.projectUserToBusinessObject(userEntity));
-            }
-            project.setMembers(members);
-            projects.add(project);
+            projects.add(projectMapper.projectToBusinessObject(userProject.getProject()));
         }
         return projects;
     }

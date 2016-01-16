@@ -5,8 +5,8 @@ import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import uk.org.langstone.clarus.infrastructure.util.RequestUtil;
-import uk.org.langstone.clarus.domain.service.ServiceResult;
-import uk.org.langstone.clarus.domain.service.user.UserService;
+import uk.org.langstone.clarus.domain.ServiceResult;
+import uk.org.langstone.clarus.domain.user.service.UserService;
 
 import javax.inject.Inject;
 

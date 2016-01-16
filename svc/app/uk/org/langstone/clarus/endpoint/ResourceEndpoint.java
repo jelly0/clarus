@@ -6,7 +6,7 @@ import play.mvc.Result;
 import play.mvc.With;
 import uk.org.langstone.clarus.infrastructure.security.authentication.Principal;
 import uk.org.langstone.clarus.infrastructure.security.endpoint.SecuredAction;
-import uk.org.langstone.clarus.domain.service.ServiceResult;
+import uk.org.langstone.clarus.domain.ServiceResult;
 
 @With(SecuredAction.class)
 public abstract class ResourceEndpoint extends Controller {

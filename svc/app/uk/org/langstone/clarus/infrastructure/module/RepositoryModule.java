@@ -1,14 +1,14 @@
 package uk.org.langstone.clarus.infrastructure.module;
 
 import com.google.inject.AbstractModule;
-import uk.org.langstone.clarus.dal.jpa.Comment.CommentJpaRepository;
-import uk.org.langstone.clarus.dal.jpa.meeting.MeetingJpaRepository;
-import uk.org.langstone.clarus.dal.jpa.project.ProjectJpaRepository;
-import uk.org.langstone.clarus.dal.jpa.user.UserJpaRepository;
-import uk.org.langstone.clarus.domain.model.Comment.CommentRepository;
-import uk.org.langstone.clarus.domain.model.meeting.MeetingRepository;
-import uk.org.langstone.clarus.domain.model.project.ProjectRepository;
-import uk.org.langstone.clarus.domain.model.user.UserRepository;
+import uk.org.langstone.clarus.dal.Comment.CommentJpaRepository;
+import uk.org.langstone.clarus.dal.meeting.MeetingJpaRepository;
+import uk.org.langstone.clarus.dal.project.ProjectJpaRepository;
+import uk.org.langstone.clarus.dal.user.UserJpaRepository;
+import uk.org.langstone.clarus.domain.comment.CommentRepository;
+import uk.org.langstone.clarus.domain.meeting.MeetingRepository;
+import uk.org.langstone.clarus.domain.project.ProjectRepository;
+import uk.org.langstone.clarus.domain.user.UserRepository;
 
 public class RepositoryModule extends AbstractModule {
     protected void configure() {

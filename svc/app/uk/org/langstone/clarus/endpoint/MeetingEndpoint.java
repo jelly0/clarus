@@ -3,7 +3,7 @@ package uk.org.langstone.clarus.endpoint;
 import play.Logger;
 import play.db.jpa.Transactional;
 import play.mvc.Result;
-import uk.org.langstone.clarus.domain.service.meeting.MeetingService;
+import uk.org.langstone.clarus.domain.meeting.service.MeetingService;
 
 import javax.inject.Inject;
 

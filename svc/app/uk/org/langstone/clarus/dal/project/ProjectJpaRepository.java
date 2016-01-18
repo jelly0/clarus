@@ -31,7 +31,8 @@ public class ProjectJpaRepository implements ProjectRepository {
         emProvider.getEntityManager().persist(newProjectEntity);
         project.setId((Integer) emProvider.getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(newProjectEntity));
         newProjectEntity.setMembers(projectMapper.projectUsersToEntityList(project));
-        emProvider.getEntityManager().persist(newProjectEntity);
+        emProvider.getEntityManager().merge(newProjectEntity);
+        emProvider.getEntityManager().flush();
         emProvider.getEntityManager().refresh(newProjectEntity);
 
         return projectMapper.projectToBusinessObject(newProjectEntity);
@@ -60,7 +61,10 @@ public class ProjectJpaRepository implements ProjectRepository {
 
         for (ProjectMember projectMember : project.getMembers()) {
             if (projectMember.getSessionStatus() == SessionStatus.NEW) {
-                projectEntityToUpdate.getMembers().add(projectMapper.projectUserToEntity(projectMember, project));
+                final ProjectUserEntity newUserEntity = projectMapper.projectUserToEntity(projectMember, project);
+                emProvider.getEntityManager().persist(newUserEntity);
+                projectEntityToUpdate.getMembers().add(newUserEntity);
+
             } else if (projectMember.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<ProjectUserEntity> it = projectEntityToUpdate.getMembers().iterator(); it.hasNext(); ) {
                     final ProjectUserEntity projectUserEntityToCheck = it.next();

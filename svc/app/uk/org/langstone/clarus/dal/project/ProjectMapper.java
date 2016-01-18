@@ -1,11 +1,13 @@
 package uk.org.langstone.clarus.dal.project;
 
+import akka.io.Inet;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import uk.org.langstone.clarus.domain.RepositoryObjectFactory;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.project.model.ProjectMember;
 
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,9 +25,9 @@ public class ProjectMapper {
         final ProjectEntity projectEntity = new ProjectEntity();
 
         projectEntity.setId(project.getId());
-        projectEntity.setTitle(projectEntity.getTitle());
-        projectEntity.setProjectCode(projectEntity.getProjectCode());
-        projectEntity.setClient(projectEntity.getClient());
+        projectEntity.setTitle(project.getTitle());
+        projectEntity.setProjectCode(project.getProjectCode());
+        projectEntity.setClient(project.getClient());
         projectEntity.setSummary(project.getSummary());
         projectEntity.setStatus(project.getStatus());
 

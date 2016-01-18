@@ -15,16 +15,12 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = ProjectUserEntity.FIND_ALL_FOR_USER, query = "SELECT p FROM ProjectUserEntity p WHERE p.userId = :userId"),
-        @NamedQuery(name = ProjectUserEntity.FIND_BY_ID, query = "SELECT p FROM ProjectUserEntity p WHERE p.id.projectId = :projectId AND p.id.userEmail = :userEmail")
+        @NamedQuery(name = ProjectUserEntity.FIND_ALL_FOR_USER, query = "SELECT p FROM ProjectUserEntity p WHERE p.userId = :userId")
 })
 @Table(name = "project_user")
 public class ProjectUserEntity implements Serializable {
     public static final String FIND_ALL_FOR_USER = "ProjectUserEntity.FIND_ALL_FOR_USER";
     public static final String USER_ID_PARAM = "userId";
-    public static final String FIND_BY_ID = "ProjectUserEntity.FIND_BY_ID";
-    public static final String PROJECT_ID_PARAM = "projectId";
-    public static final String USER_EMAIL_PARAM = "userEmail";
 
     @EmbeddedId
     ProjectUserId id;

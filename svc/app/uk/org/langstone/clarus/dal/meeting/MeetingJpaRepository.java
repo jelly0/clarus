@@ -33,7 +33,10 @@ public class MeetingJpaRepository implements MeetingRepository {
         meeting.setId((Integer) emProvider.getEntityManager().getEntityManagerFactory().getPersistenceUnitUtil().getIdentifier(newMeetingEntity));
         newMeetingEntity.setAttendees(meetingMapper.meetingUsersToEntityList(meeting));
         emProvider.getEntityManager().merge(newMeetingEntity);
-        return meetingMapper.meetingToBusinessObject(emProvider.getEntityManager().merge(newMeetingEntity));
+        emProvider.getEntityManager().flush();
+        emProvider.getEntityManager().refresh(newMeetingEntity);
+
+        return meetingMapper.meetingToBusinessObject(newMeetingEntity);
     }
 
     @Override
@@ -57,7 +60,9 @@ public class MeetingJpaRepository implements MeetingRepository {
 
         for (MeetingAttendee meetingAttendee : meeting.getAttendees()) {
             if (meetingAttendee.getSessionStatus() == SessionStatus.NEW) {
-                meetingEntityToUpdate.getAttendees().add(meetingMapper.meetingUserToEntity(meetingAttendee, meeting));
+                final MeetingUserEntity newUserEntity = meetingMapper.meetingUserToEntity(meetingAttendee, meeting);
+                emProvider.getEntityManager().persist(newUserEntity);
+                meetingEntityToUpdate.getAttendees().add(newUserEntity);
             } else if (meetingAttendee.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<MeetingUserEntity> it = meetingEntityToUpdate.getAttendees().iterator(); it.hasNext(); ) {
                     final MeetingUserEntity meetingUserEntityToCheck = it.next();

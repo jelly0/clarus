@@ -25,7 +25,7 @@ CREATE TABLE project (
   project_code  VARCHAR(20),
   client        VARCHAR(255),
   summary       VARCHAR(255) NOT NULL,
-  sessionStatus        VARCHAR(20),
+  status        VARCHAR(20),
   PRIMARY KEY (id)
 );
 

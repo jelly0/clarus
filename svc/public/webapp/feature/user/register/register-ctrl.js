@@ -1,20 +1,19 @@
 "use strict";
 
-angular.module("clarus").controller("userRegisterCtrl", ["$state", "$stateParams", "$log", "userDao",
-    function ($state, $stateParams, $log, userDao) {
+angular.module("clarus").controller("userRegisterCtrl", ["$state", "$log", "userDao", "cacheManager",
+    function ($state, $log, userDao, cacheManager) {
         var vm = this;
+        var REG_CACHE = "userRegisterCtrl";
+        var REG_DETAILS = "vm.details";
+        var REG_CONFIRM = "vm.confirm";
 
         (function init() {
             vm.registerError = false;
             vm.$$dataType = $$dataType;
+            vm.details = cacheManager.get(REG_CACHE).get(REG_DETAILS);
+            vm.confirm = cacheManager.get(REG_CACHE).get(REG_CONFIRM);
 
-            //Prepare the scope to store user inputs
-            if ($stateParams.data == null) {
-                vm.details = {};
-            }
-            else {
-                vm.details = $stateParams.data;
-            }
+            cacheManager.get(REG_CACHE).removeAll();
         })();
 
         vm.register = function (form) {
@@ -47,6 +46,8 @@ angular.module("clarus").controller("userRegisterCtrl", ["$state", "$stateParams
         };
 
         vm.showTermsOfUse = function () {
+            cacheManager.get(REG_CACHE).put(REG_DETAILS, vm.details);
+            cacheManager.get(REG_CACHE).put(REG_CONFIRM, vm.confirm);
             $state.go("user.termsofuse", {registration: vm.registration});
         };
 

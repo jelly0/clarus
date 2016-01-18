@@ -5,8 +5,8 @@
  * @param $stateParams.from Name of the state.  This is used for navigating back
  */
 
-angular.module("clarus").controller("termsOfUseCtrl", ["$state", "$stateParams", "$log", "legalRefData",
-    function ($state, $stateParams, $log, legalRefData) {
+angular.module("clarus").controller("termsOfUseCtrl", ["$state", "$log", "userContext", "legalRefData",
+    function ($state, $log, userContext, legalRefData) {
         var vm = this;
 
         (function init() {
@@ -15,6 +15,6 @@ angular.module("clarus").controller("termsOfUseCtrl", ["$state", "$stateParams",
         })();
 
         vm.back = function () {
-            $state.go($state.current.data.baseState, {credentials: $stateParams.credentials});
+            userContext.returnToLastState();
         }
     }]);

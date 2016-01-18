@@ -61,8 +61,10 @@ public class MeetingJpaRepository implements MeetingRepository {
         for (MeetingAttendee meetingAttendee : meeting.getAttendees()) {
             if (meetingAttendee.getSessionStatus() == SessionStatus.NEW) {
                 final MeetingUserEntity newUserEntity = meetingMapper.meetingUserToEntity(meetingAttendee, meeting);
+
                 emProvider.getEntityManager().persist(newUserEntity);
-                meetingEntityToUpdate.getAttendees().add(newUserEntity);
+                emProvider.getEntityManager().flush();
+                emProvider.getEntityManager().refresh(newUserEntity);
             } else if (meetingAttendee.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<MeetingUserEntity> it = meetingEntityToUpdate.getAttendees().iterator(); it.hasNext(); ) {
                     final MeetingUserEntity meetingUserEntityToCheck = it.next();

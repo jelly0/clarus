@@ -62,9 +62,10 @@ public class ProjectJpaRepository implements ProjectRepository {
         for (ProjectMember projectMember : project.getMembers()) {
             if (projectMember.getSessionStatus() == SessionStatus.NEW) {
                 final ProjectUserEntity newUserEntity = projectMapper.projectUserToEntity(projectMember, project);
-                emProvider.getEntityManager().persist(newUserEntity);
-                projectEntityToUpdate.getMembers().add(newUserEntity);
 
+                emProvider.getEntityManager().persist(newUserEntity);
+                emProvider.getEntityManager().flush();
+                emProvider.getEntityManager().refresh(newUserEntity);
             } else if (projectMember.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<ProjectUserEntity> it = projectEntityToUpdate.getMembers().iterator(); it.hasNext(); ) {
                     final ProjectUserEntity projectUserEntityToCheck = it.next();

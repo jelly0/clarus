@@ -23,14 +23,11 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
         @NamedQuery(name = MeetingEntity.FIND_ALL, query = "SELECT m FROM MeetingEntity m"),
-        @NamedQuery(name = MeetingEntity.FIND_ALL_FOR_PROJECT, query = "SELECT m FROM MeetingEntity m WHERE m.projectId = :projectId"),
-        @NamedQuery(name = MeetingEntity.FIND_BY_ID, query = "SELECT m FROM MeetingEntity m WHERE m.id = :meetingId")
+        @NamedQuery(name = MeetingEntity.FIND_ALL_FOR_PROJECT, query = "SELECT m FROM MeetingEntity m WHERE m.projectId = :projectId")
 })
 public class MeetingEntity implements Serializable {
     public static final String FIND_ALL = "meetingEntity.FIND_ALL";
     public static final String FIND_ALL_FOR_PROJECT = "meetingEntity.FIND_ALL_FOR_PROJECT";
-    public static final String FIND_BY_ID = "meetingEntity.FIND_BY_ID";
-    public static final String MEETING_ID_PARAM = "meetingId";
     public static final String PROJECT_ID_PARAM = "projectId";
 
     @Id

@@ -25,7 +25,7 @@ CREATE TABLE project (
   project_code  VARCHAR(20),
   client        VARCHAR(255),
   summary       VARCHAR(255) NOT NULL,
-  status        VARCHAR(20),
+  sessionStatus        VARCHAR(20),
   PRIMARY KEY (id)
 );
 
@@ -48,7 +48,7 @@ CREATE TABLE meeting (
   scheduled_date DATETIME     NOT NULL,
   review_by_date DATETIME,
   project_id     BIGINT(20)   NOT NULL,
-  status         VARCHAR(20),
+  sessionStatus         VARCHAR(20),
   PRIMARY KEY (id),
   FOREIGN KEY (project_id) REFERENCES project (id)
 );
@@ -81,7 +81,7 @@ CREATE TABLE issue (
   text       VARCHAR(1024) NOT NULL,
   entry_date DATETIME      NOT NULL DEFAULT SYSDATE(),
   user_id    BIGINT(20)    NOT NULL,
-  status     VARCHAR(20)   NOT NULL,
+  sessionStatus     VARCHAR(20)   NOT NULL,
 
   PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES project_user (user_id)

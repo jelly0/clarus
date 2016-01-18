@@ -71,6 +71,9 @@ public class CreateProjectOperation {
         project.setOwner(ownerMember);
 
         final Project savedProject = projectRepository.set(project);
+
+        // TODO email project members
+
         return new ServiceResult(Json.toJson(savedProject));
     }
 }

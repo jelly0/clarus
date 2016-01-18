@@ -42,12 +42,12 @@ angular.module("clarus").service("projectRepository", ["$q", "$log", "dal",  "$r
             var deferred = $q.defer();
 
             if (projectToSave.hasOwnProperty("id")) {
-                projectDao.updateProject(projectToSave).then(function () {
+                projectDao.updateProject(projectToSave).then(function (updatedProject) {
                     _.remove(projectCache, function (project) {
-                        return project.id == projectToSave.id;
+                        return project.id == updatedProject.id;
                     });
-                    projectCache.push(projectToSave);
-                    deferred.resolve(projectToSave);
+                    projectCache.push(updatedProject);
+                    deferred.resolve(updatedProject);
                 }, function (error) {
                     deferred.reject(error);
                 });

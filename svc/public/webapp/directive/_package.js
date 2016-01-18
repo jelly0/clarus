@@ -1,8 +1,6 @@
 "use strict";
 
-(function() {
-    $.getScript("directive/match.js");
-    $.getScript("directive/lowercase.js");
-    $.getScript("directive/before.js");
-    $.getScript("directive/autofocus.js");
-})();
+$$require.script("match.js");
+$$require.script("lowercase.js");
+$$require.script("before.js");
+$$require.script("autofocus.js");

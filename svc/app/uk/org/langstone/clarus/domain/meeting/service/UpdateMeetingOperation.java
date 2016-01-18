@@ -24,8 +24,8 @@ public class UpdateMeetingOperation {
 
         final Meeting updatedMeeting = meetingRepository.update(meeting);
 
-        // TODO Email & ID
+        // TODO Email new attendees
 
-        return new ServiceResult(jsonRequest);
+        return new ServiceResult(Json.toJson(updatedMeeting));
     }
 }

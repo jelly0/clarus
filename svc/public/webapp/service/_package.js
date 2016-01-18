@@ -1,20 +1,19 @@
 "use strict";
 
-(function () {
-    $.getScript("service/dal/dal.js");
-    $.getScript("service/dal/user.js");
-    $.getScript("service/dal/project.js");
-    $.getScript("service/dal/meeting.js");
+$$require.script("dal/dal.js");
+$$require.script("dal/user.js");
+$$require.script("dal/project.js");
+$$require.script("dal/meeting.js");
 
-    $.getScript("service/repository/project.js");
-    $.getScript("service/repository/meeting.js");
-    $.getScript("service/repository/comment.js");
+$$require.script("repository/project.js");
+$$require.script("repository/meeting.js");
+$$require.script("repository/comment.js");
 
-    $.getScript("service/context/context-event.js");
-    $.getScript("service/context/usercontext.js");
+$$require.script("context/context-event.js");
+$$require.script("context/usercontext.js");
 
-    $.getScript("service/security/bearer-token/auth-service.js");
-    $.getScript("service/security/bearer-token/auth-interceptor.js");
-})();
+$$require.script("refdata/legal.js");
 
+$$require.script("security/bearer-token/auth-service.js");
+$$require.script("security/bearer-token/auth-interceptor.js");
 

@@ -25,14 +25,13 @@
   <link href="lib/bootstrap3-dialog/css/bootstrap-dialog.min.css" rel="stylesheet">
   <script src="lib/angular-google-chart/ng-google-chart.min.js"></script>
 
-  <!-- Libraries -->
+  <!-- Libraries and Constants-->
   <link rel="stylesheet/less" href="resource/app.less">
-  <script src="utils/loader.js"></script>
-  <script src="utils/dialog.js"></script>
-
-  <!--Constants and ref data-->
+  <script src="util/module.js"></script>
+  <script src="util/dialog.js"></script>
   <script src="constant/_package.js"></script>
 
+  <!--Application - must be loaded before dependencies -->
   <script src="app.js"></script>
 
   <script src="directive/_package.js"></script>
@@ -48,6 +47,7 @@
   <script src="feature/user/project/meeting/_package.js"></script>
   <script src="feature/user/project/meeting/review/_package.js"></script>
 
+  <!--LESS pre-processor - needs to be after all CSS -->
   <script src="lib/less/less.min.js"></script>
 </head>
 <body data-ui-view="root-content">

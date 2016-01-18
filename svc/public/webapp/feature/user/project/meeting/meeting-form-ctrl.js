@@ -78,13 +78,21 @@ angular.module("clarus").controller("meetingFormCtrl", ["$scope", "$state", "$st
             modalInstance.result.then(function result(newAttendee) {
                 if (newAttendee.email == userContext.getUser().email) {
                     $$dialog.error("You are automatically added to attendees list as you are the owner");
-                } else if (_.find(vm.meeting.attendees, function (member) {
-                        return member.email == newAttendee.email
-                    })) {
-                    $$dialog.error(newAttendee.email + " has already been added to this meeting");
                 } else {
-                    newAttendee.sessionStatus = "NEW";
-                    vm.meeting.attendees.push(newAttendee);
+                    var searchResult =  _.find(vm.meeting.attendees, function (attendee) {
+                        return attendee.email == newAttendee.email
+                    });
+
+                    if (searchResult) {
+                        if (searchResult.sessionStatus == "REMOVED") {
+                            delete searchResult.sessionStatus;
+                        } else {
+                            $$dialog.error(newAttendee.email + " has already been added");
+                        }
+                    } else {
+                        newAttendee.sessionStatus = "NEW";
+                        vm.meeting.attendees.push(newAttendee);
+                    }
                 }
             }, function closed() {
             });

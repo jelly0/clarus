@@ -42,12 +42,12 @@ angular.module("clarus").service("meetingRepository", ["$q", "$log", "$rootScope
             var deferred = $q.defer();
             if (meetingToSave.hasOwnProperty("id")) {
                 meetingDao.updateMeeting(meetingToSave).then(
-                    function success() {
+                    function success(updatedMeeting) {
                         _.remove(meetingCache[meetingToSave.projectId], function (meeting) {
                             return meeting.id == meetingToSave.id;
                         });
-                        meetingCache[meetingToSave.projectId].push(meetingToSave);
-                        deferred.resolve(meetingToSave);
+                        meetingCache[meetingToSave.projectId].push(updatedMeeting);
+                        deferred.resolve(updatedMeeting);
                     }, function error(error) {
                         deferred.reject(error);
                     });

@@ -1,9 +1,8 @@
 "use strict";
-(function () {
-    $$loader.script("feature/user/project/project-state.js");
-    $$loader.script("feature/user/project/project-ctrl.js");
-    $$loader.script("feature/user/project/project-menu-ctrl.js");
-    $$loader.script("feature/user/project/project-form-ctrl.js");
-    $$loader.script("feature/user/project/member-form-ctrl.js");
-    $$loader.less("feature/user/project/project.less");
-})();
+
+$$require.script("project-state.js");
+$$require.script("project-ctrl.js");
+$$require.script("project-menu-ctrl.js");
+$$require.script("project-form-ctrl.js");
+$$require.script("member-form-ctrl.js");
+$$require.less("project.less");

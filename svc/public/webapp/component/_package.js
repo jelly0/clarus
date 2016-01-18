@@ -1,5 +1,4 @@
 "use strict";
-(function () {
-    $$loader.script("component/favourite-panel/favourite-panel-ctrl.js");
-    $$loader.less("component/favourite-panel/favourite-panel.less");
-})();
+
+$$require.script("favourite-panel/favourite-panel-ctrl.js");
+$$require.less("favourite-panel/favourite-panel.less");

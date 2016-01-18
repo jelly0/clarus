@@ -3,11 +3,12 @@ package uk.org.langstone.clarus.domain.project.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Logger;
 import play.libs.Json;
-import uk.org.langstone.clarus.infrastructure.mail.EmailService;
+import uk.org.langstone.clarus.domain.ServiceResult;
+import uk.org.langstone.clarus.domain.SessionStatus;
+import uk.org.langstone.clarus.domain.project.ProjectRepository;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.project.model.ProjectMember;
-import uk.org.langstone.clarus.domain.project.ProjectRepository;
-import uk.org.langstone.clarus.domain.ServiceResult;
+import uk.org.langstone.clarus.infrastructure.mail.EmailService;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
@@ -52,13 +53,16 @@ public class UpdateProjectOperation {
             }
 
             if (jsonMember.findPath("sessionStatus").textValue() != null) {
-                member.setStatus(ProjectMember.SessionStatus.valueOf(jsonMember.findPath("sessionStatus").textValue()));
+                member.setSessionStatus(SessionStatus.valueOf(jsonMember.findPath("sessionStatus").textValue()));
             }
 
             members.add(member);
         }
         project.setMembers(members);
         final Project updatedProject = projectRepository.update(project);
+
+        // TODO email new project members
+
 
         return new ServiceResult(Json.toJson(updatedProject));
     }

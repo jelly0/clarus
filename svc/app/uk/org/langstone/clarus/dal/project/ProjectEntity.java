@@ -18,13 +18,10 @@ import java.util.Objects;
 @Table(name = "project")
 @Entity
 @NamedQueries({
-        @NamedQuery(name = ProjectEntity.FIND_ALL, query = "SELECT p FROM ProjectEntity p"),
-        @NamedQuery(name = ProjectEntity.FIND_BY_ID, query = "SELECT p FROM ProjectEntity p WHERE p.id = :projectId")
+        @NamedQuery(name = ProjectEntity.FIND_ALL, query = "SELECT p FROM ProjectEntity p")
 })
 public class ProjectEntity {
     public static final String FIND_ALL = "ProjectEntity.FIND_ALL";
-    public static final String FIND_BY_ID = "ProjectEntity.FIND_BY_ID";
-    public static final String PROJECT_ID_PARAM = "projectId";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -2,13 +2,12 @@ package uk.org.langstone.clarus.dal.project;
 
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
+import uk.org.langstone.clarus.domain.SessionStatus;
+import uk.org.langstone.clarus.domain.project.ProjectRepository;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.project.model.ProjectMember;
-import uk.org.langstone.clarus.domain.project.ProjectRepository;
 
 import javax.inject.Inject;
-import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -40,9 +39,7 @@ public class ProjectJpaRepository implements ProjectRepository {
 
     @Override
     public Project get(Integer projectId) {
-        final Query query = emProvider.getEntityManager().createNamedQuery(ProjectEntity.FIND_BY_ID);
-        query.setParameter(ProjectEntity.PROJECT_ID_PARAM, projectId);
-        return projectMapper.projectToBusinessObject((ProjectEntity) query.getSingleResult());
+        return projectMapper.projectToBusinessObject(emProvider.getEntityManager().find(ProjectEntity.class, projectId));
     }
 
     @Override
@@ -53,9 +50,7 @@ public class ProjectJpaRepository implements ProjectRepository {
 
     @Override
     public Project update(Project project) {
-        final Query query = emProvider.getEntityManager().createNamedQuery(ProjectEntity.FIND_BY_ID);
-        query.setParameter(ProjectEntity.PROJECT_ID_PARAM, project.getId());
-        final ProjectEntity projectEntityToUpdate = (ProjectEntity) query.getSingleResult();
+        final ProjectEntity projectEntityToUpdate = emProvider.getEntityManager().find(ProjectEntity.class, project.getId());
 
         projectEntityToUpdate.setTitle(project.getTitle());
         projectEntityToUpdate.setProjectCode(project.getProjectCode());
@@ -63,11 +58,10 @@ public class ProjectJpaRepository implements ProjectRepository {
         projectEntityToUpdate.setSummary(project.getSummary());
         projectEntityToUpdate.setStatus(project.getStatus());
 
-        final List<ProjectUserEntity> updatedMembersList = new ArrayList<>();
         for (ProjectMember projectMember : project.getMembers()) {
-            if (projectMember.getStatus() == ProjectMember.SessionStatus.NEW) {
-                updatedMembersList.add(projectMapper.projectUserToEntity(projectMember, project));
-            } else if (projectMember.getStatus() == ProjectMember.SessionStatus.REMOVED) {
+            if (projectMember.getSessionStatus() == SessionStatus.NEW) {
+                projectEntityToUpdate.getMembers().add(projectMapper.projectUserToEntity(projectMember, project));
+            } else if (projectMember.getSessionStatus() == SessionStatus.REMOVED) {
                 for (Iterator<ProjectUserEntity> it = projectEntityToUpdate.getMembers().iterator(); it.hasNext(); ) {
                     final ProjectUserEntity projectUserEntityToCheck = it.next();
                     if (projectUserEntityToCheck.getId().getUserEmail().equals(projectMember.getEmail())) {
@@ -78,8 +72,8 @@ public class ProjectJpaRepository implements ProjectRepository {
                 }
             }
         }
-        projectEntityToUpdate.setMembers(updatedMembersList);
         emProvider.getEntityManager().merge(projectEntityToUpdate);
+        emProvider.getEntityManager().flush();
         emProvider.getEntityManager().refresh(projectEntityToUpdate);
 
         return projectMapper.projectToBusinessObject(projectEntityToUpdate);

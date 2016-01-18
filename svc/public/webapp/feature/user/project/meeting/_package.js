@@ -1,8 +1,7 @@
 "use strict";
-(function () {
-    $$loader.script("feature/user/project/meeting/meeting-ctrl.js");
-    $$loader.less("feature/user/project/meeting/meeting.less");
-    $$loader.script("feature/user/project/meeting/meeting-form-ctrl.js");
-    $$loader.script("feature/user/project/meeting/attendee-form-ctrl.js");
-    $$loader.less("feature/user/project/meeting/meeting-form.less");
-})();
+
+$$require.script("meeting-ctrl.js");
+$$require.less("meeting.less");
+$$require.script("meeting-form-ctrl.js");
+$$require.script("attendee-form-ctrl.js");
+$$require.less("meeting-form.less");

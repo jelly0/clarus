@@ -8,7 +8,7 @@
       <button class="icon comment" data-ng-click="r.addComment()"><i class="icon add small"></i>&nbsp;Add Comment
       </button>
     </div>
-    <h2>{{meeting.subject}}: {{meeting.scheduledDate | date:"dd/MM/yy"}}</h2>
+    <h2>{{r.meeting.subject}}: {{r.meeting.scheduledDate | date:"dd/MM/yy"}}</h2>
   </div>
 
   <div data-ng-repeat="comment in r.comments | orderBy:['reference', 'entryDate'] track by $index" class="well well-sm">

@@ -2,6 +2,7 @@ package uk.org.langstone.clarus.domain.user.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Logger;
+import play.libs.Json;
 import uk.org.langstone.clarus.domain.ServiceResult;
 import uk.org.langstone.clarus.domain.user.model.User;
 import uk.org.langstone.clarus.domain.user.UserRepository;
@@ -39,13 +40,9 @@ public class RegisterUserOperation {
         if (existingUser != null) {
             return new ServiceResult(ServiceResult.Status.OP_ERROR);
         } else {
-            final User user = new User();
+            final User user = Json.fromJson(jsonRequest, User.class);
 
-            user.setEmail(jsonRequest.findPath("email").textValue());
             user.setPassword(cipher.hash(jsonRequest.findPath("password").textValue()));
-            user.setForename(jsonRequest.findPath("forename").textValue());
-            user.setSurname(jsonRequest.findPath("surname").textValue());
-            user.setPhone(jsonRequest.findPath("phone").textValue());
             user.setActivated(false);
             user.setActivationKey(randomKeyGenerator.generate());
             user.setRole(User.Role.USER);

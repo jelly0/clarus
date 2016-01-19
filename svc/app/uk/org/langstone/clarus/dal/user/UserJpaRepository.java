@@ -2,14 +2,12 @@ package uk.org.langstone.clarus.dal.user;
 
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
-import uk.org.langstone.clarus.dal.project.ProjectEntity;
 import uk.org.langstone.clarus.dal.project.ProjectMapper;
 import uk.org.langstone.clarus.dal.project.ProjectUserEntity;
 import uk.org.langstone.clarus.domain.RepositoryObjectFactory;
 import uk.org.langstone.clarus.domain.project.model.Project;
-import uk.org.langstone.clarus.domain.project.model.ProjectMember;
 import uk.org.langstone.clarus.domain.user.model.User;
-import uk.org.langstone.clarus.domain.user.UserRepository;
+import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;

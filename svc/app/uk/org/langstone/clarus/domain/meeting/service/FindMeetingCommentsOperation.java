@@ -2,8 +2,8 @@ package uk.org.langstone.clarus.domain.meeting.service;
 
 import play.Logger;
 import play.libs.Json;
-import uk.org.langstone.clarus.domain.comment.model.Comment;
-import uk.org.langstone.clarus.domain.comment.CommentRepository;
+import uk.org.langstone.clarus.domain.meeting.model.Comment;
+import uk.org.langstone.clarus.domain.meeting.repository.CommentRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
 
 import javax.inject.Inject;

@@ -1,4 +1,4 @@
-package uk.org.langstone.clarus.domain.user;
+package uk.org.langstone.clarus.domain.user.repository;
 
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.user.model.User;

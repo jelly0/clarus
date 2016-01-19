@@ -5,10 +5,10 @@ import uk.org.langstone.clarus.dal.Comment.CommentJpaRepository;
 import uk.org.langstone.clarus.dal.meeting.MeetingJpaRepository;
 import uk.org.langstone.clarus.dal.project.ProjectJpaRepository;
 import uk.org.langstone.clarus.dal.user.UserJpaRepository;
-import uk.org.langstone.clarus.domain.comment.CommentRepository;
-import uk.org.langstone.clarus.domain.meeting.MeetingRepository;
-import uk.org.langstone.clarus.domain.project.ProjectRepository;
-import uk.org.langstone.clarus.domain.user.UserRepository;
+import uk.org.langstone.clarus.domain.meeting.repository.CommentRepository;
+import uk.org.langstone.clarus.domain.meeting.repository.MeetingRepository;
+import uk.org.langstone.clarus.domain.project.repository.ProjectRepository;
+import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 
 public class RepositoryModule extends AbstractModule {
     protected void configure() {

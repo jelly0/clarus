@@ -3,7 +3,7 @@ package uk.org.langstone.clarus.dal.meeting;
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
 import uk.org.langstone.clarus.domain.SessionStatus;
-import uk.org.langstone.clarus.domain.meeting.MeetingRepository;
+import uk.org.langstone.clarus.domain.meeting.repository.MeetingRepository;
 import uk.org.langstone.clarus.domain.meeting.model.Meeting;
 import uk.org.langstone.clarus.domain.meeting.model.MeetingAttendee;
 

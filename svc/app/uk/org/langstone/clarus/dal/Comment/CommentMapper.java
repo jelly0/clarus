@@ -3,7 +3,7 @@ package uk.org.langstone.clarus.dal.Comment;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import uk.org.langstone.clarus.dal.meeting.MeetingMapper;
-import uk.org.langstone.clarus.domain.comment.model.Comment;
+import uk.org.langstone.clarus.domain.meeting.model.Comment;
 import uk.org.langstone.clarus.domain.RepositoryObjectFactory;
 
 import java.util.ArrayList;

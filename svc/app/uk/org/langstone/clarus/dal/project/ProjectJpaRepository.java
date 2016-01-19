@@ -3,7 +3,7 @@ package uk.org.langstone.clarus.dal.project;
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
 import uk.org.langstone.clarus.domain.SessionStatus;
-import uk.org.langstone.clarus.domain.project.ProjectRepository;
+import uk.org.langstone.clarus.domain.project.repository.ProjectRepository;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.project.model.ProjectMember;
 

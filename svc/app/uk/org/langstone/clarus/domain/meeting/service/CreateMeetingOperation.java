@@ -7,7 +7,7 @@ import play.libs.Json;
 import play.mvc.Http;
 import uk.org.langstone.clarus.domain.meeting.model.Meeting;
 import uk.org.langstone.clarus.domain.meeting.model.MeetingAttendee;
-import uk.org.langstone.clarus.domain.meeting.MeetingRepository;
+import uk.org.langstone.clarus.domain.meeting.repository.MeetingRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
 import uk.org.langstone.clarus.infrastructure.mail.EmailService;
 import uk.org.langstone.clarus.infrastructure.security.authentication.Principal;

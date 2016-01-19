@@ -1,4 +1,4 @@
-package uk.org.langstone.clarus.domain.meeting;
+package uk.org.langstone.clarus.domain.meeting.repository;
 
 import uk.org.langstone.clarus.domain.meeting.model.Meeting;
 

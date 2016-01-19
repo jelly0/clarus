@@ -3,7 +3,7 @@ package uk.org.langstone.clarus.domain.user.service;
 import play.Logger;
 import play.libs.Json;
 import uk.org.langstone.clarus.domain.project.model.Project;
-import uk.org.langstone.clarus.domain.user.UserRepository;
+import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
 
 import javax.inject.Inject;

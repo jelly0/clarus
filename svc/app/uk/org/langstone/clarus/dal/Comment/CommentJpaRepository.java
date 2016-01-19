@@ -2,8 +2,8 @@ package uk.org.langstone.clarus.dal.Comment;
 
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
-import uk.org.langstone.clarus.domain.comment.model.Comment;
-import uk.org.langstone.clarus.domain.comment.CommentRepository;
+import uk.org.langstone.clarus.domain.meeting.model.Comment;
+import uk.org.langstone.clarus.domain.meeting.repository.CommentRepository;
 
 import javax.inject.Inject;
 import javax.persistence.Query;

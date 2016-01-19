@@ -1,6 +1,4 @@
-package uk.org.langstone.clarus.domain.comment.model;
-
-import uk.org.langstone.clarus.domain.meeting.model.MeetingAttendee;
+package uk.org.langstone.clarus.domain.meeting.model;
 
 import java.util.Date;
 import java.util.List;

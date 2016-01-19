@@ -1,6 +1,6 @@
-package uk.org.langstone.clarus.domain.comment;
+package uk.org.langstone.clarus.domain.meeting.repository;
 
-import uk.org.langstone.clarus.domain.comment.model.Comment;
+import uk.org.langstone.clarus.domain.meeting.model.Comment;
 
 import java.util.List;
 

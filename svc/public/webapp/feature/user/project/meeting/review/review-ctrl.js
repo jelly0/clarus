@@ -7,10 +7,6 @@ angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "
 
         (function init() {
             vm.waiting = true;
-            vm.meeting = meetingRepository.getMeetingById($stateParams.projectId, $stateParams.meetingId);
-            vm.meetingUser = _.find(vm.meeting.attendees, function (attendee) {
-                return attendee.userId == userId;
-            });
             vm.comments = commentRepository.getMeetingComments($stateParams.meetingId).then(
                 function (comments) {
                     vm.comments = comments;
@@ -18,7 +14,18 @@ angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "
                 }, function (error) {
                     vm.waiting = false;
                     $$dialog.error(" We've encountered a problem while loading your meeting comments.  Please try again later");
-                })
+                });
+
+            vm.meeting = meetingRepository.getMeetingById($stateParams.projectId, $stateParams.meetingId);
+            vm.meetingUser = (function () {
+                if (vm.meeting.owner.userId == userId) {
+                    return vm.meeting.owner;
+                } else {
+                    return _.find(vm.meeting.attendees, function (attendee) {
+                        return attendee.userId == userId;
+                    });
+                }
+            })();
         })();
 
         vm.addComment = function (parentComment) {
@@ -102,9 +109,12 @@ angular.module("clarus").controller("reviewCtrl", ["$log", "$scope", "$state", "
         vm.save = function () {
             var waitingDialog = $$dialog.waiting("Saving comments - Please Wait");
             commentRepository.saveMeetingComments(vm.meeting.id, vm.comments).then(
-                function success(savedMeetings) {
-                    vm.comments = savedMeetings;
+                function success() {
                     waitingDialog.close();
+                    $$dialog.success("Comments Saved successfully",
+                        function completed() {
+                            //userContext.returnToLastState();
+                        });
                 },
                 function error(error) {
                     waitingDialog.close();

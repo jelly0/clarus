@@ -1,4 +1,4 @@
-angular.module("pamm").decorator("$log", ["$delegate", function ($delegate) {
+angular.module("clarus").decorator("$log", ["$delegate", function ($delegate) {
 
     var log = $delegate.log;
     var info = $delegate.info;

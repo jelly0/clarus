@@ -2,9 +2,9 @@ package uk.org.langstone.clarus.domain.user.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Logger;
+import uk.org.langstone.clarus.dal.user.UserRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
 import uk.org.langstone.clarus.domain.user.model.User;
-import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 
 import javax.inject.Inject;
 

@@ -7,7 +7,6 @@ import uk.org.langstone.clarus.dal.project.ProjectUserEntity;
 import uk.org.langstone.clarus.domain.RepositoryObjectFactory;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.domain.user.model.User;
-import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
@@ -16,23 +15,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class UserJpaRepository implements UserRepository {
-    private static final Logger.ALogger LOG = Logger.of(UserJpaRepository.class);
+public class UserRepository {
+    private static final Logger.ALogger LOG = Logger.of(UserRepository.class);
 
     private final RepositoryObjectFactory repositoryObjectFactory;
     private final EntityManagerProvider emProvider;
     private final ProjectMapper projectMapper;
 
     @Inject
-    public UserJpaRepository(RepositoryObjectFactory repositoryObjectFactory,
-                             EntityManagerProvider emProvider,
-                             ProjectMapper projectMapper) {
+    public UserRepository(RepositoryObjectFactory repositoryObjectFactory,
+                          EntityManagerProvider emProvider,
+                          ProjectMapper projectMapper) {
         this.repositoryObjectFactory = repositoryObjectFactory;
         this.emProvider = emProvider;
         this.projectMapper = projectMapper;
     }
 
-    @Override
     public User set(User user) {
         final UserEntity newUserEntity = repositoryObjectFactory.createEntity(user, UserEntity.class);
         emProvider.getEntityManager().persist(newUserEntity);
@@ -43,13 +41,11 @@ public class UserJpaRepository implements UserRepository {
         return repositoryObjectFactory.createBusinessObject(newUserEntity, User.class);
     }
 
-    @Override
     public User get(Integer userId) {
         final UserEntity userEntity = emProvider.getEntityManager().find(UserEntity.class, userId);
         return repositoryObjectFactory.createBusinessObject(userEntity, User.class);
     }
 
-    @Override
     public List<User> getAll() {
         final List<UserEntity> userEntities = emProvider.getEntityManager().createNamedQuery(UserEntity.FIND_ALL).getResultList();
         final List<User> users = new ArrayList<>();
@@ -59,20 +55,17 @@ public class UserJpaRepository implements UserRepository {
         return users;
     }
 
-    @Override
     public void update(User user) {
         throw new UnsupportedOperationException("Not yet imeplemented");
 
     }
 
-    @Override
     public void remove(User user) {
         final UserEntity userToRemove = emProvider.getEntityManager().getReference(UserEntity.class, user.getId());
         emProvider.getEntityManager().remove(userToRemove);
     }
 
 
-    @Override
     public User findUserByEmail(String email) {
         final Query query = emProvider.getEntityManager().createNamedQuery(UserEntity.FIND_BY_EMAIL);
         query.setParameter(UserEntity.EMAIL_PARAM, email);
@@ -89,7 +82,6 @@ public class UserJpaRepository implements UserRepository {
         }
     }
 
-    @Override
     public List<Project> findProjectsForUser(Integer userId) {
         final Query query = emProvider.getEntityManager().createNamedQuery(ProjectUserEntity.FIND_ALL_FOR_USER);
         query.setParameter(ProjectUserEntity.USER_ID_PARAM, userId);
@@ -102,7 +94,6 @@ public class UserJpaRepository implements UserRepository {
         return projects;
     }
 
-    @Override
     public void activate(User user) {
         final UserEntity userEntity = emProvider.getEntityManager().find(UserEntity.class, user.getId());
 

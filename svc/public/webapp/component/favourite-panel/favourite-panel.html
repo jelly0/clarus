@@ -1,10 +1,9 @@
 <div class="favourite-panel" data-ng-controller="favouritePanelCtrl as f">
   <div class="title"><i class="fa fa-star"></i>&nbsp;Favourite Projects</div>
   <ul>
-    <li data-ng-repeat="project in f.favouriteProjects">
-      <i class="{{f.isSelected(project)}} icon border" data-ng-class="f.isSelected(project)?'pin-on':'pin-off'"
-         title="Anchor project" data-ng-click="f.setAsSelected(project)"></i>
-      <i class="icon favourite-delete border" data-ng-click="f.removeFavourite(project)"></i>&nbsp;
+    <li data-ng-repeat="project in f.favouriteProjects" data-ng-click="f.setAsSelected(project)" title="Pin project">
+      <i class="{{f.isSelected(project)}} icon border" data-ng-class="f.isSelected(project)?'pin-on':'pin-off'"></i>
+      <i class="icon favourite-delete border" data-ng-click="f.removeFavourite(project)" title="Remove from Favourite"></i>&nbsp;
       {{project.projectCode}}:{{project.title}}
     </li>
   </ul>

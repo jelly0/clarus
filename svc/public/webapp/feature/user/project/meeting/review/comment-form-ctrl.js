@@ -8,7 +8,7 @@ angular.module("clarus").controller("commentFormCtrl", ["$scope", "$uibModalInst
             vm.isReply = params.isReply;
             vm.comment = {};
 
-            if (params.comment != undefined) {
+            if (!!params.comment) {
                 vm.comment.reference = params.comment.reference;
                 vm.comment.text = params.comment.text;
             }

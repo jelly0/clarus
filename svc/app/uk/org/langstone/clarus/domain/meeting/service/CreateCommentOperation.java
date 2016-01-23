@@ -5,8 +5,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import play.Logger;
 import play.libs.Json;
+import uk.org.langstone.clarus.dal.Comment.CommentRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
-import uk.org.langstone.clarus.domain.meeting.repository.CommentRepository;
 import uk.org.langstone.clarus.domain.meeting.model.Comment;
 
 import javax.inject.Inject;

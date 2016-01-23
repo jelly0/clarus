@@ -1,14 +1,14 @@
 "use strict";
 
-angular.module("clarus").controller("favouritePanelCtrl", ["$rootScope", "$scope", "$log", "userContext",
-    function ($rootScope, $scope, $log, userContext) {
+angular.module("clarus").controller("favouritePanelCtrl", ["$scope", "$log", "userContext",
+    function ($scope, $log, userContext) {
         var vm = this;
 
         vm.favouriteProjects = userContext.getFavouriteProjects();
 
         vm.isSelected = function (project) {
             var selectedProject = userContext.getSelectedProject();
-            return (selectedProject != null && selectedProject != undefined && selectedProject.id == project.id);
+            return (!!selectedProject && selectedProject.id == project.id);
         };
 
         vm.setAsSelected = function (project) {
@@ -23,5 +23,5 @@ angular.module("clarus").controller("favouritePanelCtrl", ["$rootScope", "$scope
                 });
         };
 
-        $log.debug("favouritePanelCtrl: instantiated");
+        $log.info("favouritePanelCtrl: instantiated");
     }]);

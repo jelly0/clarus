@@ -3,7 +3,6 @@ package uk.org.langstone.clarus.dal.meeting;
 import play.Logger;
 import uk.org.langstone.clarus.dal.EntityManagerProvider;
 import uk.org.langstone.clarus.domain.SessionStatus;
-import uk.org.langstone.clarus.domain.meeting.repository.MeetingRepository;
 import uk.org.langstone.clarus.domain.meeting.model.Meeting;
 import uk.org.langstone.clarus.domain.meeting.model.MeetingAttendee;
 
@@ -12,20 +11,19 @@ import javax.persistence.Query;
 import java.util.Iterator;
 import java.util.List;
 
-public class MeetingJpaRepository implements MeetingRepository {
-    private static final Logger.ALogger LOG = Logger.of(MeetingJpaRepository.class);
+public class MeetingRepository {
+    private static final Logger.ALogger LOG = Logger.of(MeetingRepository.class);
 
     private final EntityManagerProvider emProvider;
     private final MeetingMapper meetingMapper;
 
     @Inject
-    public MeetingJpaRepository(EntityManagerProvider emProvider,
-                                MeetingMapper meetingMapper) {
+    public MeetingRepository(EntityManagerProvider emProvider,
+                             MeetingMapper meetingMapper) {
         this.emProvider = emProvider;
         this.meetingMapper = meetingMapper;
     }
 
-    @Override
     public Meeting set(Meeting meeting) {
         final MeetingEntity newMeetingEntity = meetingMapper.meetingToEntity(meeting);
 
@@ -39,18 +37,15 @@ public class MeetingJpaRepository implements MeetingRepository {
         return meetingMapper.meetingToBusinessObject(newMeetingEntity);
     }
 
-    @Override
     public Meeting get(Integer meetingId) {
         return meetingMapper.meetingToBusinessObject(emProvider.getEntityManager().find(MeetingEntity.class, meetingId));
     }
 
-    @Override
     public List<Meeting> getAll() {
         final List<MeetingEntity> meetingEntities = emProvider.getEntityManager().createNamedQuery(MeetingEntity.FIND_ALL).getResultList();
         return meetingMapper.meetingsToBusinessObjectList(meetingEntities);
     }
 
-    @Override
     public Meeting update(Meeting meeting) {
         final MeetingEntity meetingEntityToUpdate = emProvider.getEntityManager().find(MeetingEntity.class, meeting.getId());
 
@@ -83,13 +78,11 @@ public class MeetingJpaRepository implements MeetingRepository {
         return meetingMapper.meetingToBusinessObject(meetingEntityToUpdate);
     }
 
-    @Override
     public void remove(Meeting meeting) {
         final MeetingEntity meetingToRemove = emProvider.getEntityManager().getReference(MeetingEntity.class, meeting.getId());
         emProvider.getEntityManager().remove(meetingToRemove);
     }
 
-    @Override
     public List<Meeting> findProjectMeetings(Integer projectId) {
         final Query query = emProvider.getEntityManager().createNamedQuery(MeetingEntity.FIND_ALL_FOR_PROJECT);
         query.setParameter(MeetingEntity.PROJECT_ID_PARAM, projectId);

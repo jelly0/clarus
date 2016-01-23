@@ -23,7 +23,7 @@ angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRe
 
         vm.isSelected = function (project) {
             var selectedProject = userContext.getSelectedProject();
-            return (selectedProject != null && selectedProject != undefined && selectedProject.id == project.id);
+            return (!!selectedProject && selectedProject.id == project.id);
         };
 
         vm.isFavourite = function (project) {

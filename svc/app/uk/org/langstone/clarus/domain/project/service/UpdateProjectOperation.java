@@ -3,8 +3,8 @@ package uk.org.langstone.clarus.domain.project.service;
 import com.fasterxml.jackson.databind.JsonNode;
 import play.Logger;
 import play.libs.Json;
+import uk.org.langstone.clarus.dal.project.ProjectRepository;
 import uk.org.langstone.clarus.domain.ServiceResult;
-import uk.org.langstone.clarus.domain.project.repository.ProjectRepository;
 import uk.org.langstone.clarus.domain.project.model.Project;
 import uk.org.langstone.clarus.infrastructure.mail.EmailService;
 

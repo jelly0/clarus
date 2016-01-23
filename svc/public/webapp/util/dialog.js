@@ -6,7 +6,7 @@
 var $$dialog = {
     waiting: function (waitMessage) {
 
-        if (waitMessage == undefined || waitMessage == null) {
+        if (!!waitMessage) {
             waitMessage = "Please Wait";
         }
         return BootstrapDialog.show({
@@ -32,7 +32,7 @@ var $$dialog = {
     },
 
     error: function (errorMessage) {
-        if (errorMessage == undefined || errorMessage == null) {
+        if (!!errorMessage) {
             errorMessage = "An error has occurred - please try again later";
         }
         return BootstrapDialog.alert({

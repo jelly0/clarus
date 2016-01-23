@@ -4,8 +4,8 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.impl.TextCodec;
 import org.apache.commons.lang3.time.DateUtils;
 import play.Configuration;
+import uk.org.langstone.clarus.dal.user.UserRepository;
 import uk.org.langstone.clarus.domain.user.model.User;
-import uk.org.langstone.clarus.domain.user.repository.UserRepository;
 import uk.org.langstone.clarus.infrastructure.security.cipher.Cipher;
 import uk.org.langstone.clarus.infrastructure.util.RandomKeyGenerator;
 

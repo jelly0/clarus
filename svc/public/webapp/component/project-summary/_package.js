@@ -1,3 +1,3 @@
-$$require.script("project-summary-ctrl.js");
-$$require.script("project-summary.js");
-$$require.less("project-summary.less");
+$$include.script("project-summary-ctrl.js");
+$$include.script("project-summary.js");
+$$include.less("project-summary.less");

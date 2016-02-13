@@ -1,8 +1,8 @@
 "use strict";
 
-$$require.script("project-state.js");
-$$require.script("project-ctrl.js");
-$$require.script("project-menu-ctrl.js");
-$$require.script("project-form-ctrl.js");
-$$require.script("member-form-ctrl.js");
-$$require.less("project.less");
+$$include.script("u03000-project-state.js");
+$$include.script("u03010-project-menu-ctrl.js");
+$$include.less("u03020-project.less");
+$$include.script("u03020-project-ctrl.js");
+$$include.script("u03030-project-form-ctrl.js");
+$$include.script("u03040-member-form-ctrl.js");

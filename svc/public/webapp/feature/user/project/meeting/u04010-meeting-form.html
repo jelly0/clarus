@@ -1,0 +1,125 @@
+<form name="meetingForm" data-ng-controller="meetingFormCtrl as m" class="container-fluid"
+      data-ng-submit="m.saveMeeting(meetingForm)" method="post" novalidate="novalidate">
+  <h1 class="row">{{headingText}}</h1>
+  <div class="row">
+    <!-- Left Column -->
+    <div class="col-md-6">
+      <div class='form-group'>
+        <label for="subject" class="required">Subject</label>
+        <input type="text" class="form-control" data-ng-model="m.meeting.subject" minlength="5"
+               placeholder="Purpose fo this meeting" id="subject" name="subject" required autofocus>
+        <div data-ng-messages="meetingForm.subject.$error" data-ng-if="meetingForm.$submitted" role="alert">
+          <div data-ng-message="required">Please enter the subject for your meeting</div>
+          <div data-ng-message="minlength">Please enter a more descriptive subject text of at least 5 characters</div>
+        </div>
+      </div>
+
+      <div class='form-group'>
+        <label for="summary" class="required">Summary</label>
+        <textarea class="form-control" rows="3" data-ng-model="m.meeting.summary"
+                  placeholder="Enter a brief description for the meeting" id="summary" name="summary" required>
+        </textarea>
+        <div data-ng-messages="meetingForm.summary.$error" data-ng-if="meetingForm.$submitted" role="alert">
+          <div data-ng-message="required">Please enter a summary for your meeting</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="scheduledDate" class="required">Scheduled Date</label>
+        <div class="row date-group">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="scheduledDate" name="scheduledDate" required
+                     data-ng-model="m.meeting.scheduledDate" data-ng-required="true"
+                     uib-datepicker-popup="dd.MM.yyyy"
+                     is-open="m.scheduledOpened"
+                     min-date="m.dateOptions.minDate"
+                     max-date="m.dateOptions.maxDate"
+                     datepicker-options="m.dateOptions.options"
+                     close-text="Close"/>
+
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="m.openScheduledSelector($event)">
+                  <i class="fa fa-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <uib-timepicker data-ng-model="m.meeting.scheduledDate" data-ng-change="changed()"
+                            hour-step="1" minute-step="5" show-meridian="true"></uib-timepicker>
+          </div>
+        </div>
+        <div data-ng-messages="meetingForm.scheduledDate.$error" data-ng-if="meetingForm.$submitted" role="alert">
+          <div data-ng-message="required">Please enter the scheduled date for your meeting</div>
+          <div data-ng-show="!meetingForm.scheduledDate.$error.required && !m.meeting.scheduledDate">
+            Please correct the meeting date
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="review-by-date">Review By Date</label>
+        <div class="row date-group">
+          <div class="col-sm-6">
+            <div class="input-group">
+              <input type="text" class="form-control" id="review-by-date" name="review-by-date"
+                     data-ng-model="m.meeting.reviewByDate" data-ng-required="false"
+                     uib-datepicker-popup="dd.MM.yyyy"
+                     is-open="m.reviewByOpened"
+                     min-date="m.dateOptions.minDate"
+                     max-date="m.meeting.scheduledDate"
+                     datepicker-options="m.dateOptions.options"
+                     close-text="Close"/>
+
+              <input type="hidden" name="tempDate" data-ng-model="m.meeting.reviewByDate" data-before="m.meeting.scheduledDate">
+
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" data-ng-click="m.openReviewBySelector($event)">
+                  <i class="fa fa-calendar"></i></button>
+              </span>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <uib-timepicker data-ng-model="m.meeting.reviewByDate" data-ng-change="changed()"
+                            hour-step="1" minute-step="5" show-meridian="true"></uib-timepicker>
+          </div>
+        </div>
+        <div data-ng-messages="meetingForm.reviewByDate.$error" data-ng-if="meetingForm.$submitted" role="alert">
+          <div data-ng-message="before">Review Date needs to be before scheduled date</div>
+          <div data-ng-show="!meetingForm.reviewByDate.$error.required && !m.meeting.reviewByDate">
+            Please correct the meeting date
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Right Column -->
+    <div class="col-md-6">
+      <div>
+        <label>Attendees</label>
+        <div class="pull-right">
+          <button type="button" class="icon group" title="Invite project members" data-ng-click="m.addProjectMembers()">
+            <i class="icon add small"></i>Invite Project Team
+          </button>
+          <button type="button" class="icon user" title="Invite meeting attendee" data-ng-click="m.addAttendee()">
+            <i class="icon add small"></i>Invite Attendee
+          </button>
+        </div>
+      </div>
+      <div class="list-group">
+        <div class="list-group-item"
+             data-ng-repeat="attendee in m.meeting.attendees| filter: {sessionStatus: '!REMOVED'}| orderBy:'email' track by $index">
+          <{{attendee.email}}>&nbsp;{{attendee.forename}}&nbsp;{{attendee.surname}}
+          <i class="icon delete border pull-right" subject="Remove this attendee from the meeting"
+             data-ng-click="m.removeAttendee(attendee)"></i>
+        </div>
+      </div>
+
+      <div class="info-bar border" data-ng-show="!m.hasAttendees()">No meeting attendee has been invited</div>
+    </div>
+  </div>
+
+  <footer class="row">
+    <div class="pull-right">
+      <button type="button" data-ng-click="m.cancel()" class="btn btn-cancel">Cancel</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+  </footer>
+</form>

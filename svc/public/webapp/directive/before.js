@@ -5,6 +5,7 @@
  */
 angular.module("clarus").directive("before", function () {
     return {
+        restrict: "A",
         require: "ngModel",
         scope: {otherModelValue: "=before"},
         link: function (scope, element, attributes, ngModel) {

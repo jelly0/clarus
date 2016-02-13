@@ -1,7 +1,6 @@
 "use strict";
 
-$$require.script("activated-ctrl.js");
-$$require.script("login-ctrl.js");
-$$require.script("login-state.js");
-$$require.less("login.less");
-
+$$include.less("u02000-login.less");
+$$include.script("u02000-login-state.js");
+$$include.script("u02100-login-ctrl.js");
+$$include.script("u02200-activated-ctrl.js");

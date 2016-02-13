@@ -54,39 +54,37 @@
   }
 }
 
-.side-menu {
-  ul {
-    padding-left: 20px;
-    list-style: none;
+ul.side-menu {
+  padding-left: 20px;
+  list-style: none;
 
-    li {
-      margin-bottom: 2px;
-      padding: 0 2px 0 2px;
-      font-size: 9pt;
-      font-weight: bold;
-      color: @orange;
+  li {
+    margin-bottom: 2px;
+    padding: 0 2px 0 2px;
+    font-size: 9pt;
+    font-weight: bold;
+    color: @orange;
+    transition: 0.2s linear background-color;
+    > div {
+      .description
+    }
+
+    &:hover {
       transition: 0.2s linear background-color;
-      > div {
-        .description
-      }
-
-      &:hover {
-        transition: 0.2s linear background-color;
-        background-color: @buttermilk;
-        color: @dk-orange;
-      }
-
-      &:before {
-        font-family: 'FontAwesome';
-        content: '\f105';
-        margin: 0 5px 0 -12px;
-        pointer-events: none;
-      }
+      background-color: @buttermilk;
+      color: @dk-orange;
     }
 
-    li[data-ng-click] {
-      cursor: pointer;
+    &:before {
+      font-family: 'FontAwesome';
+      content: '\f105';
+      margin: 0 5px 0 -12px;
+      pointer-events: none;
     }
+  }
+
+  li[data-ng-click] {
+    cursor: pointer;
   }
 
   .description {

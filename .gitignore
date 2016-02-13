@@ -1,0 +1,13 @@
+/.idea
+/int
+/logs
+/svc/logs
+/svc/test
+/svc/target
+/testsetup
+/project/target
+/project/project
+/*.log
+/run.bat
+/resource
+/startTest.bat.lnk

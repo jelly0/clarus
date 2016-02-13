@@ -1,6 +1,6 @@
 "use strict";
 
-$$require.script("review-ctrl.js");
-$$require.script("comment-form-ctrl.js");
-$$require.script("review-state.js");
-$$require.less("review.less");
+$$include.script("u05010-review-ctrl.js");
+$$include.script("u05020-comment-form-ctrl.js");
+$$include.script("u05000-review-state.js");
+$$include.less("u05010-review.less");

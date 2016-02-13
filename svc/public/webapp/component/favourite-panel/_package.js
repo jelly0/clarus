@@ -1,3 +1,3 @@
-$$require.script("favourite-panel-ctrl.js");
-$$require.script("favourite-panel.js");
-$$require.less("favourite-panel.less");
+$$include.script("favourite-panel-ctrl.js");
+$$include.script("favourite-panel.js");
+$$include.less("favourite-panel.less");

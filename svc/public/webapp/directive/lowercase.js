@@ -2,6 +2,7 @@
 
 angular.module("clarus").directive("lowercase", function () {
     return {
+        restrict: "A",
         require: "ngModel",
         link: function (scope, element, attrs, ngModel) {
             var lowercase = function (inputValue) {

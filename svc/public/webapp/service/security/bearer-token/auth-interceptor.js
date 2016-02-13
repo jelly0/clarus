@@ -21,7 +21,7 @@ angular.module("clarus").service("authInterceptor", ["$log", "$q", "$injector",
 
                 // check for expired reason
 
-                if (rejection.status == $$http.status.UNAUTHORIZED) {
+                if (rejection.status == $$httpStatus.UNAUTHORIZED) {
                     $injector.get("authService").clearContext();
 
                     // check for expiry - if so re-authenticate
@@ -29,7 +29,7 @@ angular.module("clarus").service("authInterceptor", ["$log", "$q", "$injector",
                     if ($state.current.name != "user.login") {
                         $state.go("user.login");
                     }
-                } else if (rejection.status >= $$http.status.INTERNAL_ERROR) {
+                } else if (rejection.status >= $$httpStatus.INTERNAL_ERROR) {
                     // Pass through to application
                 }
                 return $q.reject(rejection);

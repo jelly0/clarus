@@ -7,37 +7,39 @@
 
 # DYNAMIC CONTENT
 
-GET           /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.list()
-GET           /project/:id                   uk.org.langstone.clarus.endpoint.ProjectsEndpoint.find(id: Integer)
-POST          /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.create()
-PUT           /project                       uk.org.langstone.clarus.endpoint.ProjectsEndpoint.update()
-DELETE        /project/:id                   uk.org.langstone.clarus.endpoint.ProjectsEndpoint.delete(id: Integer)
-GET           /project/:id/meeting           uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listMeeting(id: Integer)
-GET           /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listIssue(id: Integer)
-POST          /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.createIssue(id: Integer)
-PUT           /project/:id/issue             uk.org.langstone.clarus.endpoint.ProjectsEndpoint.updateIssue(id: Integer)
+GET           /project                           uk.org.langstone.clarus.endpoint.ProjectsEndpoint.list()
+GET           /project/:projectId                uk.org.langstone.clarus.endpoint.ProjectsEndpoint.find(projectId: Integer)
+POST          /project                           uk.org.langstone.clarus.endpoint.ProjectsEndpoint.create()
+PUT           /project                           uk.org.langstone.clarus.endpoint.ProjectsEndpoint.update()
+DELETE        /project/:projectId                uk.org.langstone.clarus.endpoint.ProjectsEndpoint.delete(projectId: Integer)
+GET           /project/:projectId/meeting        uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listMeeting(projectId: Integer)
+GET           /project/:projectId/issue          uk.org.langstone.clarus.endpoint.ProjectsEndpoint.listIssue(projectId: Integer)
+POST          /project/:projectId/issue          uk.org.langstone.clarus.endpoint.ProjectsEndpoint.createIssue(projectId: Integer)
+PUT           /project/:projectId/issue          uk.org.langstone.clarus.endpoint.ProjectsEndpoint.updateIssue(projectId: Integer)
 
-GET           /user/:id/project              uk.org.langstone.clarus.endpoint.UserEndpoint.findProjects(id: Integer)
+GET           /user/:userId/project              uk.org.langstone.clarus.endpoint.UserEndpoint.findProjects(userId: Integer)
 
-GET           /user/:id/activate/:key        uk.org.langstone.clarus.endpoint.ActivateEndpoint.activate(id: Integer, key: String)
+GET           /user/:userId/activate/:key        uk.org.langstone.clarus.endpoint.ActivateEndpoint.activate(userId: Integer, key: String)
 
-POST          /register/user                 uk.org.langstone.clarus.endpoint.RegisterEndpoint.register()
+POST          /register/user                     uk.org.langstone.clarus.endpoint.RegisterEndpoint.register()
 
-GET           /login/user                    uk.org.langstone.clarus.endpoint.LoginEndpoint.login()
+GET           /login/user                        uk.org.langstone.clarus.endpoint.LoginEndpoint.login()
 
-GET           /meeting/:id/comment           uk.org.langstone.clarus.endpoint.MeetingEndpoint.findCommentsForMeeting(id: Integer)
-POST          /meeting/:id/comment           uk.org.langstone.clarus.endpoint.MeetingEndpoint.addCommentsToMeeting(id: Integer)
-POST          /meeting                       uk.org.langstone.clarus.endpoint.MeetingEndpoint.create()
-PUT           /meeting                       uk.org.langstone.clarus.endpoint.MeetingEndpoint.update()
+GET           /meeting/:meetingId/comment        uk.org.langstone.clarus.endpoint.MeetingEndpoint.findCommentsForMeeting(meetingId: Integer)
+POST          /meeting/:meetingId/comment        uk.org.langstone.clarus.endpoint.MeetingEndpoint.addCommentsToMeeting(meetingId: Integer)
+POST          /meeting                           uk.org.langstone.clarus.endpoint.MeetingEndpoint.create()
+PUT           /meeting                           uk.org.langstone.clarus.endpoint.MeetingEndpoint.update()
 
-GET           /sse-connection/:id            uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEConnection(id: String)
-POST          /sse-request                   uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEExampleRequest()
+GET           /sse/:id                           uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEConnection(id: String)
+POST          /sse                               uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEExampleRequest()
+
+POST          /audit                             uk.org.langstone.clarus.infrastructure.audit.endpoint.AuditEndpoint.log()
 
 
 #STATIC CONTENT
 
 # Home page
-GET           /                              controllers.Assets.at(path="/public/webapp", file="index.html")
+GET           /                                  controllers.Assets.at(path="/public/webapp", file="index.html")
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /*file                         controllers.Assets.versioned(path="/public/webapp", file: Asset)
+GET           /*file                             controllers.Assets.versioned(path="/public/webapp", file: Asset)

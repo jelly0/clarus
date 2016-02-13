@@ -27,11 +27,9 @@
 
   <!-- Libraries and Constants-->
   <link rel="stylesheet/less" href="resource/app.less">
-  <script src="util/module.js"></script>
-  <script src="util/dialog.js"></script>
-  <script src="constant/_package.js"></script>
+  <script src="util/package-loader.js"></script>
+  <script src="util/_package.js"></script>
 
-  <!--Application - must be loaded before dependencies -->
   <script src="app.js"></script>
 
   <script src="directive/_package.js"></script>
@@ -44,12 +42,14 @@
   <script src="feature/user/_package.js"></script>
   <script src="feature/user/login/_package.js"></script>
   <script src="feature/user/register/_package.js"></script>
+  <script src="feature/user/home/_package.js"></script>
   <script src="feature/user/project/_package.js"></script>
   <script src="feature/user/project/meeting/_package.js"></script>
   <script src="feature/user/project/meeting/review/_package.js"></script>
 
-  <!--LESS pre-processor - needs to be after all CSS -->
+  <!-- Transpiler -->
   <script src="lib/less/less.min.js"></script>
+
 </head>
 <body data-ui-view="root-content">
 </body>

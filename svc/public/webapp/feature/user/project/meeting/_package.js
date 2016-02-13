@@ -1,7 +1,7 @@
 "use strict";
 
-$$require.script("meeting-ctrl.js");
-$$require.less("meeting.less");
-$$require.script("meeting-form-ctrl.js");
-$$require.script("attendee-form-ctrl.js");
-$$require.less("meeting-form.less");
+$$include.script("u04000-meeting-ctrl.js");
+$$include.less("u04000-meeting.less");
+$$include.script("u04010-meeting-form-ctrl.js");
+$$include.script("u04020-attendee-form-ctrl.js");
+$$include.less("u04010-meeting-form.less");

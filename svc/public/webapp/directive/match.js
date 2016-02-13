@@ -5,6 +5,7 @@
  */
 angular.module("clarus").directive("match", function () {
     return {
+        restrict: "A",
         require: "ngModel",
         scope: { otherModelValue: "=match" },
         link: function (scope, element, attributes, ngModel) {

@@ -1,0 +1,29 @@
+<div class="container" data-ng-controller="userCtrl as u">
+  <header class="row">
+    <div class="app-logo pull-left"></div>
+    <div class="app-bar pull-right">
+      <span class="user icon divider hidden-xs">{{u.user.forename}} {{u.user.surname}}</span>
+      <button class="on-off icon" data-ng-click="u.logout()" title="Logout of the application"><span
+          class="hidden-xs">Sign Out</span></button>
+      <button class="help icon"><span class="hidden-xs">Help</span></button>
+      <button class="icon info" data-ng-click="u.showAbout()"><span class="hidden-xs">About</span></button>
+    </div>
+  </header>
+
+  <div class="row" data-ui-view="bread-crumbs">
+    bread crumbs / title goes here
+  </div>
+
+  <div class="row">
+    <aside class="col-md-3 col-sm-4">
+      <project-summary project="u.getSelectedProject()"></project-summary>
+      <div data-ui-view="sidebar-menu"></div>
+      <div data-ui-view="sidebar-panel">
+        <favourite-panel></favourite-panel>
+      </div>
+    </aside>
+    <main data-ui-view="feature" class="col-md-9 col-sm-8 col-xs-12 container"></main>
+  </div>
+
+  <div data-ng-include="'feature/common/about/about.html'" data-ng-if="u.aboutVisible"></div>
+</div>

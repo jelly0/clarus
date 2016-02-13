@@ -1,22 +1,27 @@
 package uk.org.langstone.clarus.domain;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import play.libs.Json;
 
 public class ServiceResult {
 
-    public enum Status {SUCCESS, UNAUTHORIZED, OP_ERROR, SYS_ERROR, NOT_IMPLEMENTED };
+    public enum Status {SUCCESS, UNAUTHORIZED, OP_ERROR, SYS_ERROR, NOT_IMPLEMENTED}
 
     private final Status status;
     private final JsonNode result;
 
-    public ServiceResult (JsonNode result) {
+
+    public ServiceResult(JsonNode result) {
         this.result = result;
         this.status = Status.SUCCESS;
     }
 
-    public ServiceResult (String message) {
-        this.result = Json.toJson("{\"message\":\"" + message + "\"}");
+    public ServiceResult(String message) {
+        final ObjectNode messageNode = Json.newObject();
+        messageNode.put("message", message);
+
+        this.result = messageNode;
         this.status = Status.SUCCESS;
     }
 
@@ -26,7 +31,10 @@ public class ServiceResult {
     }
 
     public ServiceResult(Status status, String message) {
-        this.result = Json.toJson("{\"message\":\"" + message + "\"}");
+        final ObjectNode messageNode = Json.newObject();
+        messageNode.put("message", message);
+        result = messageNode;
+
         this.status = status;
     }
 
@@ -34,7 +42,6 @@ public class ServiceResult {
         this.result = null;
         this.status = status;
     }
-
 
     public Status getStatus() {
         return status;

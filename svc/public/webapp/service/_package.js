@@ -1,22 +1,22 @@
 "use strict";
 
-$$require.script("dal/dal.js");
-$$require.script("dal/user.js");
-$$require.script("dal/project.js");
-$$require.script("dal/meeting.js");
+$$include.script("audit/log.js");
 
-$$require.script("repository/project.js");
-$$require.script("repository/meeting.js");
-$$require.script("repository/comment.js");
+$$include.script("dal/dal.js");
+$$include.script("dal/user.js");
+$$include.script("dal/project.js");
+$$include.script("dal/meeting.js");
 
-$$require.script("context/context-event.js");
-$$require.script("context/usercontext.js");
-$$require.script("context/cache.js");
+$$include.script("repository/project.js");
+$$include.script("repository/meeting.js");
+$$include.script("repository/comment.js");
 
-$$require.script("refdata/legal.js");
+$$include.script("context/context-event.js");
+$$include.script("context/usercontext.js");
+$$include.script("context/cache.js");
 
-$$require.script("audit/log.js");
+$$include.script("refdata/legal.js");
 
-$$require.script("security/bearer-token/auth-service.js");
-$$require.script("security/bearer-token/auth-interceptor.js");
+$$include.script("security/bearer-token/auth-service.js");
+$$include.script("security/bearer-token/auth-interceptor.js");
 

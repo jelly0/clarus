@@ -5,57 +5,91 @@ html, body {
   height: 100%;
 }
 
-label {
+// Add asterisk to label
+label.required {
   font-size: small;
 
-  &.required:after {
+  &[required]:after {
     content: " *" !important;
     color: red;
   }
 }
 
-/** "text" links e.g. <span class="link">*/
-.link {
-  cursor: pointer;
-  color: #3276b1;
+// for Radio or checkbox, add border and background as per government standard */
+label.prompt {
+  font-weight: normal;
+  margin-left: 5px;
+  margin-right: 5px;
+  background-color: whitesmoke;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
 
-  &:hover {
-    text-decoration: underline;
+  input {
+    margin-right: 5px;
   }
 }
 
-/** Error message in form group */
-[data-ng-message] {
-  color: @dk-red;
-  font-size: 9pt !important;
-  font-weight: bold;
-  margin: 2px 3px 2px 3px;
+a {
+  cursor: pointer;
+}
+
+// Error messages
+[data-ng-messages] {
+  div {
+    color: darkred;
+    font-size: 9pt !important;
+    font-weight: bold;
+    margin: 2px 3px 2px 3px;
+  }
 }
 
 [data-ng-click] {
   cursor: pointer;
 }
 
+// add padding to icon within button
+button {
+  i {
+    margin-left: 10px;
+  }
+}
+
+/********************************/
 /** Override Bootstrap defaults */
 .btn-cancel {
   background-color: lightgray;
 }
 
 .nav-tabs {
-  a {
-    cursor: pointer;
-  }
-
   .active a {
     font-weight: bold;
   }
 }
 
-/* White modal background instead of black */
+// White modal background instead of black
 .modal-backdrop {
   background: white;
 }
 
+// Restore bordered fieldset
+fieldset {
+  margin-top: 10px;
+  border: 1px solid lightgray;
+  padding: 5px;
+  legend {
+    position: relative;
+    top: 10px;
+    left: 10px;
+    padding: 0 5px 0 5px;
+    width: auto;
+    border-bottom: none;
+    font-size: 12pt;
+    font-weight: bold;
+  }
+}
+
+/****************************/
 /* Bootstrap dialog message */
 .bootstrap-dialog-message {
   * {

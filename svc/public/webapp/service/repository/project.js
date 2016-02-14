@@ -11,8 +11,9 @@ angular.module("clarus").service("projectRepository", ["$q", "$log", "dal",  "$r
             })
         })();
 
+        // The application will only know that the project by ID if it is already in the cache
         this.getProjectById = function (projectId) {
-            return _.find(projectCache, function (project) {
+            return  _.find(projectCache, function (project) {
                 return project.id == projectId;
             });
         };

@@ -7,7 +7,6 @@
 angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$state", "authService", "contextEvent",
     function ($log, $rootScope, $q, $state, authService, contextEvent) {
         var user = null;
-        var selectedProject = null;
         var favouriteProjects = [];
         var lastFromState;
         var lastFromParams;
@@ -35,7 +34,6 @@ angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$s
 
         this.logout = function () {
             user = null;
-            selectedProject = null;
             favouriteProjects = [];
             lastFromState = null;
             lastFromParams = null;
@@ -47,14 +45,6 @@ angular.module("clarus").service("userContext", ["$log", "$rootScope", "$q", "$s
 
         this.getUser = function () {
             return user;
-        };
-
-        this.setSelectedProject = function (project) {
-            selectedProject = project;
-        };
-
-        this.getSelectedProject = function () {
-            return selectedProject;
         };
 
         this.isFavouriteProject = function (project) {

@@ -1,12 +1,8 @@
 "use strict";
 
-angular.module("clarus").controller("projectMenuCtrl", ["$log", "userContext", "$state",
-    function ($log, userContext, $state) {
+angular.module("clarus").controller("projectMenuCtrl", ["$log", "projectContext", "$state",
+    function ($log, projectContext, $state) {
         var vm = this;
-
-        vm.hasSelectedProject = function () {
-            return userContext.getSelectedProject() != undefined;
-        };
 
         vm.manageProjects = function () {
             $state.go("user.project");
@@ -17,6 +13,6 @@ angular.module("clarus").controller("projectMenuCtrl", ["$log", "userContext", "
         };
 
         vm.scheduleMeeting = function (project) {
-            $state.go("user.project.meeting.edit", {projectId: userContext.getSelectedProject().id});
+            $state.go("user.project.meeting.edit", {projectId: projectContext.getCurrentProject().id});
         };
     }]);

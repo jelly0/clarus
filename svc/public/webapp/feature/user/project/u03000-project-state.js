@@ -1,33 +1,20 @@
 angular.module("clarus").config(function ($stateProvider) {
     $stateProvider.state("user.project", {
-        url: "/user/project",
+        abstract: true,
+        url: "/project/:projectId",
         views: {
             "feature@user": {
-                templateUrl: "feature/user/project/u03020-project.html"
+                templateUrl: "feature/user/project/u03000-project-home.html"
             },
             "sidebar-menu@user": {
                 templateUrl: "feature/user/project/u03010-project-menu.html"
             }
         }
-    }).state("user.project.edit", {
-        url: "/:projectId",
+    }).state("user.project.dashboard", {
+        url: "/dashboard",
         views: {
-            "feature@user": {
-                templateUrl: "feature/user/project/u03030-project-form.html"
-            }
-        }
-    }).state("user.project.meeting", {
-        url: "/:projectId/meeting",
-        views: {
-            "feature@user": {
-                templateUrl: "feature/user/project/meeting/u04000-meeting.html"
-            }
-        }
-    }).state("user.project.meeting.edit", {
-        url: "/:meetingId",
-        views: {
-            "feature@user": {
-                templateUrl: "feature/user/project/meeting/u04010-meeting-form.html"
+            "content@user.project": {
+                templateUrl: "feature/user/project/u03005-project-dashboard.html"
             }
         }
     })

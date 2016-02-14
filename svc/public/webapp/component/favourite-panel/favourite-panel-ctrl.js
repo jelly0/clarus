@@ -6,15 +6,6 @@ angular.module("clarus").controller("favouritePanelCtrl", ["$scope", "$log", "us
 
         vm.favouriteProjects = userContext.getFavouriteProjects();
 
-        vm.isSelected = function (project) {
-            var selectedProject = userContext.getSelectedProject();
-            return (!!selectedProject && selectedProject.id == project.id);
-        };
-
-        vm.setAsSelected = function (project) {
-            userContext.setSelectedProject(project);
-        };
-
         vm.removeFavourite = function (project) {
             $$dialog.confirm("Are you sure that you want to remove " + project.title + " from the favourite list?", "Remove",
                 function () {

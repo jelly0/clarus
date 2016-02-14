@@ -1,4 +1,4 @@
-angular.module("clarus").controller("userCtrl", ["$rootScope", "$state", "$log", "userContext",
+angular.module("clarus").controller("u00000UserCtrl", ["$rootScope", "$state", "$log", "userContext",
     function ($rootScope, $state, $log, userContext) {
         var vm = this;
 
@@ -22,33 +22,7 @@ angular.module("clarus").controller("userCtrl", ["$rootScope", "$state", "$log",
             vm.aboutVisible = false;
         };
 
-        vm.isAtHome = function () {
-            return $state.is("user.home");
-        };
-
-        vm.isAtProjects = function () {
-            return $state.is("user.project");
-        };
-
-        vm.isAtMeetings = function () {
-            return $state.includes("user.project.meeting");
-        };
-
-        vm.navigateToProjects = function () {
-            $state.go("user.project");
-        };
-
-        vm.navigateToMeetings = function () {
-            if (userContext.getSelectedProject()) {
-                $state.go("user.project.meeting", {projectId: userContext.getSelectedProject().id});
-            }
-        };
-
-        vm.getSelectedProject = function () {
-            return userContext.getSelectedProject();
-        };
-
-        vm.hasSelectedProject = function () {
-            return userContext.getSelectedProject() != undefined;
+        vm.navigateToDashboard = function() {
+            $state.go("user.home.dashboard");
         };
     }]);

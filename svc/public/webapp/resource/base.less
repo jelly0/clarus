@@ -30,10 +30,6 @@ label.prompt {
   }
 }
 
-a {
-  cursor: pointer;
-}
-
 // Error messages
 [data-ng-messages] {
   div {
@@ -44,15 +40,14 @@ a {
   }
 }
 
-[data-ng-click] {
+[data-ng-click], a {
   cursor: pointer;
 }
 
-// add padding to icon within button
-button {
-  i {
-    margin-left: 10px;
-  }
+a.disabled {
+  pointer-events: none;
+  cursor: default;
+  color: lightgray;
 }
 
 /********************************/
@@ -64,6 +59,11 @@ button {
 .nav-tabs {
   .active a {
     font-weight: bold;
+  }
+
+  // for left placed icons
+  i {
+    margin-right: 5px;
   }
 }
 

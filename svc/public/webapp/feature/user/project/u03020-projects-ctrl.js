@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRepository", "userContext",
+angular.module("clarus").controller("u03020ProjectsCtrl", ["$log", "$state", "projectRepository", "userContext",
     function ($log, $state, projectRepository, userContext) {
         var vm = this;
         (function init() {
@@ -12,19 +12,10 @@ angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRe
                 vm.waiting = false;
                 $$dialog.error(" We've encountered a problem while loading your projects.  Please try again later");
                 $log.error("projectCtrl - cannot load project because of " + error.message);
-            })
+            });
         })();
 
         vm.projects = [];
-
-        vm.setAsSelected = function (project) {
-            userContext.setSelectedProject(project);
-        };
-
-        vm.isSelected = function (project) {
-            var selectedProject = userContext.getSelectedProject();
-            return (!!selectedProject && selectedProject.id == project.id);
-        };
 
         vm.isFavourite = function (project) {
             return userContext.isFavouriteProject(project);
@@ -38,8 +29,8 @@ angular.module("clarus").controller("projectCtrl", ["$log", "$state", "projectRe
             }
         };
 
-        vm.edit = function (project) {
-            $state.go("user.project.edit", {projectId: project.id});
+        vm.manageProject = function(project) {
+            $state.go("user.project.dashboard", {projectId: project.id});
         };
 
         vm.isWaiting = function() {

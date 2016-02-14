@@ -1,151 +1,57 @@
-.btn-breadcrumb {
-  margin-bottom: 5px;
+@image-path: "image";
+@import "colour";
 
-  .btn:after {
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    border-left: 10px solid white;
-    position: absolute;
-    top: 50%;
-    margin-top: -17px;
-    left: 100%;
-    z-index: 3;
+ul.breadcrumbs {
+  list-style: none;
+  margin: 5px 0 5px 0;
+  padding: 0;
+  font-size: 11pt;
+  display: inline-block;
+
+  a {
+    position: relative;
+    top: 3px;
   }
 
-  .btn:before {
-    content: " ";
-    display: block;
-    width: 0;
-    height: 0;
-    border-top: 17px solid transparent;
-    border-bottom: 17px solid transparent;
-    border-left: 10px solid rgb(173, 173, 173);
-    position: absolute;
-    top: 50%;
-    margin-top: -17px;
-    margin-left: 1px;
-    left: 100%;
-    z-index: 3;
-  }
+  li {
+    background-color: #efefef;
+    position: relative;
+    padding: 0 5px 0 20px;
+    height: 26px;
+    display: inline-block;
 
-  /** The Spacing **/
-  .btn {
-    padding: 6px 12px 6px 24px;
-    font-weight: bold !important;
-    cursor: default;
-  }
+    &:after, &:before {
+      content: "";
+      width: 0;
+      height: 0;
+      left: 100%;
+      border: 13px solid transparent;
+      position: absolute;
+    }
 
-  .btn:first-child {
-    padding: 6px 6px 6px 10px;
-  }
+    &:after {
+      border-left-color: #efefef;
+      z-index: 2;
+    }
 
-  .btn:last-child {
-    padding: 6px 18px 6px 24px;
-  }
+    &:before {
+      border-left-color: white;
+      margin-left: 2px;
+      z-index: 1;
+    }
 
-  /** Default button **/
-  .btn.btn-default:after {
-    border-left: 10px solid #fff;
-  }
+    &:first-child {
+      padding-left: 15px;
+      background-color: #2e6da4;
 
-  .btn.btn-default:before {
-    border-left: 10px solid #ccc;
-  }
+      &:after {
+        border-left-color: #2e6da4;
+        z-index: 2;
+      }
 
-  .btn.btn-default:hover:after {
-    border-left: 10px solid #ebebeb;
-  }
-
-  .btn.btn-default:hover:before {
-    border-left: 10px solid #adadad;
-  }
-
-  /** Primary button **/
-  .btn.btn-primary:after {
-    border-left: 10px solid #428bca;
-  }
-
-  .btn.btn-primary:before {
-    border-left: 10px solid #357ebd;
-  }
-
-  .btn.btn-primary:hover:after {
-    border-left: 10px solid #3276b1;
-  }
-
-  .btn.btn-primary:hover:before {
-    border-left: 10px solid #285e8e;
-  }
-
-  /** Success button **/
-  .btn.btn-success:after {
-    border-left: 10px solid #5cb85c;
-  }
-
-  .btn.btn-success:before {
-    border-left: 10px solid #4cae4c;
-  }
-
-  .btn.btn-success:hover:after {
-    border-left: 10px solid #47a447;
-  }
-
-  .btn.btn-success:hover:before {
-    border-left: 10px solid #398439;
-  }
-
-  /** Danger button **/
-  .btn.btn-danger:after {
-    border-left: 10px solid #d9534f;
-  }
-
-  .btn.btn-danger:before {
-    border-left: 10px solid #d43f3a;
-  }
-
-  .btn.btn-danger:hover:after {
-    border-left: 10px solid #d2322d;
-  }
-
-  .btn.btn-danger:hover:before {
-    border-left: 10px solid #ac2925;
-  }
-
-  /** Warning button **/
-  .btn.btn-warning:after {
-    border-left: 10px solid #f0ad4e;
-  }
-
-  .btn.btn-warning:before {
-    border-left: 10px solid #eea236;
-  }
-
-  .btn.btn-warning:hover:after {
-    border-left: 10px solid #ed9c28;
-  }
-
-  .btn.btn-warning:hover:before {
-    border-left: 10px solid #d58512;
-  }
-
-  /** Info button **/
-  .btn.btn-info:after {
-    border-left: 10px solid #5bc0de;
-  }
-
-  .btn.btn-info:before {
-    border-left: 10px solid #46b8da;
-  }
-
-  .btn.btn-info:hover:after {
-    border-left: 10px solid #39b3d7;
-  }
-
-  .btn.btn-info:hover:before {
-    border-left: 10px solid #269abc;
+      a {
+        color: whitesmoke;
+      }
+    }
   }
 }

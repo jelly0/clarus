@@ -1,0 +1,16 @@
+<div data-ng-controller="u04005MeetingCtrl as u04005">
+  <div data-ng-repeat="meeting in u04005.meetings | orderBy:'scheduledDate' track by $index" class="panel panel-default">
+    <div class="panel-heading heading">
+      <span><i class="fa fa-calendar"></i>&nbsp;{{meeting.scheduledDate | date:"dd/MM/yy"}}:&nbsp;{{meeting.subject}}</span>
+      <div class="btn-group pull-right" role="group" aria-label="Project Options">
+        <button class="icon review border" title="Manage/Review" data-ng-click="u04005.review(meeting)">Review</button>
+        <button class="icon edit border" title="Amend this meeting" data-ng-click="u04005.edit(meeting)">Amend</button>
+      </div>
+    </div>
+    <div class="panel-body">
+      Summary: {{meeting.summary}}
+    </div>
+  </div>
+  <div data-ng-show="u04005.waiting" class="waiting-bar border">Loading Meetings</div>
+  <div data-ng-show="u04005.meetings.length==0 && !u04005.waiting" class="info-bar">You do not have any meetings</div>
+</div>

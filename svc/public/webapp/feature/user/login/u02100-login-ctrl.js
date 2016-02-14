@@ -24,6 +24,8 @@ angular.module("clarus").controller("u02100UserLoginCtrl", ["$state", "$log", "u
                         $state.go("user.home.dashboard");
                     },
                     function error(errorResponse) {
+                        console.log(errorResponse);
+
                         waitingDialog.close();
                         if (errorResponse.status == $$httpStatus.UNAUTHORIZED) {
                             vm.hasAuthenticationError = true;

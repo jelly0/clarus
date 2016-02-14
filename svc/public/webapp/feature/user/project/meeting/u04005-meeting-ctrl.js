@@ -1,13 +1,14 @@
 "use strict";
 
-angular.module("clarus").controller("meetingCtrl", ["$log", "$state", "$stateParams", "meetingRepository",
-    function ($log, $state, $stateParams, meetingRepository) {
+angular.module("clarus").controller("u04005MeetingCtrl", ["$log", "$state", "projectContext", "meetingRepository",
+    function ($log, $state, projectContext, meetingRepository) {
         var vm = this;
 
         (function init() {
             vm.waiting = true;
+            vm.project = projectContext.getCurrentProject();
             vm.meetings = [];
-            meetingRepository.getProjectMeetings($stateParams.projectId).then(
+            meetingRepository.getProjectMeetings(vm.project.id).then(
                 function (results) {
                     vm.meetings = results;
                     vm.waiting = false;

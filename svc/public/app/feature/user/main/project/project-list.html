@@ -1,0 +1,18 @@
+<h1>Manage Projects</h1>
+
+<div *ngFor="#project of projects" class="panel panel-default">
+  <div class="panel-heading heading">
+    <div class="btn-group pull-right" role="group" aria-label="Project options">
+      <button class="btn btn-default btn-xs" title="Amend this project">
+        Amend&nbsp;<i class="fa fa-pencil"></i>
+      </button>
+    </div>
+    <span>[{{project.projectCode}} : {{project.title}}]&nbsp;</span>
+    <span title="Owner of this project">Owner: {{project.owner.email}}</span>
+  </div>
+  <div class="panel-body">
+    <p>Client: {{project.client == null ? "N/A" : project.client}}</p>
+    <p>Summary: {{project.summary}}</p>
+  </div>
+</div>
+

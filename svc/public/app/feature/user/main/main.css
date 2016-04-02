@@ -1,0 +1,35 @@
+header {
+  background: #fafafa;
+  padding-top: 5px;
+}
+header .app-logo {
+  background: url("resource/image/pamm-logo.png") no-repeat center center;
+  background-size: 40px 40px;
+  margin: 0 10px 0 5px;
+  height: 40px;
+  width: 40px;
+}
+@media (max-width: 490px) {
+  header .app-logo {
+    display: none;
+  }
+}
+header .app-bar {
+  margin: 0 5px 0 5px;
+  color: #2b669a;
+  font-size: 9pt;
+}
+header .app-bar span {
+  color: gray;
+}
+header .app-bar span,
+header .app-bar a {
+  margin: 0 5px 0 5px;
+}
+header .app-bar span *,
+header .app-bar a * {
+  vertical-align: middle;
+}
+header .app-bar i {
+  margin-right: 5px;
+}

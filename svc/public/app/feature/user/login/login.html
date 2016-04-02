@@ -1,0 +1,45 @@
+<main id="user-login">
+  <div>
+    <h1>Clarus
+      <small>v2.0 Dev</small>
+    </h1>
+    <form [ngFormModel]="loginForm" (submit)="login($event)" novalidate>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+          <input ngControl="username" #username="ngForm" class="form-control" type="email" title="username"
+                 placeholder="User Name (email address)" autofocus>
+        </div>
+        <div *ngIf="submitted && !username.valid" class="pamm errors">
+          <p *ngIf="username.errors.required">Please enter your username</p>
+          <p *ngIf="username.errors.email && !username.errors.required">Please correct your username</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-key"></i></span>
+          <input ngControl="password" #password="ngForm" class="form-control" type="password" title="password"
+                 placeholder="Password">
+        </div>
+        <div *ngIf="submitted &&!password.valid" class="pamm errors">
+          <p *ngIf="password.errors.required">Please enter your password</p>
+        </div>
+      </div>
+
+      <div *ngIf="authenticationError" class="error-box">
+        Please check your username and password
+      </div>
+
+      <div class="form-group">
+        <div><a (click)="register()">Don't have an account? Register</a></div>
+        <div><a>Forgotten Password</a></div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" type="submit">LOGIN</button>
+      </div>
+    </form>
+    <footer>
+      <i class="fa fa-copyright"></i> 2016 - Phillip Chan <a>Logic Motion</a>
+    </footer>
+  </div>
+</main>

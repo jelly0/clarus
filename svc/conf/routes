@@ -30,16 +30,13 @@ POST          /meeting/:meetingId/comment        uk.org.langstone.clarus.endpoin
 POST          /meeting                           uk.org.langstone.clarus.endpoint.MeetingEndpoint.create()
 PUT           /meeting                           uk.org.langstone.clarus.endpoint.MeetingEndpoint.update()
 
-GET           /sse/:id                           uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEConnection(id: String)
-POST          /sse                               uk.org.langstone.clarus.endpoint.SSEEndpoint.createSSEExampleRequest()
-
 POST          /audit                             uk.org.langstone.clarus.infrastructure.audit.endpoint.AuditEndpoint.log()
 
 
 #STATIC CONTENT
 
 # Home page
-GET           /                                  controllers.Assets.at(path="/public/webapp", file="index.html")
+GET           /                                  controllers.Assets.at(path="/public", file="index.html")
 
 # Map static resources from the /public folder to the /assets URL path
-GET           /*file                             controllers.Assets.versioned(path="/public/webapp", file: Asset)
+GET           /*file                             controllers.Assets.versioned(path="/public", file: Asset)

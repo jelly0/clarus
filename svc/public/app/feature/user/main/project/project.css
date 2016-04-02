@@ -1,0 +1,8 @@
+aside {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  background-color: white;
+  padding: 5px;
+}

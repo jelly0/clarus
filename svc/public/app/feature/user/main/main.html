@@ -1,0 +1,24 @@
+<div class="container" id="user">
+  <header class="row">
+    <div class="app-logo pull-left"></div>
+    <div class="app-bar pull-right">
+      <a class="hidden-xs" (click)="logout()" title="Logout of the application"><i class="fa fa-power-off"></i>Sign Out</a>
+      <a class="hidden-xs"><i class="fa fa-question"></i>Help</a>
+      <a class="hidden-xs"><i class="fa fa-info"></i>About</a>
+    </div>
+
+    <nav>
+      <ul class="nav nav-tabs">
+        <li class="{{isAtHome() ? 'active' : ''}}">
+          <a (click)="navigateToHome()"><i class="fa fa-home"></i>&nbsp;Home</a>
+        </li>
+        <li class="{{isAtProject() ? 'active' : ''}}"><a (click)="navigateToProjects()">Projects</a></li>
+      </ul>
+    </nav>
+
+  </header>
+
+  <div class="row">
+      <router-outlet></router-outlet>
+  </div>
+</div>

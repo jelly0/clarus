@@ -1,0 +1,49 @@
+html, body {
+  height: 100%;
+}
+
+label {
+  font-size: small;
+
+  &.required:after {
+    content: " *" !important;
+    color: red;
+  }
+}
+
+a {
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: lightgray;
+  }
+}
+
+/** Override Bootstrap defaults */
+.btn-cancel {
+  background-color: lightgray;
+}
+
+.nav-tabs {
+  .active a {
+    font-weight: bold;
+  }
+}
+
+/* White modal background instead of black */
+.modal-backdrop {
+  background: white;
+}
+
+/* Bootstrap dialog message */
+.bootstrap-dialog-message {
+  * {
+    vertical-align: middle;
+  }
+
+  i {
+    margin-right: 15px
+  }
+}

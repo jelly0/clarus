@@ -1,0 +1,46 @@
+.pamm.sidemenu ul {
+  padding-left: 20px;
+  list-style: none;
+}
+.pamm.sidemenu ul li {
+  margin-bottom: 2px;
+  padding: 0 2px 0 2px;
+  font-size: 9pt;
+  font-weight: bold;
+  color: darkorange;
+  transition: 0.2s linear background-color;
+}
+.pamm.sidemenu ul li > div {
+  border-top: 1px dotted gray;
+  font-weight: normal;
+  color: gray;
+  font-size: 8pt;
+  margin-top: 2px;
+}
+.pamm.sidemenu ul li:hover {
+  transition: 0.2s linear background-color;
+  background-color: lightgoldenrodyellow;
+}
+.pamm.sidemenu ul li:before {
+  font-family: 'FontAwesome';
+  content: '\f105';
+  margin: 0 5px 0 -12px;
+  pointer-events: none;
+}
+.pamm.sidemenu ul li[data-ng-click] {
+  cursor: pointer;
+}
+.pamm.sidemenu .description {
+  border-top: 1px dotted gray;
+  font-weight: normal;
+  color: gray;
+  font-size: 8pt;
+  margin-top: 2px;
+}
+.pamm.errors p {
+  color: darkred;
+}
+/*
+input[class~="ng-dirty"][class~="ng-touched"][class~="ng-invalid"] {
+}
+*/

@@ -37,10 +37,13 @@
   font-size: 8pt;
   margin-top: 2px;
 }
-.pamm.errors p {
+.error p {
   color: darkred;
+  font-size: 10pt;
 }
-/*
-input[class~="ng-dirty"][class~="ng-touched"][class~="ng-invalid"] {
+.ng-valid {
+  border-left: 5px solid #42A948;
 }
-*/
+.ng-invalid {
+  border-left: 5px solid #a94442;
+}

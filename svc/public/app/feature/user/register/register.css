@@ -1,59 +1,56 @@
-#user-login {
+#user-register {
   height: 100%;
   min-width: 480px;
   background-color: #f9f9ff;
 }
-#user-login > div {
+#user-register > div {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  background: url("/resource/image/logo-bar.png") left top no-repeat, url("/resource/image/login.jpg") left top, no-repeat;
+  background: url("/resource/image/logo-bar.png") left top no-repeat, url("/resource/image/registration.jpg") left top, no-repeat;
   background-size: 750px, 750px;
   border: 1px solid #122b40;
   border-radius: 5px;
   box-shadow: 7px 7px 5px 0 rgba(30, 30, 50, 0.6);
   width: 750px;
-  height: 500px;
+  height: 600px;
   margin-left: auto;
   margin-right: auto;
 }
-#user-login > div h1 {
+#user-register > div h1 {
   color: white;
   font-size: 30pt;
   position: absolute;
   left: 250px;
   top: 30px;
 }
-#user-login > div h1 small {
+#user-register > div h1 small {
   color: white;
 }
-#user-login > div a {
+#user-register > div a {
   color: white;
   text-decoration: underline;
 }
-#user-login > div form {
-  margin-top: 160px;
+#user-register > div form {
+  margin-top: 110px;
   margin-right: 40px;
   float: right;
   width: 400px;
   border-radius: 5px;
   border: 1px solid gray;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 30px 20px 10px 20px;
+  background: rgba(255, 255, 255, 0.5);
+  padding: 10px 20px 10px 20px;
 }
-#user-login > div form button {
-  width: 100%;
+#user-register > div form .input-group {
+  margin-top: 3px;
 }
-#user-login > div form .error-box {
-  color: #a94442;
-  padding: 3px;
-  background: rgba(255, 255, 255, 0.3);
-  border: 1px solid gray;
-  border-radius: 2px;
-  margin-bottom: 10px;
-  text-align: center;
+#user-register > div form div:last-child {
+  margin-top: 10px;
 }
-#user-login > div footer {
+#user-register > div form .pull-right {
+  margin-top: 5px;
+}
+#user-register > div footer {
   position: absolute;
   bottom: 0;
   left: 5px;
@@ -65,17 +62,20 @@
   font-size: 8pt;
 }
 @media (max-width: 749px) {
-  #user-login > div {
+  #user-register > div {
     width: 480px;
     background-size: 480px, 750px;
     background-position: left 5px, right top;
   }
-  #user-login > div h1 {
+  #user-register > div h1 {
     left: 180px;
     top: 10px;
     font-size: 20pt;
   }
-  #user-login > div form {
-    margin-top: 150px;
+  #user-register > div form {
+    margin-top: 110px;
   }
+}
+#user-register .fa {
+  width: 16px;
 }

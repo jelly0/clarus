@@ -21,7 +21,7 @@ export class Login {
     submitted:boolean = false;
 
     constructor(formBuilder:FormBuilder,
-                private router: Router,
+                private router:Router,
                 private authService:AuthService) {
         this.loginForm = formBuilder.group({
             username: ["", Validators.compose([Validators.required, TypeValidators.email])],
@@ -29,6 +29,10 @@ export class Login {
         });
 
         Log.info(this.loginForm);
+    }
+
+    register(event:any) {
+        this.router.navigate([Route.REGISTER]);
     }
 
     login(event:any) {

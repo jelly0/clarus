@@ -54,6 +54,9 @@ System.register(["angular2/core", "angular2/router", "angular2/common", "app/uti
                     });
                     logger_1.Log.info(this.loginForm);
                 }
+                Login.prototype.register = function (event) {
+                    this.router.navigate([user_component_1.Route.REGISTER]);
+                };
                 Login.prototype.login = function (event) {
                     var _this = this;
                     this.authenticationError = false;

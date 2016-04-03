@@ -7,10 +7,10 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-          <input ngControl="username" #username="ngForm" class="form-control" type="email" title="username"
-                 placeholder="User Name (email address)" autofocus>
+          <input ngControl="username" #username="ngForm" class="form-control"
+                 type="email" title="Username" placeholder="User Name (email address)">
         </div>
-        <div *ngIf="submitted && !username.valid" class="pamm errors">
+        <div *ngIf="submitted && !username.valid" class="error">
           <p *ngIf="username.errors.required">Please enter your username</p>
           <p *ngIf="username.errors.email && !username.errors.required">Please correct your username</p>
         </div>
@@ -18,16 +18,16 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-key"></i></span>
-          <input ngControl="password" #password="ngForm" class="form-control" type="password" title="password"
-                 placeholder="Password">
+          <input ngControl="password" #password="ngForm" class="form-control"
+                 type="password" title="Password" placeholder="Password">
         </div>
-        <div *ngIf="submitted &&!password.valid" class="pamm errors">
+        <div *ngIf="submitted &&!password.valid" class="error">
           <p *ngIf="password.errors.required">Please enter your password</p>
         </div>
       </div>
 
       <div *ngIf="authenticationError" class="error-box">
-        Please check your username and password
+        <i class="fa fa-warning"></i> Please check your username and password
       </div>
 
       <div class="form-group">

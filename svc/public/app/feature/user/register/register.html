@@ -1,0 +1,80 @@
+<main id="user-register">
+  <div>
+    <h1>Create a Clarus Account</h1>
+    <form [ngFormModel]="registrationForm" (submit)="register($event)" novalidate>
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        <input ngControl="username" #username="ngForm" class="form-control"
+               type="email" title="Username" placeholder="User Name (email address)">
+      </div>
+      <div *ngIf="submitted && !username.valid" class="error" role="alert">
+        <p *ngIf="username.errors.required">Please enter your username</p>
+        <p *ngIf="username.errors.email && !username.errors.required">Please correct your username</p>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        <input ngControl="confirmUsername" #confirmUsername="ngForm" class="form-control"
+               type="email" title="Username" placeholder="Email">
+      </div>
+      <div *ngIf="submitted && !confirmUsername.valid && username.valid" class="error" role="alert">
+        <p *ngIf="confirmUsername.errors.required">Please confirm your username</p>
+        <p *ngIf="confirmUsername.errors.match && !confirmUsername.errors.required">Usernames do not match</p>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <input ngControl="password" #password="ngForm" class="form-control"
+               type="password" title="Password" placeholder="Password">
+      </div>
+      <div *ngIf="submitted && !password.valid" class="error" role="alert">
+        <p *ngIf="password.errors.required">Please enter a password</p>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <input ngControl="confirmPassword" #confirmPassword="ngForm" class="form-control"
+               type="password" title="Password" placeholder="Password">
+      </div>
+      <div *ngIf="submitted && !confirmPassword.valid && password.valid" class="error" role="alert">
+        <p *ngIf="confirmPassword.errors.required">Please confirm your password</p>
+        <p *ngIf="confirmPassword.errors.match && !confirmPassword.errors.required">Passwords do not match</p>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input ngControl="forename" #forename="ngForm" class="form-control"
+               type="text" title="Forenames" placeholder="Forenames">
+      </div>
+      <div *ngIf="submitted && !forename.valid" class="error" role="alert">
+        <p *ngIf="forename.errors.required">Please enter your forename(s)</p>
+      </div>
+
+      <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <input ngControl="surname" #surname="ngForm" class="form-control"
+               type="text" title="Surname" placeholder="surname">
+      </div>
+      <div *ngIf="submitted && !surname.valid" class="error" role="alert">
+        <p *ngIf="surname.errors.required">Please enter your surname</p>
+      </div>
+
+      <div>
+        <input type="checkbox" ngControl="termOfUse" #termOfUse="ngForm"/>
+        * I have read and agree to the
+        <a (click)="showTermsOfUse()">Terms of Use</a>
+        <div *ngIf="submitted && !termOfUse.valid" class="error" role="alert">
+          <p *ngIf="termOfUse.errors.required">You must agree to the Term of Use to use this service</p>
+        </div>
+
+        <div class="pull-right">
+          <button type="button" (click)="cancel()" class="btn btn-cancel">CANCEL</button>
+          <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+        </div>
+      </div>
+    </form>
+    <footer>
+      <i class="fa fa-copyright"></i> 2016 - Phillip Chan <a>Logic Motion</a>
+    </footer>
+  </div>
+</main>

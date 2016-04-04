@@ -27,10 +27,6 @@
 #user-register > div h1 small {
   color: white;
 }
-#user-register > div a {
-  color: white;
-  text-decoration: underline;
-}
 #user-register > div form {
   margin-top: 110px;
   margin-right: 40px;
@@ -44,8 +40,16 @@
 #user-register > div form .input-group {
   margin-top: 3px;
 }
-#user-register > div form div:last-child {
-  margin-top: 10px;
+#user-register > div form div.box {
+  margin: 5px 0 0 0;
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  background-color: white;
+  padding: 5px 15px 5px 15px;
+  font-size: 10pt;
+}
+#user-register > div form div.box * {
+  vertical-align: baseline;
 }
 #user-register > div form .pull-right {
   margin-top: 5px;
@@ -60,6 +64,9 @@
   text-align: center;
   border-top: 1px solid lightgray;
   font-size: 8pt;
+}
+#user-register > div footer a {
+  color: white;
 }
 @media (max-width: 749px) {
   #user-register > div {

@@ -3,6 +3,10 @@ import {Router} from "angular2/router";
 import {Response} from "angular2/http";
 import {FormBuilder, Validators, Control, ControlGroup, FORM_DIRECTIVES} from "angular2/common";
 import {TypeValidators} from "app/util/type-validators";
+import {Dialog} from "app/util/dialog";
+import {UserRepository} from "app/service/repository/user.repository";
+import {Route} from "app/feature/user/user.component";
+import {HttpStatus} from "app/service/network/httpstatus";
 
 @Component({
     templateUrl: "app/feature/user/register/register.html",
@@ -11,11 +15,11 @@ import {TypeValidators} from "app/util/type-validators";
 
 export class Register {
     private registrationForm:ControlGroup;
-
-    submitted:boolean = false;
+    public submitted:boolean = false;
 
     constructor(formBuilder:FormBuilder,
-                private router:Router) {
+                private router:Router,
+                private userRepository:UserRepository) {
         this.registrationForm = formBuilder.group({
             forename: ["", Validators.required],
             surname: ["", Validators.required],
@@ -42,7 +46,36 @@ export class Register {
     }
 
     register(event:any) {
+        event.preventDefault();
         this.submitted = true;
+
+        if (this.registrationForm.valid) {
+            let waiting:any = Dialog.waiting("Please wait while we create your account");
+            let registrationDetails:any = {
+                email: this.registrationForm.controls.username.value,
+                password: this.registrationForm.controls.password.value,
+                forename: this.registrationForm.controls.forename.value,
+                surname: this.registrationForm.controls.surname.value
+            };
+
+            this.userRepository.register(registrationDetails)
+                .subscribe(
+                    (response:Response) => {
+                        waiting.close();
+                        Dialog.success("Your account has been created.  Please check your email for activation details");
+                        this.router.navigate([Route.LOGIN]);
+                    },
+                    (error:Response) => {
+                        waiting.close();
+                        if (error == HttpStatus.BAD_REQUEST) {
+                            // The account exists - do not leak information
+                            Dialog.error("There is a problem with your registration details");
+                        } else {
+                            Dialog.error("We are currently unable to create your account.  Please try again later");
+                        }
+                    }
+                );
+        }
     }
 
     showTermsOfUse() {

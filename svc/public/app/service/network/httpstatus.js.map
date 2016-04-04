@@ -1,1 +1,1 @@
-{"version":3,"file":"httpstatus.js","sourceRoot":"","sources":["httpstatus.ts"],"names":[],"mappings":";;;QAAa,WAAW;;;;YAAX,yBAAA,WAAW,GACxB;gBACI,EAAE,EAAG,GAAG;gBACR,WAAW,EAAE,GAAG;gBAChB,YAAY,EAAE,GAAG;gBACjB,SAAS,EAAE,GAAG;aACjB,CAAA,CAAC"}
+{"version":3,"file":"httpstatus.js","sourceRoot":"","sources":["httpstatus.ts"],"names":[],"mappings":";;;QAAa,UAAU;;;;YAAV,wBAAA,UAAU,GACvB;gBACI,EAAE,EAAG,GAAG;gBACR,WAAW,EAAE,GAAG;gBAChB,YAAY,EAAE,GAAG;gBACjB,SAAS,EAAE,GAAG;aACjB,CAAA,CAAC"}

@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/http", "./auth.service"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/http", "app/service/context/user.context"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/http", "./auth.service"], function(e
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, auth_service_1;
+    var core_1, http_1, user_context_1;
     var HttpClient;
     return {
         setters:[
@@ -20,18 +20,18 @@ System.register(["angular2/core", "angular2/http", "./auth.service"], function(e
             function (http_1_1) {
                 http_1 = http_1_1;
             },
-            function (auth_service_1_1) {
-                auth_service_1 = auth_service_1_1;
+            function (user_context_1_1) {
+                user_context_1 = user_context_1_1;
             }],
         execute: function() {
             HttpClient = (function () {
-                function HttpClient(http, authService) {
+                function HttpClient(http, userContext) {
                     this.http = http;
-                    this.authService = authService;
+                    this.userContext = userContext;
                 }
                 HttpClient.prototype.constructHeaders = function () {
                     var headers = new http_1.Headers();
-                    headers.append("Authorization", "Bearer " + this.authService.getToken());
+                    headers.append("Authorization", "Bearer " + this.userContext.getToken());
                     return headers;
                 };
                 HttpClient.prototype.get = function (url) {
@@ -44,7 +44,7 @@ System.register(["angular2/core", "angular2/http", "./auth.service"], function(e
                     headers.append("Accept", "application/json, text/plain, */*");
                     headers.append("Content-Type", "application/json;charset=UTF-8");
                     return this.http.post(url, data, {
-                        headers: this.constructHeaders()
+                        headers: headers
                     });
                 };
                 HttpClient.prototype.put = function (url, data) {
@@ -52,17 +52,12 @@ System.register(["angular2/core", "angular2/http", "./auth.service"], function(e
                     headers.append("Accept", "application/json, text/plain, */*");
                     headers.append("Content-Type", "application/json;charset=UTF-8");
                     return this.http.post(url, data, {
-                        headers: this.constructHeaders()
-                    });
-                };
-                HttpClient.prototype.delete = function (url, data) {
-                    return this.http.post(url, data, {
-                        headers: this.constructHeaders()
+                        headers: headers
                     });
                 };
                 HttpClient = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, auth_service_1.AuthService])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, user_context_1.UserContext])
                 ], HttpClient);
                 return HttpClient;
                 var _a;

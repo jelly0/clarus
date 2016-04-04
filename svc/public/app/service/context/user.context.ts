@@ -1,13 +1,19 @@
 import {Injectable, Component} from "angular2/core";
 import {Http, Response} from "angular2/http";
 import {Observable} from "rxjs/Rx";
+import {Router} from "angular2/router";
 
 @Injectable()
-export class AuthService {
+export class UserContext {
     private credentials:any = {};
     private user:any;
 
-    constructor(private http:Http) {
+    constructor(private http:Http,
+                private router:Router) {
+        router.subscribe((event:any) => {
+            console.log("********");
+            console.log(event);
+        })
     }
 
     getUsername() {
@@ -20,10 +26,6 @@ export class AuthService {
 
     getUser() {
         return this.user;
-    }
-
-    clearContext() {
-        this.credentials = {};
     }
 
     hasAuthenticated() {
@@ -46,7 +48,7 @@ export class AuthService {
                 this.user = response.json().user;
             })
             .map((response:Response) => {
-                response = response.json().user
+                return response.json().user;
             })
             .catch((error:Response) => {
                 return Observable.throw(error.status);

@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/http", "rxjs/Rx"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/http", "rxjs/Rx", "angular2/router"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,8 +10,8 @@ System.register(["angular2/core", "angular2/http", "rxjs/Rx"], function(exports_
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, http_1, Rx_1;
-    var AuthService;
+    var core_1, http_1, Rx_1, router_1;
+    var UserContext;
     return {
         setters:[
             function (core_1_1) {
@@ -22,29 +22,34 @@ System.register(["angular2/core", "angular2/http", "rxjs/Rx"], function(exports_
             },
             function (Rx_1_1) {
                 Rx_1 = Rx_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
             }],
         execute: function() {
-            AuthService = (function () {
-                function AuthService(http) {
+            UserContext = (function () {
+                function UserContext(http, router) {
                     this.http = http;
+                    this.router = router;
                     this.credentials = {};
+                    router.subscribe(function (event) {
+                        console.log("********");
+                        console.log(event);
+                    });
                 }
-                AuthService.prototype.getUsername = function () {
+                UserContext.prototype.getUsername = function () {
                     return this.credentials.username;
                 };
-                AuthService.prototype.getToken = function () {
+                UserContext.prototype.getToken = function () {
                     return this.credentials.token;
                 };
-                AuthService.prototype.getUser = function () {
+                UserContext.prototype.getUser = function () {
                     return this.user;
                 };
-                AuthService.prototype.clearContext = function () {
-                    this.credentials = {};
-                };
-                AuthService.prototype.hasAuthenticated = function () {
+                UserContext.prototype.hasAuthenticated = function () {
                     return !(this.credentials.token == undefined || this.credentials != null);
                 };
-                AuthService.prototype.login = function (username, password) {
+                UserContext.prototype.login = function (username, password) {
                     var _this = this;
                     var authData = btoa(username + ":" + password);
                     return this.http.get("login/user", {
@@ -59,24 +64,24 @@ System.register(["angular2/core", "angular2/http", "rxjs/Rx"], function(exports_
                         _this.user = response.json().user;
                     })
                         .map(function (response) {
-                        response = response.json().user;
+                        return response.json().user;
                     })
                         .catch(function (error) {
                         return Rx_1.Observable.throw(error.status);
                     });
                 };
-                AuthService.prototype.logout = function () {
+                UserContext.prototype.logout = function () {
                     this.credentials = {};
                 };
-                AuthService = __decorate([
+                UserContext = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object])
-                ], AuthService);
-                return AuthService;
-                var _a;
+                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _b) || Object])
+                ], UserContext);
+                return UserContext;
+                var _a, _b;
             }());
-            exports_1("AuthService", AuthService);
+            exports_1("UserContext", UserContext);
         }
     }
 });
-//# sourceMappingURL=auth.service.js.map
+//# sourceMappingURL=user.context.js.map

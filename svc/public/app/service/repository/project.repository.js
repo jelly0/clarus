@@ -1,4 +1,4 @@
-System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.service", "app/service/network/auth.service"], function(exports_1, context_1) {
+System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.service", "app/service/context/user.context"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.ser
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, Rx_1, httpclient_service_1, auth_service_1;
+    var core_1, Rx_1, httpclient_service_1, user_context_1;
     var ProjectRepository;
     return {
         setters:[
@@ -23,18 +23,18 @@ System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.ser
             function (httpclient_service_1_1) {
                 httpclient_service_1 = httpclient_service_1_1;
             },
-            function (auth_service_1_1) {
-                auth_service_1 = auth_service_1_1;
+            function (user_context_1_1) {
+                user_context_1 = user_context_1_1;
             }],
         execute: function() {
             ProjectRepository = (function () {
-                function ProjectRepository(http, authService) {
+                function ProjectRepository(http, userContext) {
                     this.http = http;
-                    this.authService = authService;
+                    this.userContext = userContext;
                 }
                 ProjectRepository.prototype.getUserProjects = function (userId) {
                     var _this = this;
-                    if (userId === void 0) { userId = this.authService.getUser().id; }
+                    if (userId === void 0) { userId = this.userContext.getUser().id; }
                     if (this.projectsCache) {
                         return Rx_1.Observable.of(this.projectsCache);
                     }
@@ -53,7 +53,7 @@ System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.ser
                 };
                 ProjectRepository = __decorate([
                     core_1.Injectable(), 
-                    __metadata('design:paramtypes', [httpclient_service_1.HttpClient, auth_service_1.AuthService])
+                    __metadata('design:paramtypes', [httpclient_service_1.HttpClient, user_context_1.UserContext])
                 ], ProjectRepository);
                 return ProjectRepository;
             }());

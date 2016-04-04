@@ -1,16 +1,16 @@
 import {Injectable} from "angular2/core";
 import {Http, Headers} from "angular2/http";
-import {AuthService} from "./auth.service";
+import {UserContext} from "app/service/context/user.context";
 
 @Injectable()
 export class HttpClient {
     constructor(private http:Http,
-                private authService:AuthService) {
+                private userContext:UserContext) {
     }
 
     private constructHeaders() {
         var headers:Headers = new Headers();
-        headers.append("Authorization", `Bearer ${this.authService.getToken()}`);
+        headers.append("Authorization", `Bearer ${this.userContext.getToken()}`);
         return headers;
     }
 
@@ -20,27 +20,21 @@ export class HttpClient {
         });
     }
 
-    post(url:string, data:any) {
+    post(url:string, data:string) {
         var headers = this.constructHeaders();
         headers.append("Accept", "application/json, text/plain, */*");
         headers.append("Content-Type", "application/json;charset=UTF-8");
         return this.http.post(url, data, {
-            headers: this.constructHeaders()
+            headers: headers
         });
     }
 
-    put(url:string, data:any) {
+    put(url:string, data:string) {
         var headers = this.constructHeaders();
         headers.append("Accept", "application/json, text/plain, */*");
         headers.append("Content-Type", "application/json;charset=UTF-8");
         return this.http.post(url, data, {
-            headers: this.constructHeaders()
-        });
-    }
-
-    delete(url:string, data:any) {
-        return this.http.post(url, data, {
-            headers: this.constructHeaders()
+            headers: headers
         });
     }
 }

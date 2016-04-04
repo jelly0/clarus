@@ -2,17 +2,16 @@ import {Injectable} from "angular2/core";
 import {Response} from "angular2/http";
 import {Observable} from "rxjs/Rx";
 import {HttpClient} from "app/service/network/httpclient.service";
-import {AuthService} from "app/service/network/auth.service";
-
+import {UserContext} from "app/service/context/user.context";
 @Injectable()
 export class ProjectRepository {
     private projectsCache:Object[];
 
     constructor(private http:HttpClient,
-                private authService:AuthService) {
+                private userContext:UserContext) {
     }
 
-    getUserProjects(userId:string = this.authService.getUser().id) {
+    getUserProjects(userId:string = this.userContext.getUser().id) {
         if (this.projectsCache) {
             return Observable.of(this.projectsCache);
         } else {

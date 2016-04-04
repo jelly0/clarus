@@ -3,7 +3,7 @@
     <h1>Create a Clarus Account</h1>
     <form [ngFormModel]="registrationForm" (submit)="register($event)" novalidate>
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        <span class="input-group-addon"><i class="fa fa-envelope">*</i></span>
         <input ngControl="username" #username="ngForm" class="form-control"
                type="email" title="Username" placeholder="User Name (email address)">
       </div>
@@ -13,7 +13,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+        <span class="input-group-addon"><i class="fa fa-envelope">*</i></span>
         <input ngControl="confirmUsername" #confirmUsername="ngForm" class="form-control"
                type="email" title="Username" placeholder="Email">
       </div>
@@ -23,7 +23,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <span class="input-group-addon"><i class="fa fa-key">*</i></span>
         <input ngControl="password" #password="ngForm" class="form-control"
                type="password" title="Password" placeholder="Password">
       </div>
@@ -32,7 +32,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+        <span class="input-group-addon"><i class="fa fa-key">*</i></span>
         <input ngControl="confirmPassword" #confirmPassword="ngForm" class="form-control"
                type="password" title="Password" placeholder="Password">
       </div>
@@ -42,7 +42,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <span class="input-group-addon"><i class="fa fa-user">*</i></span>
         <input ngControl="forename" #forename="ngForm" class="form-control"
                type="text" title="Forenames" placeholder="Forenames">
       </div>
@@ -51,7 +51,7 @@
       </div>
 
       <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+        <span class="input-group-addon"><i class="fa fa-user">*</i></span>
         <input ngControl="surname" #surname="ngForm" class="form-control"
                type="text" title="Surname" placeholder="surname">
       </div>
@@ -59,22 +59,23 @@
         <p *ngIf="surname.errors.required">Please enter your surname</p>
       </div>
 
-      <div>
+      <div class="box">
         <input type="checkbox" ngControl="termOfUse" #termOfUse="ngForm"/>
         * I have read and agree to the
         <a (click)="showTermsOfUse()">Terms of Use</a>
-        <div *ngIf="submitted && !termOfUse.valid" class="error" role="alert">
-          <p *ngIf="termOfUse.errors.required">You must agree to the Term of Use to use this service</p>
-        </div>
-
-        <div class="pull-right">
-          <button type="button" (click)="cancel()" class="btn btn-cancel">CANCEL</button>
-          <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
-        </div>
       </div>
+      <div *ngIf="submitted && !termOfUse.value" class="error" role="alert">
+        <p>You must agree to the Term of Use to use this service</p>
+      </div>
+
+      <div class="pull-right">
+        <button type="button" (click)="cancel()" class="btn btn-cancel">CANCEL</button>
+        <button type="submit" class="btn btn-primary">CREATE ACCOUNT</button>
+      </div>
+
     </form>
     <footer>
-      <i class="fa fa-copyright"></i> 2016 - Phillip Chan <a>Logic Motion</a>
+      <i class="fa fa-copyright"></i> 2016 Phillip Chan <a>http://www.lightmotion.org</a>
     </footer>
   </div>
 </main>

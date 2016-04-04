@@ -29,6 +29,7 @@ System.register(["angular2/core", "rxjs/Rx", "app/service/network/httpclient.ser
                     this.http = http;
                 }
                 UserRepository.prototype.register = function (registrationDetails) {
+                    alert("Got here");
                     return this.http.post("register/user", JSON.stringify(registrationDetails))
                         .map(function (response) {
                         return response.json();

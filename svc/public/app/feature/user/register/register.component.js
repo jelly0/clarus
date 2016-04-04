@@ -97,6 +97,7 @@ System.register(["angular2/core", "angular2/router", "angular2/common", "app/uti
                 Register.prototype.showTermsOfUse = function () {
                 };
                 Register.prototype.cancel = function () {
+                    this.router.navigate([user_component_1.Route.LOGIN]);
                 };
                 Register = __decorate([
                     core_1.Component({

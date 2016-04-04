@@ -82,6 +82,7 @@ export class Register {
     }
 
     cancel() {
+        this.router.navigate([Route.LOGIN]);
     }
 }
 

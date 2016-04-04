@@ -1,9 +1,9 @@
-#user-register {
+main {
   height: 100%;
   min-width: 480px;
   background-color: #f9f9ff;
 }
-#user-register > div {
+main > div {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -17,17 +17,17 @@
   margin-left: auto;
   margin-right: auto;
 }
-#user-register > div h1 {
+main > div h1 {
   color: white;
   font-size: 30pt;
   position: absolute;
   left: 250px;
-  top: 30px;
+  top: 25px;
 }
-#user-register > div h1 small {
+main > div h1 small {
   color: white;
 }
-#user-register > div form {
+main > div form {
   margin-top: 110px;
   margin-right: 40px;
   float: right;
@@ -37,10 +37,10 @@
   background: rgba(255, 255, 255, 0.5);
   padding: 10px 20px 10px 20px;
 }
-#user-register > div form .input-group {
+main > div form .input-group {
   margin-top: 3px;
 }
-#user-register > div form div.box {
+main > div form div.box {
   margin: 5px 0 0 0;
   border: 1px solid lightgray;
   border-radius: 4px;
@@ -48,41 +48,27 @@
   padding: 5px 15px 5px 15px;
   font-size: 10pt;
 }
-#user-register > div form div.box * {
+main > div form div.box * {
   vertical-align: baseline;
 }
-#user-register > div form .pull-right {
+main > div form .pull-right {
   margin-top: 5px;
 }
-#user-register > div footer {
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  right: 5px;
-  padding: 5px;
-  color: white;
-  text-align: center;
-  border-top: 1px solid lightgray;
-  font-size: 8pt;
-}
-#user-register > div footer a {
-  color: white;
-}
 @media (max-width: 749px) {
-  #user-register > div {
+  main > div {
     width: 480px;
     background-size: 480px, 750px;
     background-position: left 5px, right top;
   }
-  #user-register > div h1 {
+  main > div h1 {
     left: 180px;
     top: 10px;
     font-size: 20pt;
   }
-  #user-register > div form {
+  main > div form {
     margin-top: 110px;
   }
 }
-#user-register .fa {
+main .fa {
   width: 16px;
 }

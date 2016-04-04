@@ -1,19 +1,16 @@
-import {Component, Input} from "angular2/core";
+import {Component, ComponentInstruction, Input} from "angular2/core";
 import {RouteConfig, Router, Location, ROUTER_DIRECTIVES} from "angular2/router";
-
 import {Dialog} from "app/util/dialog";
-import {Log} from "app/util/logger"
-
+import {Log} from "app/util/logger";
 import {Home} from "app/feature/user/main/home/home.component";
 import {Project} from "app/feature/user/main/project/project.component";
-import {UserEvent} from "app/feature/user/user.event";
+import {UserContext} from "app/service/context/user.context";
 
 @Component({
     selector: "user",
     templateUrl: "app/feature/user/main/main.html",
     styleUrls: ["app/feature/user/main/main.css"],
-    directives: [ROUTER_DIRECTIVES],
-    providers: [UserEvent]
+    directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
     {path: "/home", name: "Home", component: Home},
@@ -21,13 +18,13 @@ import {UserEvent} from "app/feature/user/user.event";
 ])
 export class Main {
     constructor(private router:Router,
-                private dialog:Dialog,
-                private location:Location) {
+                private location:Location,
+                private userContext:UserContext) {
     }
 
     logout() {
-        this.dialog.confirm("Are you sure that you want to logout?", function () {
-                Log.debug("logged out");
+        Dialog.confirm("Are you sure that you want to logout?", function () {
+                this.userContext.logout();
             }
         );
     }

@@ -10,6 +10,8 @@ export class UserRepository {
     }
 
     register(registrationDetails:Object) {
+        alert("Got here");
+
         return this.http.post("register/user", JSON.stringify(registrationDetails))
             .map((response:Response) => {
                 return response.json();

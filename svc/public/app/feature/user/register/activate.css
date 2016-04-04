@@ -1,0 +1,59 @@
+main {
+  height: 100%;
+  min-width: 480px;
+  background-color: #f9f9ff;
+}
+main > div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  background: url("/resource/image/logo-bar.png") left top no-repeat, url("/resource/image/welcome.jpg") left top, no-repeat;
+  background-size: 750px, cover;
+  border: 1px solid #122b40;
+  border-radius: 5px;
+  box-shadow: 7px 7px 5px 0 rgba(30, 30, 50, 0.6);
+  width: 750px;
+  height: 450px;
+  margin: auto;
+}
+main > div h1 {
+  color: white;
+  font-size: 30pt;
+  position: absolute;
+  left: 250px;
+  top: 25px;
+  text-shadow: 1px 1px gray;
+}
+main > div div {
+  margin-top: 110px;
+  margin-right: 50px;
+  float: right;
+  width: 400px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background: rgba(255, 255, 255, 0.7);
+  padding: 10px 20px 10px 20px;
+}
+main > div p {
+  font-size: 13pt;
+  color: #122b40;
+}
+main > div p::first-letter {
+  font-weight: bold;
+  font-size: 300%;
+  float: left;
+  margin: 0 3px 3px 0;
+}
+@media (max-width: 749px) {
+  main > div {
+    width: 480px;
+    height: 350px;
+    background-size: 480px, cover;
+    background-position: left 5px, right top;
+  }
+  main > div h1 {
+    left: 150px;
+    top: 10px;
+    font-size: 20pt;
+  }
+}

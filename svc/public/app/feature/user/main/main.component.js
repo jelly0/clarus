@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/util/logger", "app/feature/user/main/home/home.component", "app/feature/user/main/project/project.component", "app/feature/user/user.event"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/feature/user/main/home/home.component", "app/feature/user/main/project/project.component", "app/service/context/user.context"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/uti
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, dialog_1, logger_1, home_component_1, project_component_1, user_event_1;
+    var core_1, router_1, dialog_1, home_component_1, project_component_1, user_context_1;
     var Main;
     return {
         setters:[
@@ -23,28 +23,25 @@ System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/uti
             function (dialog_1_1) {
                 dialog_1 = dialog_1_1;
             },
-            function (logger_1_1) {
-                logger_1 = logger_1_1;
-            },
             function (home_component_1_1) {
                 home_component_1 = home_component_1_1;
             },
             function (project_component_1_1) {
                 project_component_1 = project_component_1_1;
             },
-            function (user_event_1_1) {
-                user_event_1 = user_event_1_1;
+            function (user_context_1_1) {
+                user_context_1 = user_context_1_1;
             }],
         execute: function() {
             Main = (function () {
-                function Main(router, dialog, location) {
+                function Main(router, location, userContext) {
                     this.router = router;
-                    this.dialog = dialog;
                     this.location = location;
+                    this.userContext = userContext;
                 }
                 Main.prototype.logout = function () {
-                    this.dialog.confirm("Are you sure that you want to logout?", function () {
-                        logger_1.Log.debug("logged out");
+                    dialog_1.Dialog.confirm("Are you sure that you want to logout?", function () {
+                        this.userContext.logout();
                     });
                 };
                 Main.prototype.navigateToHome = function () {
@@ -64,14 +61,13 @@ System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/uti
                         selector: "user",
                         templateUrl: "app/feature/user/main/main.html",
                         styleUrls: ["app/feature/user/main/main.css"],
-                        directives: [router_1.ROUTER_DIRECTIVES],
-                        providers: [user_event_1.UserEvent]
+                        directives: [router_1.ROUTER_DIRECTIVES]
                     }),
                     router_1.RouteConfig([
                         { path: "/home", name: "Home", component: home_component_1.Home },
                         { path: "/project/...", name: "Project", component: project_component_1.Project, useAsDefault: true }
                     ]), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, dialog_1.Dialog, (typeof (_b = typeof router_1.Location !== 'undefined' && router_1.Location) === 'function' && _b) || Object])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Location !== 'undefined' && router_1.Location) === 'function' && _b) || Object, user_context_1.UserContext])
                 ], Main);
                 return Main;
                 var _a, _b;

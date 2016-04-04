@@ -1,9 +1,9 @@
-#user-login {
+main {
   height: 100%;
   min-width: 480px;
   background-color: #f9f9ff;
 }
-#user-login > div {
+main > div {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -14,26 +14,21 @@
   box-shadow: 7px 7px 5px 0 rgba(30, 30, 50, 0.6);
   width: 750px;
   height: 500px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
 }
-#user-login > div h1 {
+main > div h1 {
   color: white;
   font-size: 30pt;
   position: absolute;
   left: 250px;
-  top: 30px;
+  top: 25px;
 }
-#user-login > div h1 small {
+main > div h1 small {
   color: white;
 }
-#user-login > div a {
-  color: white;
-  text-decoration: underline;
-}
-#user-login > div form {
+main > div form {
   margin-top: 160px;
-  margin-right: 40px;
+  margin-right: 50px;
   float: right;
   width: 400px;
   border-radius: 5px;
@@ -41,10 +36,14 @@
   background: rgba(255, 255, 255, 0.4);
   padding: 30px 20px 10px 20px;
 }
-#user-login > div form button {
+main > div form a {
+  color: white;
+  text-decoration: underline;
+}
+main > div form button {
   width: 100%;
 }
-#user-login > div form .error-box {
+main > div form .error-box {
   color: #a94442;
   padding: 3px;
   background: rgba(255, 255, 255, 0.3);
@@ -53,29 +52,18 @@
   margin-bottom: 10px;
   text-align: center;
 }
-#user-login > div footer {
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  right: 5px;
-  padding: 5px;
-  color: white;
-  text-align: center;
-  border-top: 1px solid lightgray;
-  font-size: 8pt;
-}
 @media (max-width: 749px) {
-  #user-login > div {
+  main > div {
     width: 480px;
     background-size: 480px, 750px;
     background-position: left 5px, right top;
   }
-  #user-login > div h1 {
+  main > div h1 {
     left: 180px;
     top: 10px;
     font-size: 20pt;
   }
-  #user-login > div form {
-    margin-top: 150px;
+  main > div form {
+    margin: 150px 40px auto auto;
   }
 }

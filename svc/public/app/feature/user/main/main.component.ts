@@ -1,7 +1,6 @@
 import {Component, ComponentInstruction, Input} from "angular2/core";
 import {RouteConfig, Router, Location, ROUTER_DIRECTIVES} from "angular2/router";
 import {Dialog} from "app/util/dialog";
-import {Log} from "app/util/logger";
 import {Home} from "app/feature/user/main/home/home.component";
 import {Project} from "app/feature/user/main/project/project.component";
 import {UserContext} from "app/service/context/user.context";
@@ -23,8 +22,13 @@ export class Main {
     }
 
     logout() {
-        Dialog.confirm("Are you sure that you want to logout?", function () {
-                this.userContext.logout();
+        let userContext:UserContext = this.userContext;
+        let router:Router = this.router;
+
+        Dialog.confirm("Are you sure that you want to logout?",
+            function () {
+                userContext.logout();
+                router.navigate(["Login"]);
             }
         );
     }
@@ -42,6 +46,6 @@ export class Main {
     }
 
     isAtProject() {
-        return this.location.path() == "/user/project";
+        return this.location.path().indexOf("/user/project") > -1;
     }
 }

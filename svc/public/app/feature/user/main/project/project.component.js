@@ -28,20 +28,25 @@ System.register(["angular2/core", "angular2/router", "app/feature/user/main/proj
             }],
         execute: function() {
             Project = (function () {
-                function Project() {
+                function Project(router) {
+                    this.router = router;
+                    this.router.navigate(["./", ["List"]]);
+                    this.router.navigate(["./", ["Menu"]]);
                 }
                 Project = __decorate([
                     core_1.Component({
-                        templateUrl: "app/feature/user/main/project/project.html",
+                        template: "\n        <aside class=\"col-md-3 col-sm-4\">\n          <router-outlet name=\"menu\"></router-outlet>\n        </aside>\n        <main class=\"col-md-9 col-sm-8 col-xs-12 container\">\n          <router-outlet name=\"content\"></router-outlet>\n        </main>\n    ",
                         styleUrls: ["app/feature/user/main/project/project.css"],
                         directives: [router_1.ROUTER_DIRECTIVES, project_menu_component_1.ProjectMenu]
                     }),
                     router_1.RouteConfig([
-                        { path: '/', name: 'ProjectList', component: project_list_component_1.ProjectList, useAsDefault: true }
+                        { path: "/menu", name: "Menu", component: project_menu_component_1.ProjectMenu, aux: "menu" },
+                        { path: "/list", name: "List", component: project_list_component_1.ProjectList, aux: "content" }
                     ]), 
-                    __metadata('design:paramtypes', [])
+                    __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
                 ], Project);
                 return Project;
+                var _a;
             }());
             exports_1("Project", Project);
         }

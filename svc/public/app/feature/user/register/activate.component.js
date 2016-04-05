@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "app/feature/user/user.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", "app/feature/user/user.component", "app/feature/common/copyright.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/router", "app/feature/user/user.comp
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, user_component_1;
+    var core_1, router_1, user_component_1, copyright_component_1;
     var Activate;
     return {
         setters:[
@@ -22,6 +22,9 @@ System.register(["angular2/core", "angular2/router", "app/feature/user/user.comp
             },
             function (user_component_1_1) {
                 user_component_1 = user_component_1_1;
+            },
+            function (copyright_component_1_1) {
+                copyright_component_1 = copyright_component_1_1;
             }],
         execute: function() {
             Activate = (function () {
@@ -34,7 +37,8 @@ System.register(["angular2/core", "angular2/router", "app/feature/user/user.comp
                 Activate = __decorate([
                     core_1.Component({
                         templateUrl: "app/feature/user/register/activate.html",
-                        styleUrls: ["app/feature/user/register/activate.css"]
+                        styleUrls: ["app/feature/user/register/activate.css"],
+                        directives: [copyright_component_1.Copyright]
                     }), 
                     __metadata('design:paramtypes', [(typeof (_a = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _a) || Object])
                 ], Activate);

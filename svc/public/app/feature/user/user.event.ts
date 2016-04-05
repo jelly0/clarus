@@ -7,14 +7,13 @@ import {Log} from "app/util/logger";
 export class UserEvent {
     private _authenticationSource = new Subject<string>();
 
+    public Event = {
+        AUTHENTICATED : "AUTHENTICATED"
+    };
+
     public authenticated$ = this._authenticationSource.asObservable();
 
-    authenticated() {
+    publish(event:string) {
         this._authenticationSource.next();
     }
-
-    register() {
-        this._authenticationSource.next("register");
-    }
-
 }

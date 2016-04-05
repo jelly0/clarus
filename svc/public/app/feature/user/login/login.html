@@ -18,28 +18,24 @@
       <div class="form-group">
         <div class="input-group">
           <span class="input-group-addon"><i class="fa fa-key"></i></span>
-          <input ngControl="password" #password="ngForm" class="form-control"
-                 type="password" title="Password" placeholder="Password">
+          <input ngControl="password" #password="ngForm" class="form-control" type="password" title="Password"
+                 placeholder="Password">
         </div>
         <div *ngIf="submitted &&!password.valid" class="error">
           <p *ngIf="password.errors.required">Please enter your password</p>
         </div>
       </div>
-
       <div *ngIf="authenticationError" class="error-box">
         <i class="fa fa-warning"></i> Please check your username and password
-      </div>
-
-      <div class="form-group">
-        <div><a (click)="register()">Don't have an account? Register</a></div>
-        <div><a>Forgotten Password</a></div>
       </div>
       <div class="form-group">
         <button class="btn btn-primary" type="submit">LOGIN</button>
       </div>
+      <div class="form-group">
+        <div><a (click)="register()">Don't have an account? Register</a></div>
+        <div><a>Forgotten Password</a></div>
+      </div>
     </form>
-    <footer class="copyright">
-      <i class="fa fa-copyright"></i> 2016 Phillip Chan <a>http://www.lightmotion.org</a>
-    </footer>
+    <copyright></copyright>
   </div>
 </main>

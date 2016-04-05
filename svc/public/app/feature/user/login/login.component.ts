@@ -3,17 +3,17 @@ import {Router} from "angular2/router";
 import {Response} from "angular2/http";
 import {FormBuilder, Validators, Control, ControlGroup, FORM_DIRECTIVES} from "angular2/common";
 import {TypeValidators} from "app/util/type-validators";
-import {Log} from "app/util/logger";
 import {Dialog} from "app/util/dialog";
 import {UserContext} from "app/service/context/user.context";
 import {HttpStatus} from "app/service/network/httpstatus";
 import {Route} from "app/feature/user/user.component";
+import {Copyright} from "app/feature/common/copyright.component";
 
 @Component({
     templateUrl: "app/feature/user/login/login.html",
-    styleUrls: ["app/feature/user/login/login.css"]
+    styleUrls: ["app/feature/user/login/login.css"],
+    directives: [Copyright]
 })
-
 export class Login {
     private loginForm:ControlGroup;
 

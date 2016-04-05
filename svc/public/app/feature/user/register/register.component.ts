@@ -7,12 +7,13 @@ import {Dialog} from "app/util/dialog";
 import {UserRepository} from "app/service/repository/user.repository";
 import {Route} from "app/feature/user/user.component";
 import {HttpStatus} from "app/service/network/httpstatus";
+import {Copyright} from "app/feature/common/copyright.component";
 
 @Component({
     templateUrl: "app/feature/user/register/register.html",
-    styleUrls: ["app/feature/user/register/register.css"]
+    styleUrls: ["app/feature/user/register/register.css"],
+    directives: [Copyright]
 })
-
 export class Register {
     private registrationForm:ControlGroup;
     public submitted:boolean = false;
@@ -85,5 +86,3 @@ export class Register {
         this.router.navigate([Route.LOGIN]);
     }
 }
-
-

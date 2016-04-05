@@ -16,13 +16,11 @@ export const Route = {
     template: "<router-outlet></router-outlet>",
     directives: [ROUTER_DIRECTIVES]
 })
-
 @RouteConfig([
     {path: '/...', name: Route.MAIN, component: Main},
     {path: '/register', name: Route.REGISTER, component: Register},
     {path: '/activate', name: Route.ACTIVATE, component: Activate},
     {path: '/', name: Route.LOGIN, component: Login, useAsDefault: true}
 ])
-
 export class User {
 }

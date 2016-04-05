@@ -40,8 +40,11 @@ System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/fea
                     this.userContext = userContext;
                 }
                 Main.prototype.logout = function () {
+                    var userContext = this.userContext;
+                    var router = this.router;
                     dialog_1.Dialog.confirm("Are you sure that you want to logout?", function () {
-                        this.userContext.logout();
+                        userContext.logout();
+                        router.navigate(["Login"]);
                     });
                 };
                 Main.prototype.navigateToHome = function () {
@@ -54,7 +57,7 @@ System.register(["angular2/core", "angular2/router", "app/util/dialog", "app/fea
                     return this.location.path() == "/user/home";
                 };
                 Main.prototype.isAtProject = function () {
-                    return this.location.path() == "/user/project";
+                    return this.location.path().indexOf("/user/project") > -1;
                 };
                 Main = __decorate([
                     core_1.Component({

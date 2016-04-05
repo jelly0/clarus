@@ -51,18 +51,3 @@
 .ng-invalid {
   border-left: 5px solid #a94442;
 }
-footer.copyright {
-  position: absolute;
-  bottom: 0;
-  left: 5px;
-  right: 5px;
-  padding: 5px;
-  color: white;
-  text-align: center;
-  border-top: 1px solid lightgray;
-  font-size: 8pt;
-}
-footer.copyright a {
-  color: white;
-  text-decoration: none;
-}

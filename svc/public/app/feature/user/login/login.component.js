@@ -1,4 +1,4 @@
-System.register(["angular2/core", "angular2/router", "angular2/common", "app/util/type-validators", "app/util/dialog", "app/service/context/user.context", "app/service/network/httpstatus", "app/feature/user/user.component"], function(exports_1, context_1) {
+System.register(["angular2/core", "angular2/router", "angular2/common", "app/util/type-validators", "app/util/dialog", "app/service/context/user.context", "app/service/network/httpstatus", "app/feature/user/user.component", "app/feature/common/copyright.component"], function(exports_1, context_1) {
     "use strict";
     var __moduleName = context_1 && context_1.id;
     var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -10,7 +10,7 @@ System.register(["angular2/core", "angular2/router", "angular2/common", "app/uti
     var __metadata = (this && this.__metadata) || function (k, v) {
         if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    var core_1, router_1, common_1, type_validators_1, dialog_1, user_context_1, httpstatus_1, user_component_1;
+    var core_1, router_1, common_1, type_validators_1, dialog_1, user_context_1, httpstatus_1, user_component_1, copyright_component_1;
     var Login;
     return {
         setters:[
@@ -37,6 +37,9 @@ System.register(["angular2/core", "angular2/router", "angular2/common", "app/uti
             },
             function (user_component_1_1) {
                 user_component_1 = user_component_1_1;
+            },
+            function (copyright_component_1_1) {
+                copyright_component_1 = copyright_component_1_1;
             }],
         execute: function() {
             Login = (function () {
@@ -79,7 +82,8 @@ System.register(["angular2/core", "angular2/router", "angular2/common", "app/uti
                 Login = __decorate([
                     core_1.Component({
                         templateUrl: "app/feature/user/login/login.html",
-                        styleUrls: ["app/feature/user/login/login.css"]
+                        styleUrls: ["app/feature/user/login/login.css"],
+                        directives: [copyright_component_1.Copyright]
                     }), 
                     __metadata('design:paramtypes', [(typeof (_a = typeof common_1.FormBuilder !== 'undefined' && common_1.FormBuilder) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _b) || Object, user_context_1.UserContext])
                 ], Login);

@@ -24,13 +24,13 @@ System.register(['angular2/core', 'rxjs/Subject'], function(exports_1, context_1
             UserEvent = (function () {
                 function UserEvent() {
                     this._authenticationSource = new Subject_1.Subject();
+                    this.Event = {
+                        AUTHENTICATED: "AUTHENTICATED"
+                    };
                     this.authenticated$ = this._authenticationSource.asObservable();
                 }
-                UserEvent.prototype.authenticated = function () {
+                UserEvent.prototype.publish = function (event) {
                     this._authenticationSource.next();
-                };
-                UserEvent.prototype.register = function () {
-                    this._authenticationSource.next("register");
                 };
                 UserEvent = __decorate([
                     core_1.Injectable(), 
